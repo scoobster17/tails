@@ -1,7 +1,16 @@
 <section class="jumbotron">
 	<h1>{{ text.heading }}</h1>
 	<p>{{ text.intro }}</p>
-	<a href="#/stories" class="button">
-		{{ text.storiesLinkText }}
+	<a href="#/stories" class="btn btn-default">
+		{{ text.stories.linkText }}
 	</a>
+</section>
+<section class="panel panel-default">
+	<header class="panel-heading">
+		<h2 class="panel-title">{{ text.author.heading }}</h2>
+	</header>
+	<div class="panel-body">
+		<p>{{ text.author.info }}</p>
+		<a href="#/author" class="btn btn-default">{{ text.author.linkText }}</a>
+	</div>
 </section>

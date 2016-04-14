@@ -5,7 +5,19 @@
 	"text": {
 		"home": {
 			"heading": "Tell your Tails",
-			"intro": "Story planner app. Plan your stories or \"tales\", or as we like to call them, \"tails\"."
+			"intro": "Story planner app. Plan your stories or \"tales\", or as we like to call them, \"tails\".",
+			"stories": {
+				"linkText": "Go to your tails"
+			},
+			"author": {
+				"heading": "The Author",
+				"info": "Here you can store details about yourself, whether it's for a reporter, your editor, the back of your novel or just for you.",
+				"linkText": "About the author"
+			}
+		},
+		"author": {
+			"heading": "About the Author",
+			"intro": "Here you can store details about yourself, whether it's personal information or something you think will sound good on your blog."
 		}
 	}
 }]
