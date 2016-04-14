@@ -8,4 +8,5 @@
 		$scope.appName = constants.appName;
 
 	});
+
 })();

@@ -16,8 +16,16 @@
 			}
 		},
 		"author": {
-			"heading": "About the Author",
-			"intro": "Here you can store details about yourself, whether it's personal information or something you think will sound good on your blog."
+			"home": {
+				"heading": "About the Author",
+				"intro": "Here you can store details about yourself, whether it's personal information or something you think will sound good on your blog."
+			}
+		},
+		"stories": {
+			"list": {
+				"heading": "Your tails",
+				"intro": "Here is a list of all your stories:"
+			}
 		}
 	}
 }]

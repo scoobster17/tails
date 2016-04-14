@@ -9,4 +9,5 @@
 		$scope.creator = constants.creator;
 
 	});
+
 })();

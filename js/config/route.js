@@ -12,7 +12,13 @@
 				controller: 'homeCtrl'
 			})
 
-			// home page
+			// stories page
+			.when('/stories', {
+				templateUrl: 'templates/stories/list.html',
+				controller: 'storiesListCtrl'
+			})
+
+			// author page
 			.when('/author', {
 				templateUrl: 'templates/author/author.html',
 				controller: 'authorCtrl'
