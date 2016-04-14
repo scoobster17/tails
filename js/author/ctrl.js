@@ -7,7 +7,12 @@
 	 * @param  {[dependency]} $scope
 	 * @param  {[dependency]} TextFactory  Factory for retrieving text for page
 	 */
-	.controller('authorCtrl', ['$scope', 'TextFactory', function($scope, TextFactory){
+	.controller('authorCtrl', ['$scope', '$rootScope', 'TextFactory', function($scope, $rootScope, TextFactory){
+
+		// on view change change the title for accessibility
+		$scope.$on('$viewContentLoaded', function() {
+			$rootScope.updateTitle(['Author']);
+		});
 
 		// get page text
 		var textQuery = TextFactory.query();
