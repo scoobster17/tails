@@ -22,7 +22,29 @@
 			},
 			"personalInfo": {
 				"heading": "Your Personal Info",
-				"intro": "Here you can store some of your personal information. We urge you not to put any sensitive information about yourself in here, as there is no need!"
+				"intro": "Here you can store some of your personal information. We urge you not to put any sensitive information about yourself in here such as bank details, as there is no need!",
+				"labels": {
+					"firstName": "First name",
+					"lastName": "Last name",
+					"dateOfBirth": {
+						"summary": "Date of birth",
+						"date": "Date",
+						"month": "Month",
+						"year": "Year"
+					},
+					"address": {
+						"firstLine": "Address",
+						"secondLine": "Address Line 2",
+						"thirdLine": "Address Line 3",
+						"town": "Town",
+						"county": "County",
+						"country": "Country",
+						"postcode": "Postcode"
+					},
+					"other": "Other:"
+				},
+				"reset": "Clear",
+				"submit": "Save"
 			},
 			"notes": {
 				"heading": "Author's Notes",

@@ -5821,3 +5821,8 @@ button.close {
   border-top: 1px solid #ccc;
   margin-top: 20px;
   padding: 20px 15px; }
+
+.label {
+  color: inherit;
+  font-size: inherit;
+  padding: 0; }

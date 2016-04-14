@@ -1,5 +1,60 @@
 <section>
 	<h1>{{ text.heading }}</h1>
 	<p>{{ text.intro }}</p>
+	<form novalidate>
+		<div class="form-group">
+			<label for="firstName">{{ text.labels.firstName }}</label>
+			<input type="text" name="firstName" id="firstName" ng-model="author.firstName" />
+		</div>
+		<div class="form-group">
+			<label for="lastName">{{ text.labels.lastName }}</label>
+			<input type="text" name="lastName" id="lastName" ng-model="author.lastName" />
+		</div>
+		<div class="form-group">
+			<p class="label">{{ text.labels.dateOfBirth.summary }}</p>
+			<label for="dateOfBirthDate" class="sr-only">{{ text.labels.dateOfBirth.date }}</label>
+			<input type="number" min="1" max="31" name="dateOfBirthDate" id="dateOfBirthDate" ng-model="author.dateOfBirthDate" />
+			<label for="dateOfBirthMonth" class="sr-only">{{ text.labels.dateOfBirth.month }}</label>
+			<input type="number" min="1" max="12" name="dateOfBirthMonth" id="dateOfBirthMonth" ng-model="author.dateOfBirthMonth" />
+			<label for="dateOfBirthYear" class="sr-only">{{ text.labels.dateOfBirth.year }}</label>
+			<input type="number" min="{{ year - 100 }}" max="{{ year }}" name="dateOfBirthYear" id="dateOfBirthYear" ng-model="author.dateOfBirthYear" />
+		</div>
+		<fieldset>
+			<div class="form-group">
+				<label for="addressFirstLine">{{ text.labels.address.firstLine }}</label>
+				<input type="text" name="addressFirstLine" id="addressFirstLine" ng-model="author.addressFirstLine" />
+			</div>
+			<div class="form-group">
+				<label for="addressSecondLine">{{ text.labels.address.secondLine }}</label>
+				<input type="text" name="addressSecondLine" id="addressSecondLine" ng-model="author.addressSecondLine" />
+			</div>
+			<div class="form-group">
+				<label for="addressThirdLine">{{ text.labels.address.thirdLine }}</label>
+				<input type="text" name="addressThirdLine" id="addressThirdLine" ng-model="author.addressThirdLine" />
+			</div>
+			<div class="form-group">
+				<label for="addressTown">{{ text.labels.address.town }}</label>
+				<input type="text" name="addressTown" id="addressTown" ng-model="author.addressTown" />
+			</div>
+			<div class="form-group">
+				<label for="addressCounty">{{ text.labels.address.county }}</label>
+				<input type="text" name="addressCounty" id="addressCounty" ng-model="author.addressCounty" />
+			</div>
+			<div class="form-group">
+				<label for="addressCountry">{{ text.labels.address.country }}</label>
+				<input type="text" name="addressCountry" id="addressCountry" ng-model="author.addressCountry" />
+			</div>
+			<div class="form-group">
+				<label for="addressPostcode">{{ text.labels.address.postcode }}</label>
+				<input type="text" name="addressPostcode" id="addressPostcode" ng-model="author.addressPostcode" />
+			</div>
+		</fieldset>
+		<div class="form-group">
+			<label for="otherDetails">{{ text.labels.other }}</label>
+			<textarea name="otherDetails" id="otherDetails" ng-model="author.otherDetails"></textarea>
+		</div>
+		<input type="reset" class="btn btn-danger" value="{{ text.reset }}" />
+		<input type="submit" class="btn btn-primary" value="{{ text.submit }}" />
+	</form>
 	<a href="#/author" class="btn btn-default">Back</a>
 </section>

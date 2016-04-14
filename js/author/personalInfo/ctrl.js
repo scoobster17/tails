@@ -21,6 +21,9 @@
 			$scope.text = data[0].text.author.personalInfo;
 		});
 
+		// page data
+		$scope.year = $rootScope.date.getFullYear();
+
 	}]);
 
 })();
