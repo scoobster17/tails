@@ -12,17 +12,37 @@
 				controller: 'homeCtrl'
 			})
 
-			// stories page
+			////////////////////////////////////////////////////////////////////
+			// STORIES SECTION
+			////////////////////////////////////////////////////////////////////
+
+			// stories list page
 			.when('/stories', {
 				templateUrl: 'templates/stories/list.html',
 				controller: 'storiesListCtrl'
 			})
 
-			// author page
+			////////////////////////////////////////////////////////////////////
+			// AUTHOR SECTION
+			////////////////////////////////////////////////////////////////////
+
+			// author home page
 			.when('/author', {
-				templateUrl: 'templates/author/author.html',
+				templateUrl: 'templates/author/home.html',
 				controller: 'authorCtrl'
 			})
+
+				// author personal info page
+				.when('/author/personalInfo', {
+					templateUrl: 'templates/author/personalInfo.html',
+					controller: 'authorPersonalInfoCtrl'
+				})
+
+				// author notes page
+				.when('/author/notes', {
+					templateUrl: 'templates/author/notes.html',
+					controller: 'authorNotesCtrl'
+				})
 
 			// otherwise re-direct to home
 			.otherwise({

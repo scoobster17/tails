@@ -19,6 +19,14 @@
 			"home": {
 				"heading": "About the Author",
 				"intro": "Here you can store details about yourself, whether it's personal information or something you think will sound good on your blog."
+			},
+			"personalInfo": {
+				"heading": "Your Personal Info",
+				"intro": "Here you can store some of your personal information. We urge you not to put any sensitive information about yourself in here, as there is no need!"
+			},
+			"notes": {
+				"heading": "Author's Notes",
+				"intro": "Here you have a free playground to jot down whatever you want, whether it be something you just want to remember, or an idea that isn't related to one of your tails yet."
 			}
 		},
 		"stories": {
