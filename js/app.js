@@ -1,6 +1,6 @@
 (function(){
 
-	angular.module('tailsApp', ['ngRoute'])
+	angular.module('tailsApp', ['ngRoute', 'ngResource'])
 
 	.constant("constants", {
 		"appName": "Tails",

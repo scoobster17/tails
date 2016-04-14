@@ -36,6 +36,15 @@ app.get('/', function(req, res) {
 });
 
 /**
+ * Get text data (TEMPORARY until introduce Mongo)
+ */
+app.get('/text', function(req, res) {
+	fs.readFile( __dirname + '/data/text/text_en_gb.json', 'utf8', function(err, data) {
+		res.end(data);
+	});
+});
+
+/**
  * Server setup and config
  */
 var server = app.listen(7411, function() {
