@@ -1,0 +1,34 @@
+{
+  "name": "tails",
+  "description": "Story planning app",
+  "main": "index.js",
+  "authors": [
+    "Phil Gibbins <scoobster17@hotmail.co.uk> (http://www.philgibbins.com)"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "Tails",
+    "story",
+    "planner",
+    "app"
+  ],
+  "homepage": "https://github.com/scoobster17/tails",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-bootstrap": "^1.3.1",
+    "angular": "^1.5.4",
+    "bootstrap-sass": "^3.3.6"
+  },
+  "devDependencies": {
+    "angular-bootstrap": "^1.3.1",
+    "angular": "^1.5.4",
+    "bootstrap-sass": "^3.3.6",
+    "angular-route": "^1.5.3"
+  }
+}

@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+// set up e.g. vars, mixins
+@import 'sassSetup/_sassSetup';
+
+// third party styles
+@import '../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap';
+
+// custom styles
+@import 'global/_common';
+@import 'global/_header';
+@import 'global/_footer';

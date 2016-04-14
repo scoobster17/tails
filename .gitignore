@@ -1,0 +1,9 @@
+## GIT IGNORE ##
+
+# Project Config
+*.sublime-project
+*.sublime-workspace
+
+# Third Party Source Config
+bower_components/
+node_modules/
