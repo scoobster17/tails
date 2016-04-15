@@ -1,16 +1,51 @@
-<section>
+<section class="authorHome">
 	<h1>{{ text.heading }}</h1>
 	<p>{{ text.intro }}</p>
-	<ul class="list-unstyled actions">
-		<li>
-			<a href="#/author/personalInfo">
-				Personal <abbr title="information">info</abbr>
-			</a>
+	<ul class="list-unstyled actions row">
+		<li class="col-sm-4">
+			<section class="panel panel-default">
+				<header class="panel-heading">
+					<h2 class="panel-title">{{ text.options.personalInfo.heading }}</h2>
+				</header>
+				<div class="panel-body">
+					<p>{{ text.options.personalInfo.summary }}</p>
+				</div>
+				<footer class="panel-footer">
+					<a href="#/author/personalInfo" class="btn btn-primary pull-right">
+						{{ text.options.personalInfo.linkText }}
+					</a>
+				</footer>
+			</section>
 		</li>
-		<li>
-			<a href="#/author/notes">
-				Notes
-			</a>
+		<li class="col-sm-4">
+			<section class="panel panel-default">
+				<header class="panel-heading">
+					<h2 class="panel-title">{{ text.options.todo.heading }}</h2>
+				</header>
+				<div class="panel-body">
+					<p>{{ text.options.todo.summary }}</p>
+				</div>
+				<footer class="panel-footer">
+					<a href="#/author/todo" class="btn btn-primary pull-right">
+						{{ text.options.todo.linkText }}
+					</a>
+				</footer>
+			</section>
+		</li>
+		<li class="col-sm-4">
+			<section class="panel panel-default">
+				<header class="panel-heading">
+					<h2 class="panel-title">{{ text.options.notes.heading }}</h2>
+				</header>
+				<div class="panel-body">
+					<p>{{ text.options.notes.summary }}</p>
+				</div>
+				<footer class="panel-footer">
+					<a href="#/author/notes" class="btn btn-primary pull-right">
+						{{ text.options.notes.linkText }}
+					</a>
+				</footer>
+			</section>
 		</li>
 	</ul>
 	<a href="#/" class="btn btn-default">Back</a>

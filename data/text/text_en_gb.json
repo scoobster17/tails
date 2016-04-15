@@ -18,7 +18,24 @@
 		"author": {
 			"home": {
 				"heading": "About the Author",
-				"intro": "Here you can store details about yourself, whether it's personal information or something you think will sound good on your blog."
+				"intro": "Here you can store your personal details, make general notes whether they're related to stories or not, and make a to-do list.",
+				"options": {
+					"personalInfo": {
+						"heading": "Personal Information",
+						"summary": "Store and edit details about yourself, whether it's personal information or something you think will sound good on your blog or 'About the Author' page.",
+						"linkText": "Your Personal Info"
+					},
+					"todo": {
+						"heading": "To-do list",
+						"summary": "Create and manage tasks, whether they're personal or just for your novel(s).",
+						"linkText": "Your To-Do List"
+					},
+					"notes": {
+						"heading": "Notes",
+						"summary": "Here is an area to just jot down random things about anything.",
+						"linkText": "Your Notes"
+					}
+				}
 			},
 			"personalInfo": {
 				"heading": "Your Personal Info",
@@ -63,6 +80,10 @@
 				},
 				"reset": "Delete",
 				"submit": "Save"
+			},
+			"todo": {
+				"heading": "To-Do List",
+				"intro": "Here you can collect your tasks to keep all that you have to do (with regards to your stories or otherwise) in one place."
 			},
 			"notes": {
 				"heading": "Author's Notes",

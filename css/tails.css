@@ -5832,3 +5832,9 @@ button.close {
 
 .dateOfBirthFields .form-control-feedback {
   right: 15px; }
+
+.authorHome .panel-body {
+  min-height: 120px; }
+
+.authorHome .panel-footer {
+  overflow: hidden; }

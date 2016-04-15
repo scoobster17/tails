@@ -38,6 +38,12 @@
 					controller: 'authorPersonalInfoCtrl'
 				})
 
+				// author to-do list page
+				.when('/author/todo', {
+					templateUrl: 'templates/author/todo.html',
+					controller: 'authorToDoCtrl'
+				})
+
 				// author notes page
 				.when('/author/notes', {
 					templateUrl: 'templates/author/notes.html',

@@ -6,8 +6,11 @@
 // third party styles
 @import '../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap';
 
-// custom styles
+// common styles
 @import 'global/_common';
 @import 'global/_header';
 @import 'global/_footer';
 @import 'global/_forms';
+
+// page styles
+@import 'pages/author/_home';
