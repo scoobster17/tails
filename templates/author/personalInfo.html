@@ -6,7 +6,7 @@
 			<fieldset>
 				<div class="form-group" ng-class="{'has-error has-feedback': personalInfoForm.firstName.$invalid}">
 					<label for="firstName" class="control-label">{{ text.labels.firstName }}</label>
-					<input type="text" name="firstName" class="form-control" id="firstName" ng-model="author.firstName" ng-model-options="{ 'updateOn': 'blur' }" ng-pattern="/^[a-z\- ]+$/i" />
+					<input type="text" name="firstName" class="form-control" id="firstName" ng-model="author.firstName" ng-model-options="{ 'updateOn': 'blur' }" ng-pattern="regex.firstName" />
 					<span ng-show="personalInfoForm.firstName.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
 					<p ng-show="personalInfoForm.firstName.$invalid" class="help-block">
 						{{ text.errors.firstName }}
@@ -14,7 +14,7 @@
 				</div>
 				<div class="form-group" ng-class="{'has-error has-feedback': personalInfoForm.lastName.$invalid}">
 					<label for="lastName" class="control-label">{{ text.labels.lastName }}</label>
-					<input type="text" name="lastName" class="form-control" id="lastName" ng-model="author.lastName" ng-model-options="{ 'updateOn': 'blur' }" ng-pattern="/^[a-z\- ]+$/i" />
+					<input type="text" name="lastName" class="form-control" id="lastName" ng-model="author.lastName" ng-model-options="{ 'updateOn': 'blur' }" ng-pattern="regex.lastName" />
 					<span ng-show="personalInfoForm.lastName.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
 					<p ng-show="personalInfoForm.lastName.$invalid" class="help-block">
 						{{ text.errors.lastName }}
@@ -26,17 +26,17 @@
 				<div class="row dateOfBirthFields">
 					<div class="form-group col-xs-4" ng-class="{'has-error has-feedback': personalInfoForm.dateOfBirthDate.$invalid}">
 						<label for="dateOfBirthDate" class="sr-only control-label">{{ text.labels.dateOfBirth.date }}</label>
-						<input type="number" min="1" max="31" maxlength="2" class="form-control" name="dateOfBirthDate" id="dateOfBirthDate" ng-model="author.dateOfBirthDate" ng-model-options="{ 'updateOn': 'blur' }" ng-pattern="/^(0?[1-9])|([1-2]?[0-9])|(3[01]])$/" placeholder="dd" />
+						<input type="number" min="1" max="31" maxlength="2" class="form-control" name="dateOfBirthDate" id="dateOfBirthDate" ng-model="author.dateOfBirthDate" ng-model-options="{ 'updateOn': 'blur' }" ng-pattern="regex.dateOfBirth.date" placeholder="dd" />
 						<span ng-show="personalInfoForm.dateOfBirthDate.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
 					</div>
 					<div class="form-group col-xs-4" ng-class="{'has-error has-feedback': personalInfoForm.dateOfBirthMonth.$invalid}">
 						<label for="dateOfBirthMonth" class="sr-only control-label">{{ text.labels.dateOfBirth.month }}</label>
-						<input type="number" min="1" max="12" maxlength="2" class="form-control" name="dateOfBirthMonth" id="dateOfBirthMonth" ng-model="author.dateOfBirthMonth" ng-model-options="{ 'updateOn': 'blur' }" ng-pattern="/^(0?[1-9])|(1[12])$/" placeholder="mm" />
+						<input type="number" min="1" max="12" maxlength="2" class="form-control" name="dateOfBirthMonth" id="dateOfBirthMonth" ng-model="author.dateOfBirthMonth" ng-model-options="{ 'updateOn': 'blur' }" ng-pattern="regex.dateOfBirth.month" placeholder="mm" />
 						<span ng-show="personalInfoForm.dateOfBirthMonth.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
 					</div>
 					<div class="form-group col-xs-4" ng-class="{'has-error has-feedback': personalInfoForm.dateOfBirthYear.$invalid}">
 						<label for="dateOfBirthYear" class="sr-only control-label">{{ text.labels.dateOfBirth.year }}</label>
-						<input type="number" min="{{ year - 100 }}" max="{{ year }}" maxlength="4" class="form-control" name="dateOfBirthYear" id="dateOfBirthYear" ng-model="author.dateOfBirthYear" ng-model-options="{ 'updateOn': 'blur' }" ng-pattern="/^(19[1-9][0-9])|(20(0[0-9]|1[0-6]))$/" placeholder="yyyy" />
+						<input type="number" min="{{ year - 100 }}" max="{{ year }}" maxlength="4" class="form-control" name="dateOfBirthYear" id="dateOfBirthYear" ng-model="author.dateOfBirthYear" ng-model-options="{ 'updateOn': 'blur' }" ng-pattern="regex.dateOfBirth.year" placeholder="yyyy" />
 						<span ng-show="personalInfoForm.dateOfBirthYear.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
 					</div>
 				</div>
@@ -57,7 +57,7 @@
 			<fieldset>
 				<div class="form-group" ng-class="{'has-error has-feedback': personalInfoForm.addressFirstLine.$invalid}">
 					<label for="addressFirstLine" class="control-label">{{ text.labels.address.firstLine }}</label>
-					<input type="text" name="addressFirstLine" class="form-control" id="addressFirstLine" ng-model="author.addressFirstLine" ng-model-options="{ 'updateOn': 'blur' }" ng-pattern="/^[a-z0-9\- ]$/i" />
+					<input type="text" name="addressFirstLine" class="form-control" id="addressFirstLine" ng-model="author.addressFirstLine" ng-model-options="{ 'updateOn': 'blur' }" ng-pattern="regex.address.firstLine" />
 					<span ng-show="personalInfoForm.addressFirstLine.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
 					<p ng-show="personalInfoForm.addressFirstLine.$invalid" class="help-block">
 						{{ text.errors.address.firstLine }}
@@ -65,7 +65,7 @@
 				</div>
 				<div class="form-group" ng-class="{'has-error has-feedback': personalInfoForm.addressSecondLine.$invalid}">
 					<label for="addressSecondLine" class="control-label">{{ text.labels.address.secondLine }}</label>
-					<input type="text" name="addressSecondLine" class="form-control" id="addressSecondLine" ng-model="author.addressSecondLine" ng-model-options="{ 'updateOn': 'blur' }" ng-pattern="/^[a-z0-9\- ]$/i" />
+					<input type="text" name="addressSecondLine" class="form-control" id="addressSecondLine" ng-model="author.addressSecondLine" ng-model-options="{ 'updateOn': 'blur' }" ng-pattern="regex.address.secondLine" />
 					<span ng-show="personalInfoForm.addressSecondLine.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
 					<p ng-show="personalInfoForm.addressSecondLine.$invalid" class="help-block">
 						{{ text.errors.address.secondLine }}
@@ -73,7 +73,7 @@
 				</div>
 				<div class="form-group" ng-class="{'has-error has-feedback': personalInfoForm.addressThirdLine.$invalid}">
 					<label for="addressThirdLine" class="control-label">{{ text.labels.address.thirdLine }}</label>
-					<input type="text" name="addressThirdLine" class="form-control" id="addressThirdLine" ng-model="author.addressThirdLine" ng-model-options="{ 'updateOn': 'blur' }" ng-pattern="/^[a-z0-9\- ]$/i" />
+					<input type="text" name="addressThirdLine" class="form-control" id="addressThirdLine" ng-model="author.addressThirdLine" ng-model-options="{ 'updateOn': 'blur' }" ng-pattern="regex.address.thirdLine" />
 					<span ng-show="personalInfoForm.addressThirdLine.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
 					<p ng-show="personalInfoForm.addressThirdLine.$invalid" class="help-block">
 						{{ text.errors.address.thirdLine }}
@@ -81,7 +81,7 @@
 				</div>
 				<div class="form-group" ng-class="{'has-error has-feedback': personalInfoForm.addressTown.$invalid}">
 					<label for="addressTown" class="control-label">{{ text.labels.address.town }}</label>
-					<input type="text" name="addressTown" class="form-control" id="addressTown" ng-model="author.addressTown" ng-model-options="{ 'updateOn': 'blur' }" ng-pattern="/^[a-z\- ]$/i" />
+					<input type="text" name="addressTown" class="form-control" id="addressTown" ng-model="author.addressTown" ng-model-options="{ 'updateOn': 'blur' }" ng-pattern="regex.address.town" />
 					<span ng-show="personalInfoForm.addressTown.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
 					<p ng-show="personalInfoForm.addressTown.$invalid" class="help-block">
 						{{ text.errors.address.town }}
@@ -89,7 +89,7 @@
 				</div>
 				<div class="form-group" ng-class="{'has-error has-feedback': personalInfoForm.addressCounty.$invalid}">
 					<label for="addressCounty" class="control-label">{{ text.labels.address.county }}</label>
-					<input type="text" name="addressCounty" class="form-control" id="addressCounty" ng-model="author.addressCounty" ng-model-options="{ 'updateOn': 'blur' }" ng-pattern="/^[a-z\- ]$/i" />
+					<input type="text" name="addressCounty" class="form-control" id="addressCounty" ng-model="author.addressCounty" ng-model-options="{ 'updateOn': 'blur' }" ng-pattern="regex.address.county" />
 					<span ng-show="personalInfoForm.addressCounty.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
 					<p ng-show="personalInfoForm.addressCounty.$invalid" class="help-block">
 						{{ text.errors.address.county }}
@@ -97,7 +97,7 @@
 				</div>
 				<div class="form-group" ng-class="{'has-error has-feedback': personalInfoForm.addressCountry.$invalid}">
 					<label for="addressCountry" class="control-label">{{ text.labels.address.country }}</label>
-					<input type="text" name="addressCountry" class="form-control" id="addressCountry" ng-model="author.addressCountry" ng-model-options="{ 'updateOn': 'blur' }" ng-pattern="/^[a-z\- ]$/i" />
+					<input type="text" name="addressCountry" class="form-control" id="addressCountry" ng-model="author.addressCountry" ng-model-options="{ 'updateOn': 'blur' }" ng-pattern="regex.address.country" />
 					<span ng-show="personalInfoForm.addressCountry.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
 					<p ng-show="personalInfoForm.addressCountry.$invalid" class="help-block">
 						{{ text.errors.address.country }}
@@ -105,7 +105,7 @@
 				</div>
 				<div class="form-group" ng-class="{'has-error has-feedback': personalInfoForm.addressPostcode.$invalid}">
 					<label for="addressPostcode" class="control-label">{{ text.labels.address.postcode }}</label>
-					<input type="text" name="addressPostcode" id="addressPostcode" class="form-control" ng-model="author.addressPostcode" ng-model-options="{ 'updateOn': 'blur' }" ng-pattern="/^([a-z]{1,2}[0-9][a-z0-9]? ?[0-9][a-z]{1,2})|([0-9]{5})$/i" />
+					<input type="text" name="addressPostcode" id="addressPostcode" class="form-control" ng-model="author.addressPostcode" ng-model-options="{ 'updateOn': 'blur' }" ng-pattern="regex.address.postcode" />
 					<span ng-show="personalInfoForm.addressPostcode.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
 					<p ng-show="personalInfoForm.addressPostcode.$invalid" class="help-block">
 						{{ text.errors.address.postcode }}

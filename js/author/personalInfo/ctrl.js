@@ -7,8 +7,9 @@
 	 * @param  {dependency} $scope
 	 * @param  {dependency} $rootScope
 	 * @param  {dependency} TextFactory  Factory for retrieving text for page
+	 * @param  {dependency} constants  	 App constants
 	 */
-	.controller('authorPersonalInfoCtrl', ['$scope', '$rootScope', 'TextFactory', function($scope, $rootScope, TextFactory) {
+	.controller('authorPersonalInfoCtrl', ['$scope', '$rootScope', 'TextFactory', 'constants', function($scope, $rootScope, TextFactory, constants) {
 
 		// on view change change the title for accessibility
 		$scope.$on('$viewContentLoaded', function() {
@@ -23,6 +24,7 @@
 
 		// page data
 		$scope.year = $rootScope.date.getFullYear();
+		$scope.regex = constants.regex;
 
 	}]);
 

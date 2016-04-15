@@ -4,7 +4,25 @@
 
 	.constant("constants", {
 		"appName": "Tails",
-		"creator": "Phil Gibbins"
+		"creator": "Phil Gibbins",
+		"regex": {
+			"firstName": /^[a-z\- ]+$/i,
+			"lastName":  /^[a-z\- ]+$/i,
+			"dateOfBirth": {
+				"date": /^(0?[1-9])|([1-2]?[0-9])|(3[01]])$/,
+				"month": /^(0?[1-9])|(1[12])$/,
+				"year": /^(19[1-9][0-9])|(20(0[0-9]|1[0-6]))$/
+			},
+			"address": {
+				"firstLine": /^[a-z0-9\- ]+$/i,
+				"secondLine": /^[a-z0-9\- ]+$/i,
+				"thirdLine": /^[a-z0-9\- ]+$/i,
+				"town": /^[a-z\- ]+$/i,
+				"county": /^[a-z\- ]+$/i,
+				"country": /^[a-z\- ]+$/i,
+				"postcode": /^([a-z]{1,2}[0-9][a-z0-9]? ?[0-9][a-z]{1,2})|([0-9]{5})$/i
+			}
+		}
 	})
 
 	.run(function($rootScope, constants){
