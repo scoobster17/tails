@@ -43,6 +43,24 @@
 					},
 					"other": "Other:"
 				},
+				"errors": {
+					"firstName": "Please enter a valid first name",
+					"lastName": "Please enter a valid last name",
+					"dateOfBirth": {
+						"dateOfBirthDate": "Please enter a valid date",
+						"dateOfBirthMonth": "Please enter a valid month",
+						"dateOfBirthYear": "Please enter a valid year"
+					},
+					"address": {
+						"firstLine": "Please enter a valid address",
+						"secondLine": "Please enter a valid address",
+						"thirdLine": "Please enter a valid address",
+						"town": "Please enter a valid town name",
+						"county": "Please enter a valid county name",
+						"country": "Please enter a valid country name",
+						"postcode": "Please enter a valid postcode"
+					}
+				},
 				"reset": "Clear",
 				"submit": "Save"
 			},

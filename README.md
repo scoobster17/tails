@@ -15,6 +15,20 @@ as well as following these steps:
 1. Install npm modules `npm install`
 2. Install bower components `bower install`
 
+There is one other hack to make the glyphicons work (wasn't able to find a real solution in the short time I tried investigating). This needs to be done by you because this is a bower component that is not stored in this repo.
+
+In the file:
+
+``` /bower_components/bootstrap-sass/assets/stylesheets/bootstrap/variables.scss ```
+
+Change this line:
+
+``` $icon-font-path: if($bootstrap-sass-asset-helper, "bootstrap/", "../fonts/bootstrap/") !default; ```
+
+To:
+
+``` $icon-font-path: if($bootstrap-sass-asset-helper, "bootstrap/", "../bower_components/bootstrap-sass/assets/fonts/bootstrap/") !default; ```
+
 Usage
 -----
 
