@@ -4,3 +4,13 @@
 	font-size: inherit;
 	padding:0;
 }
+.dateOfBirthFields {
+	.has-feedback {
+		.form-control {
+			padding-right:21px;
+		}
+	}
+	.form-control-feedback {
+		right:15px;
+	}
+}
