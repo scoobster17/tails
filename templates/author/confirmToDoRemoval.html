@@ -1,0 +1,18 @@
+<header class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	<h4 class="modal-title" id="confirmRemoveHeading">Confirm remove</h4>
+</header>
+<div class="modal-body">
+	<p>Are you sure you want to remove this item?</p>
+	<p>{{ item.description }}</p>
+</div>
+<footer class="modal-footer">
+	<ul class="list-unstyled list-inline">
+		<li>
+			<button class="btn btn-default" ng-click="closeModal()">No</button>
+		</li>
+		<li>
+			<button ng-click="confirmRemoveItem(item)" class="btn btn-danger">Yes</button>
+		</li>
+	</ul>
+</footer>

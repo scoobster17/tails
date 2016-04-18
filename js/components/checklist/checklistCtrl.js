@@ -7,7 +7,7 @@
 	 * @param  {[type]} $scope
 	 * @param  {Object} $timeout
 	 */
-	.controller('checklistCtrl', ['$scope', '$timeout', 'TextFactory', function($scope, $timeout, TextFactory) {
+	.controller('checklistCtrl', ['$scope', '$rootScope', '$timeout', 'TextFactory', '$uibModal', function($scope, $rootScope, $timeout, TextFactory, $modal) {
 
 		// checklist setup
 		$scope.newItem = {};
@@ -67,6 +67,31 @@
 			$scope.newItem = {};
 			$scope.addItemForm.$setPristine();
 		};
+
+		/**
+		 * Function to call modal requesting user to confirm deletion of item
+		 */
+		$scope.requestConfirmRemoveItem = function(item) {
+			$scope.modalInstance = $modal.open({
+				templateUrl: 'templates/author/confirmToDoRemoval.html',
+				controller: 'confirmRemovalCtrl',
+				resolve: {
+					item: function() {
+						return item;
+					}
+				},
+				windowClass: "modal fade in"
+			});
+		};
+
+		/**
+		 * Listener for confirmation of item removal which then removes item
+		 * @param  {event} event Not used
+		 * @param  {Object} data The data passed from the $emit; item object
+		 */
+		$rootScope.$on('confirmedRemoveItem', function(event, data) {
+			$scope.removeItem(data[0]);
+		});
 
 		/**
 		 * Remove an item from the array of checklist items
