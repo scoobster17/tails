@@ -5838,3 +5838,9 @@ button.close {
 
 .authorHome .panel-footer {
   overflow: hidden; }
+
+.checklistContainer {
+  margin-left: 0; }
+
+.checklist li {
+  overflow: hidden; }

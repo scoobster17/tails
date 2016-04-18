@@ -7,7 +7,7 @@
 	 * @param  {[type]} $scope
 	 * @param  {Object} $timeout
 	 */
-	.controller('checklistCtrl', ['$scope', '$timeout', function($scope, $timeout) {
+	.controller('checklistCtrl', ['$scope', '$timeout', 'TextFactory', function($scope, $timeout, TextFactory) {
 
 		// checklist setup
 		$scope.newItem = {};
@@ -16,6 +16,12 @@
 			description: '',
 			items: []
 		};
+
+		// get page text
+		var textQuery = TextFactory.query();
+		textQuery.$promise.then(function(data) {
+			$scope.text = data[0].text.author.todo;
+		});
 
 		// init id counter to ensure id's not repeated e.g. if items are deleted
 		$scope.idCounter = 1;
@@ -40,17 +46,16 @@
 
 		/**
 		 * Add an item to the checklist items array, increasing the id counter,
-		 * reset the form after adding and focus the add item btn so no need to
-		 * use mouse if wanting to add another item (usability)
+		 * reset the form after adding and init add item again so no need to
+		 * manually click 'add' again if wanting to add another item (usability)
 		 * @param {Object} item Built from ng-model
 		 */
 		$scope.addItem = function(item) {
+			if (typeof item.description === 'undefined' || item.description === '') return false;
 			item.id = $scope.idCounter++;
 			$scope.checklist.items.push(item);
 			$scope.resetForm();
-			$timeout(function(){
-				$('#addItemBtn').focus();
-			});
+			$scope.initAddItem();
 		};
 
 		/**
@@ -60,6 +65,7 @@
 		$scope.resetForm = function() {
 			$scope.addingItem = false;
 			$scope.newItem = {};
+			$scope.addItemForm.$setPristine();
 		};
 
 		/**

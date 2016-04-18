@@ -1,18 +1,24 @@
 <ul class="list-group checklist col-sm-6">
 	<li class="list-group-item" ng-repeat="item in checklist.items">
 		{{ item.description }}
-		<button ng-click="removeItem(item)">
-			Remove item
+		<button ng-click="removeItem(item)" class="btn btn-danger pull-right">
+			{{ text.checklist.removeItem }}
 		</button>
 	</li>
 	<li class="list-group-item">
-		<button id="addItemBtn" ng-click="initAddItem()" ng-hide="addingItem">
-			Add item&hellip;
+		<button id="addItemBtn" class="btn btn-primary" ng-click="initAddItem()" ng-hide="addingItem">
+			{{ text.checklist.addItem }}
 		</button>
-		<form ng-show="addingItem" ng-submit="addItem(newItem)">
-			<input id="newItemDescription" type="text" ng-model="newItem.description" required />
-			<input type="submit" class="btn btn-primary" />
-			<input type="reset" ng-click="cancelAddItem()" value="Cancel" />
+		<form name="addItemForm" ng-show="addingItem" ng-submit="addItem(newItem)" novalidate>
+			<p class="help-block" ng-show="addItemForm.newItemDescription.$dirty && addItemForm.newItemDescription.$invalid">
+				{{ text.errors.addItemDescription }}
+			</p>
+			<div class="form-group" ng-class="{'has-error': addItemForm.newItemDescription.$dirty && addItemForm.newItemDescription.$invalid}">
+				<label for="newItemDescription" class="sr-only">{{ text.checklist.addItemDescriptionLabel }}</label>
+				<input name="newItemDescription" class="form-control" id="newItemDescription" type="text" ng-model="newItem.description" ng-model-options="{ 'updateOn': 'blur'} " required />
+			</div>
+			<input type="submit" class="btn btn-primary" value="{{ text.checklist.addItemSubmitBtn }}" />
+			<input type="reset" class="btn btn-default" ng-click="cancelAddItem()" value="{{ text.checklist.addItemCancelBtn }}" />
 		</form>
 	</li>
 </ul>
