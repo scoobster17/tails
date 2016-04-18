@@ -1,0 +1,18 @@
+<ul class="list-group checklist col-sm-6">
+	<li class="list-group-item" ng-repeat="item in checklist.items">
+		{{ item.description }}
+		<button ng-click="removeItem(item)">
+			Remove item
+		</button>
+	</li>
+	<li class="list-group-item">
+		<button id="addItemBtn" ng-click="initAddItem()" ng-hide="addingItem">
+			Add item&hellip;
+		</button>
+		<form ng-show="addingItem" ng-submit="addItem(newItem)">
+			<input id="newItemDescription" type="text" ng-model="newItem.description" required />
+			<input type="submit" class="btn btn-primary" />
+			<input type="reset" ng-click="cancelAddItem()" value="Cancel" />
+		</form>
+	</li>
+</ul>
