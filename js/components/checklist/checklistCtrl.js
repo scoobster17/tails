@@ -78,6 +78,9 @@
 				resolve: {
 					item: function() {
 						return item;
+					},
+					modalText: function() {
+						return $scope.text.confirmRemovalModal;
 					}
 				},
 				windowClass: "modal fade in"

@@ -1,18 +1,25 @@
 <header class="modal-header">
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	<h4 class="modal-title" id="confirmRemoveHeading">Confirm remove</h4>
+	<h4 class="modal-title" id="confirmRemoveHeading">
+		{{ text.heading }}
+	</h4>
 </header>
 <div class="modal-body">
-	<p>Are you sure you want to remove this item?</p>
-	<p>{{ item.description }}</p>
+	<p>{{ text.areYouSureText }}</p>
+	<p class="well text-center">&ldquo;{{ item.description }}&rdquo;</p>
+	<p ng-bind-html="text.disclaimer | trustHtml"></p>
 </div>
 <footer class="modal-footer">
 	<ul class="list-unstyled list-inline">
 		<li>
-			<button class="btn btn-default" ng-click="closeModal()">No</button>
+			<button class="btn btn-default" ng-click="closeModal()">
+				{{ text.cancelBtn }}
+			</button>
 		</li>
 		<li>
-			<button ng-click="confirmRemoveItem(item)" class="btn btn-danger">Yes</button>
+			<button ng-click="confirmRemoveItem(item)" class="btn btn-danger">
+				{{ text.confirmBtn }}
+			</button>
 		</li>
 	</ul>
 </footer>

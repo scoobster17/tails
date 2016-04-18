@@ -9,10 +9,13 @@
 	 * @param  {service} $uibModalInstance Bootstrap Modal service
 	 * @param  {Object} item The item to be removed
 	 */
-	.controller('confirmRemovalCtrl', function($scope, $rootScope, $uibModalInstance, item) {
+	.controller('confirmRemovalCtrl', function($scope, $rootScope, $uibModalInstance, item, modalText) {
 
 		// assign item to scope for template
 		$scope.item = item;
+
+		// get modal text
+		$scope.text = modalText;
 
 		/**
 		 * Function to dismiss modal
