@@ -45,6 +45,15 @@ app.get('/text', function(req, res) {
 });
 
 /**
+ * Get stories data (TEMPORARY until introduce Mongo)
+ */
+app.get('/storiesData', function(req, res) {
+	fs.readFile( __dirname + '/data/stories/stories.json', 'utf8', function(err, data) {
+		res.end(data);
+	});
+});
+
+/**
  * Server setup and config
  */
 var server = app.listen(7411, function() {

@@ -5849,8 +5849,7 @@ button.close {
   max-height: 20px;
   overflow: hidden;
   padding-left: 0;
-  padding-right: 0;
-  text-overflow: ellipses; }
+  padding-right: 0; }
 
 .checklist .list-group-item > ul {
   padding-left: 0;

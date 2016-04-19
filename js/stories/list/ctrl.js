@@ -7,7 +7,7 @@
 	 * @param  {dependency} $scope
 	 * @param  {dependency} TextFactory  Factory for retrieving text for page
 	 */
-	.controller('storiesListCtrl', ['$scope', '$rootScope', 'TextFactory', function($scope, $rootScope, TextFactory) {
+	.controller('storiesListCtrl', ['$scope', '$rootScope', 'TextFactory', 'StoriesFactory', function($scope, $rootScope, TextFactory, StoriesFactory) {
 
 		// on view change change the title for accessibility
 		$scope.$on('$viewContentLoaded', function() {
@@ -20,17 +20,11 @@
 			$scope.text = data[0].text.stories.list;
 		});
 
-		// temporary data until BE created
-		$scope.stories = [
-			{
-                name: 'Story 1',
-                shortDescription: 'Story 1 description'
-            },
-            {
-                name: 'Story 2',
-                shortDescription: 'Story 2 description'
-            }
-		];
+		// get stories data
+		var storiesQuery = StoriesFactory.query();
+		storiesQuery.$promise.then(function(data) {
+			$scope.stories = data;
+		});
 
 	}]);
 
