@@ -17,10 +17,16 @@
 			items: []
 		};
 
-		// get page text
+		// set to single line by default, override is multiline type supplied
+		$scope.multiline = false;
+		if (typeof $scope.type !== 'undefined' && $scope.type === 'multiline') {
+			$scope.multiline = true;
+		};
+
+		// get component text
 		var textQuery = TextFactory.query();
 		textQuery.$promise.then(function(data) {
-			$scope.text = data[0].text.author.todo;
+			$scope.checkListText = data[0].text.author.todo;
 		});
 
 		// init id counter to ensure id's not repeated e.g. if items are deleted
@@ -53,6 +59,9 @@
 		$scope.addItem = function(item) {
 			if (typeof item.description === 'undefined' || item.description === '') return false;
 			item.id = $scope.idCounter++;
+			item.description = item.description.replace(/\</g, '&lt;');
+			item.description = item.description.replace(/\>/g, '&gt;');
+			item.description = item.description.replace(/\n/g, '<br />');
 			$scope.checklist.items.push(item);
 			$scope.resetForm();
 			$scope.initAddItem();
@@ -80,7 +89,7 @@
 						return item;
 					},
 					modalText: function() {
-						return $scope.text.confirmRemovalModal;
+						return $scope.checkListText.confirmRemovalModal;
 					}
 				},
 				windowClass: "modal fade in"

@@ -108,6 +108,13 @@
 			"notes": {
 				"heading": "Author's Notes",
 				"intro": "Here you have a free playground to jot down whatever you want, whether it be something you just want to remember, or an idea that isn't related to one of your tails yet.",
+				"confirmRemovalModal": {
+					"heading": "Confirm note removal",
+					"areYouSureText": "Are you sure you want to remove this note?",
+					"disclaimer": "This will permanently remove the note, and it <strong>cannot</strong> be recovered.",
+					"cancelBtn": "No",
+					"confirmBtn": "Yes"
+				},
 				"backBtn": "Back to Author home"
 			}
 		},
