@@ -1,26 +1,59 @@
 <section class="checklistContainer">
 	<ul class="list-group checklist">
-		<li class="list-group-item" ng-repeat="item in checklist.items">
-			<p ng-bind-html="item.description | trustHtml"></p>
-			<button ng-click="requestConfirmRemoveItem(item)" class="btn btn-danger pull-right">
-				{{ checkListText.checklist.removeItem }}
-			</button>
+		<li class="list-group-item" ng-repeat="item in checklist.items" ng-class="{'editingItem' : editingItem}">
+			<p ng-bind-html="item.description | trustHtml" ng-if="editingItem !== item.id"></p>
+			<form name="editItemForm" ng-if="editingItem === item.id" ng-submit="updateItem(item)" novalidate>
+				<div class="form-group" ng-class="{'has-error': editItemForm.editingItemDescription.$dirty && editItemForm.editingItemDescription.$invalid}">
+					<p class="help-block" ng-show="editItemForm.editingItemDescription.$dirty && editItemForm.editingItemDescription.$invalid" ng-cloak>
+						{{ checkListText.errors.editItemDescription }}
+					</p>
+					<label for="editingItemDescription" class="sr-only">{{ checkListText.checklist.editItemDescriptionLabel }}</label>
+					<input name="editingItemDescription" class="form-control" id="editingItemDescription" type="text" ng-model="editedItem.description" ng-model-options="{ 'updateOn': 'blur'} " required ng-if="multiline === false" />
+					<textarea ng-if="multiline === true" name="editingItemDescription" class="form-control" id="editingItemDescription" ng-model="editedItem.description" ng-model-options="{ 'updateOn': 'blur'} " required></textarea>
+				</div>
+				<ul class="list-unstyled list-inline pull-right">
+					<li>
+						<input type="submit" class="btn btn-primary" value="{{ checkListText.checklist.editItemSubmitBtn }}" />
+					</li>
+					<li>
+						<input type="reset" class="btn btn-default" ng-click="revertItem()" value="{{ checkListText.checklist.editItemCancelBtn }}" />
+					</li>
+					<li>
+						<button ng-click="requestConfirmRemoveItem(item)" class="btn btn-danger">
+							{{ checkListText.checklist.removeItem }}
+						</button>
+					</li>
+				</ul>
+			</form>
+			<ul class="list-unstyled list-inline pull-right" ng-if="editingItem !== item.id">
+				<li>
+					<button ng-click="initEditItem(item)" class="btn btn-default">
+						{{ checkListText.checklist.editItem }}
+					</button>
+				</li>
+			</ul>
 		</li>
 		<li class="list-group-item">
-			<button id="addItemBtn" class="btn btn-primary" ng-click="initAddItem()" ng-hide="addingItem">
+			<button id="addItemBtn" class="btn btn-primary pull-right" ng-click="initAddItem()" ng-hide="addingItem">
 				{{ checkListText.checklist.addItem }}
 			</button>
 			<form name="addItemForm" ng-show="addingItem" ng-submit="addItem(newItem)" novalidate>
-				<p class="help-block" ng-show="addItemForm.newItemDescription.$dirty && addItemForm.newItemDescription.$invalid">
-					{{ checkListText.errors.addItemDescription }}
-				</p>
 				<div class="form-group" ng-class="{'has-error': addItemForm.newItemDescription.$dirty && addItemForm.newItemDescription.$invalid}">
+					<p class="help-block" ng-show="addItemForm.newItemDescription.$dirty && addItemForm.newItemDescription.$invalid" ng-cloak>
+						{{ checkListText.errors.addItemDescription }}
+					</p>
 					<label for="newItemDescription" class="sr-only">{{ checkListText.checklist.addItemDescriptionLabel }}</label>
 					<input name="newItemDescription" class="form-control" id="newItemDescription" type="text" ng-model="newItem.description" ng-model-options="{ 'updateOn': 'blur'} " required ng-if="multiline === false" />
 					<textarea ng-if="multiline === true" name="newItemDescription" class="form-control" id="newItemDescription" ng-model="newItem.description" ng-model-options="{ 'updateOn': 'blur'} " required></textarea>
 				</div>
-				<input type="submit" class="btn btn-primary" value="{{ checkListText.checklist.addItemSubmitBtn }}" />
-				<input type="reset" class="btn btn-default" ng-click="cancelAddItem()" value="{{ checkListText.checklist.addItemCancelBtn }}" />
+				<ul class="list-unstyled list-inline pull-right">
+					<li>
+						<input type="submit" class="btn btn-primary" value="{{ checkListText.checklist.addItemSubmitBtn }}" />
+					</li>
+					<li>
+						<input type="reset" class="btn btn-default" ng-click="cancelAddItem()" value="{{ checkListText.checklist.addItemCancelBtn }}" />
+					</li>
+				</ul>
 			</form>
 		</li>
 	</ul>

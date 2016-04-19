@@ -10,7 +10,11 @@
 	.controller('checklistCtrl', ['$scope', '$rootScope', '$timeout', 'TextFactory', '$uibModal', function($scope, $rootScope, $timeout, TextFactory, $modal) {
 
 		// checklist setup
+		$scope.addingItem = false;
+		$scope.editingItem = false;
 		$scope.newItem = {};
+		$scope.originalItem = {};
+		$scope.editedItem = {};
 		$scope.checklist = {
 			heading: 'Checklist',
 			description: '',
@@ -47,7 +51,7 @@
 		 * @return {[type]} [description]
 		 */
 		$scope.cancelAddItem = function() {
-			$scope.resetForm();
+			$scope.resetAddForm();
 		};
 
 		/**
@@ -63,18 +67,50 @@
 			item.description = item.description.replace(/\>/g, '&gt;');
 			item.description = item.description.replace(/\n/g, '<br />');
 			$scope.checklist.items.push(item);
-			$scope.resetForm();
+			$scope.resetAddForm();
 			$scope.initAddItem();
 		};
+
+		/**
+		 * Function to allow the user to edit the item
+		 * @param  {Object} item The item to be edited
+		 */
+		$scope.initEditItem = function(item) {
+			$scope.addingItem = false;
+			for (var prop in item) {
+				$scope.originalItem[prop] = item[prop];
+				$scope.editedItem[prop] = item[prop];
+			}
+			$scope.editingItem = $scope.editedItem.id;
+			$timeout(function() {
+				$('.editingItem #editingItemDescription').focus();
+			});
+		};
+
+		$scope.updateItem = function(item) {
+			var itemToEditIndex = $scope.getItemIndex(item);
+			$scope.checklist.items[itemToEditIndex] = $scope.editedItem;
+			$scope.resetEditForm();
+		};
+
+		$scope.revertItem = function() {
+			$scope.resetEditForm();
+		}
 
 		/**
 		 * Clears the form and hides the add item form
 		 * @return {[type]} [description]
 		 */
-		$scope.resetForm = function() {
+		$scope.resetAddForm = function() {
 			$scope.addingItem = false;
 			$scope.newItem = {};
 			$scope.addItemForm.$setPristine();
+		};
+
+		$scope.resetEditForm = function() {
+			$scope.editingItem = false;
+			$scope.originalItem = {};
+			$scope.editedItem = {};
 		};
 
 		/**
@@ -105,17 +141,21 @@
 			$scope.removeItem(data[0]);
 		});
 
+		$scope.getItemIndex = function(itemToFind) {
+			return $scope.checklist.items.findIndex(function(item) {
+				if (item.id == itemToFind.id) {
+					return item.id;
+				}
+			});
+		};
+
 		/**
 		 * Remove an item from the array of checklist items
 		 * @param  {object} itemToRemove supplied by ng-repeat
 		 */
 		$scope.removeItem = function(itemToRemove) {
-			var itemIndex = $scope.checklist.items.findIndex(function(item) {
-				if (item.id == itemToRemove.id) {
-					return item.id;
-				}
-			});
-			$scope.checklist.items.splice(itemIndex, 1);
+			var itemToRemoveIndex = $scope.getItemIndex(itemToRemove);
+			$scope.checklist.items.splice(itemToRemoveIndex, 1);
 		};
 
 	}]);

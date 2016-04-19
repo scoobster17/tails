@@ -87,14 +87,19 @@
 				"heading": "To-Do List",
 				"intro": "Here you can collect your tasks to keep all that you have to do (with regards to your stories or otherwise) in one place.",
 				"errors": {
-					"addItemDescription": "This field must be supplied to add an item"
+					"addItemDescription": "This field must be supplied to add an item",
+					"editItemDescription": "This field must be supplied to edit an item. To remove an item, please click the delete button."
 				},
 				"checklist": {
 					"addItem": "Add item...",
 					"addItemDescriptionLabel": "Item description:",
 					"addItemSubmitBtn": "Save",
 					"addItemCancelBtn": "Cancel",
-					"removeItem": "Remove item"
+					"editItem": "Edit",
+					"editItemDescriptionLabel": "Edit item:",
+					"editItemSubmitBtn": "Update",
+					"editItemCancelBtn": "Remove changes",
+					"removeItem": "Delete"
 				},
 				"confirmRemovalModal": {
 					"heading": "Confirm removal",
