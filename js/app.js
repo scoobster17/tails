@@ -41,6 +41,19 @@
 			document.title = newTitle + constants.appName;
 		};
 
+		/**
+		 * Function to escape HTML from user input
+		 * @param  {[type]} html [description]
+		 * @return {[type]}      [description]
+		 */
+		$rootScope.escapeHtml = function(html) {
+			var newHtml = html;
+			newHtml = newHtml.replace(/\</g, '&lt;');
+			newHmtl = newHtml.replace(/\>/g, '&gt;');
+			newHtml = newHtml.replace(/\n/g, '<br />');
+			return newHtml;
+		};
+
 	});
 
 })();

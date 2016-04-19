@@ -63,9 +63,7 @@
 		$scope.addItem = function(item) {
 			if (typeof item.description === 'undefined' || item.description === '') return false;
 			item.id = $scope.idCounter++;
-			item.description = item.description.replace(/\</g, '&lt;');
-			item.description = item.description.replace(/\>/g, '&gt;');
-			item.description = item.description.replace(/\n/g, '<br />');
+			item.description = $rootScope.escapeHtml(item.description);
 			$scope.checklist.items.push(item);
 			$scope.resetAddForm();
 			$scope.initAddItem();
@@ -79,7 +77,11 @@
 			$scope.addingItem = false;
 			for (var prop in item) {
 				$scope.originalItem[prop] = item[prop];
-				$scope.editedItem[prop] = item[prop];
+				if (prop === 'description') {
+					$scope.editedItem[prop] = item.description.replace(/\<br \/\>/g, '\n');
+				} else {
+					$scope.editedItem[prop] = item[prop];
+				}
 			}
 			$scope.editingItem = $scope.editedItem.id;
 			$timeout(function() {
@@ -89,6 +91,7 @@
 
 		$scope.updateItem = function(item) {
 			var itemToEditIndex = $scope.getItemIndex(item);
+			$scope.editedItem.description = $rootScope.escapeHtml($scope.editedItem.description);
 			$scope.checklist.items[itemToEditIndex] = $scope.editedItem;
 			$scope.resetEditForm();
 		};
