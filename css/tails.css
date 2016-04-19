@@ -5844,3 +5844,14 @@ button.close {
 
 .checklist li {
   overflow: hidden; }
+
+.checklist .list-group-item > p {
+  max-height: 20px;
+  overflow: hidden;
+  padding-left: 0;
+  padding-right: 0;
+  text-overflow: ellipses; }
+
+.checklist .list-group-item > ul {
+  padding-left: 0;
+  padding-right: 0; }

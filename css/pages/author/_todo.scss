@@ -5,4 +5,15 @@
 	li {
 		overflow:hidden;
 	}
+	.list-group-item > p {
+		max-height:20px;
+		overflow:hidden;
+		padding-left: 0;
+		padding-right: 0;
+		text-overflow:ellipses;
+	}
+	.list-group-item > ul {
+		padding-left:0;
+		padding-right:0;
+	}
 }

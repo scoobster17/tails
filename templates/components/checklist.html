@@ -1,7 +1,7 @@
 <section class="checklistContainer">
 	<ul class="list-group checklist">
 		<li class="list-group-item" ng-repeat="item in checklist.items" ng-class="{'editingItem' : editingItem}">
-			<p ng-bind-html="item.description | trustHtml" ng-if="editingItem !== item.id"></p>
+			<p class="col-xs-9 col-sm-10" ng-bind-html="item.description | trustHtml" ng-if="editingItem !== item.id"></p>
 			<form name="editItemForm" ng-if="editingItem === item.id" ng-submit="updateItem(item)" novalidate>
 				<div class="form-group" ng-class="{'has-error': editItemForm.editingItemDescription.$dirty && editItemForm.editingItemDescription.$invalid}">
 					<p class="help-block" ng-show="editItemForm.editingItemDescription.$dirty && editItemForm.editingItemDescription.$invalid" ng-cloak>
@@ -25,7 +25,7 @@
 					</li>
 				</ul>
 			</form>
-			<ul class="list-unstyled list-inline pull-right" ng-if="editingItem !== item.id">
+			<ul class="list-unstyled list-inline pull-right col-xs-3 col-sm-2 text-right" ng-if="editingItem !== item.id">
 				<li>
 					<button ng-click="initEditItem(item)" class="btn btn-default">
 						{{ checkListText.checklist.editItem }}
