@@ -2,8 +2,29 @@
 	<h1>{{ story.name }}</h1>
 	<p>
 		To access this story directly you can use this as the url:
-		<a ng-if="story.modifiedName !== undefined" href="{{ story.modifiedName | absoluteUrl }}">{{ story.modifiedName | absoluteUrl }}</a>
+		<a ng-if="story.modifiedName !== undefined" href="{{ story.modifiedName | absoluteUrl }}">
+			{{ story.modifiedName | absoluteUrl }}
+		</a>
 	</p>
 	<h2>About this story</h2>
 	<div ng-bind-html="story.longDescription | trustHtml"></div>
+</section>
+<section>
+	<ul>
+		<li ng-repeat="component in story.components">
+			<a ng-click="setActiveStoryDetailsTab($index)">
+				{{ component.name }}
+			</a>
+		</li>
+	</ul>
+	<div ng-repeat="component in story.components" ng-show="isActiveStoryDetailsTab($index)">
+		<h2>{{ component.name }}</h2>
+		<ul>
+			<li ng-repeat="item in component.list">
+				<a href="#/{{ component.name | lowercase }}/{{ item.modifiedName }}">
+					{{ item.name }}
+				</a>
+			</li>
+		</ul>
+	</div>
 </section>
