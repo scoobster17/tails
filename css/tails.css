@@ -5833,6 +5833,14 @@ button.close {
 .dateOfBirthFields .form-control-feedback {
   right: 15px; }
 
+.storyComponents .storyDetailsTabs {
+  border-bottom: 1px solid #ccc; }
+
+.storyComponents .panel {
+  margin-bottom: 0; }
+  .storyComponents .panel + a {
+    margin-top: 20px; }
+
 .authorHome .panel-body {
   min-height: 120px; }
 

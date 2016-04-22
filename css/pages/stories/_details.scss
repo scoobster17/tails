@@ -1,0 +1,11 @@
+.storyComponents {
+	.storyDetailsTabs {
+		border-bottom:1px solid $borderPrimaryColour;
+	}
+	.panel {
+		margin-bottom:0;
+		+ a {
+			margin-top:20px;
+		}
+	}
+}

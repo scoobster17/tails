@@ -5,6 +5,7 @@
 	.controller('storyDetailsCtrl', ['$scope', '$rootScope', '$routeParams', 'TextFactory', 'StoriesFactory', function($scope, $rootScope, $routeParams, TextFactory, StoriesFactory) {
 
 		$scope.activeStoryDetailsTab = 0;
+		$scope.hideAddCustomComponent = true;
 
 		// on view change change the title for accessibility
 		$scope.$on('$viewContentLoaded', function() {
@@ -21,6 +22,7 @@
 		var storyQuery = StoriesFactory.get({modifiedName: $routeParams.modifiedName});
 		storyQuery.$promise.then(function(data){
 			$scope.story = data[0];
+			$scope.customComponentIndex = $scope.story.components.length + 1;
 		});
 
 		$scope.setActiveStoryDetailsTab = function(tabIndex) {

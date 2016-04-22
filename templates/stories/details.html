@@ -9,22 +9,37 @@
 	<h2>About this story</h2>
 	<div ng-bind-html="story.longDescription | trustHtml"></div>
 </section>
-<section>
-	<ul>
-		<li ng-repeat="component in story.components">
-			<a ng-click="setActiveStoryDetailsTab($index)">
+<section class="storyComponents">
+	<uib-tabset class="storyDetailsTabs">
+		<uib-tab index="$index" ng-repeat="component in story.components" active="isActiveStoryDetailsTab($index)">
+			<uib-tab-heading ng-click="setActiveStoryDetailsTab($index)">
 				{{ component.name }}
-			</a>
-		</li>
-	</ul>
-	<div ng-repeat="component in story.components" ng-show="isActiveStoryDetailsTab($index)">
-		<h2>{{ component.name }}</h2>
-		<ul>
-			<li ng-repeat="item in component.list">
-				<a href="#/{{ component.name | lowercase }}/{{ item.modifiedName }}">
-					{{ item.name }}
-				</a>
-			</li>
-		</ul>
+			</uib-tab-heading>
+			<h2>
+				{{ component.name }}
+			</h2>
+			<ul ng-if="component.list.length">
+				<li ng-repeat="item in component.list">
+					<a href="#/{{ component.name | lowercase }}/{{ item.modifiedName }}">
+						{{ item.name }}
+					</a>
+				</li>
+			</ul>
+			<a href="#/{{ component.modifiedName }}/new"></a>
+			<p ng-if="!component.list.length">This tail has no {{ component.name | lowercase }} yet.</p>
+		</uib-tab>
+	</uib-tabset>
+	<div uib-collapse="hideAddCustomComponent" class="panel panel-default">
+		<header class="panel-heading">
+			<h2 class="panel-title">
+				Add your own component
+			</h2>
+		</header>
+		<div class="panel-body">
+			<p>Here you can add your own component to customise this story to your needs.</p>
+		</div>
 	</div>
+	<a class="btn btn-default" role="button" ng-click="hideAddCustomComponent = !hideAddCustomComponent">
+		Add custom component&hellip;
+	</a>
 </section>
