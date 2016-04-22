@@ -54,6 +54,28 @@
 			return newHtml;
 		};
 
+		/**
+		 * Convert a string to be used in a URL, for example the story name.
+		 * This does not include encoding; this is for converting spaces to
+		 * dashes, and stripping extra whitespace.
+		 * @param  {String} str string to be modified
+		 * @return {String}     The new String to be used in a URL
+		 */
+		$rootScope.prepareForUrl = function(str) {
+
+			// get rid of all double spaces to avoid >1 dash
+			var dashedString = str.replace(/  /g, ' ');
+
+			// replace each remaining space with an ndash
+			dashedString = dashedString.replace(/ /g, '-');
+
+			// ensure the text is lower case for url handling / insensitivity
+			dashedString = dashedString.toLowerCase();
+
+			return dashedString;
+
+		};
+
 	});
 
 })();

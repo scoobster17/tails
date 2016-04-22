@@ -1,0 +1,9 @@
+<section>
+	<h1>{{ story.name }}</h1>
+	<p>
+		To access this story directly you can use this as the url:
+		<a ng-if="story.modifiedName !== undefined" href="{{ story.modifiedName | absoluteUrl }}">{{ story.modifiedName | absoluteUrl }}</a>
+	</p>
+	<h2>About this story</h2>
+	<div ng-bind-html="story.longDescription | trustHtml"></div>
+</section>

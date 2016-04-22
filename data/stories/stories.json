@@ -1,10 +1,18 @@
 [
     {
         "name": "Story 1",
-        "shortDescription": "Story 1 description"
+        "modifiedName": "story-1",
+        "shortDescription": "Story 1 description",
+        "longDescription": "<p>Story one is about a boy who is a web developer, who has just started working for a company called Marvel. He decides to make an app to track his story idewas for the newest and greatest comic of all time.</p><p>Along the way he faces an angry boss who will stop at nothing to stop his comic from getting published and made into a movie.</p>"
     },
     {
         "name": "Story 2",
+        "modifiedName": "story-2",
         "shortDescription": "Story 2 description"
+    },
+    {
+    	"name": "Story 3",
+    	"modifiedName": "story-3",
+    	"shortDescription": "Story 3 description"
     }
 ]

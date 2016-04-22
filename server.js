@@ -54,6 +54,19 @@ app.get('/storiesData', function(req, res) {
 });
 
 /**
+ * Get stories data (TEMPORARY until introduce Mongo)
+ */
+app.get('/storiesData/:modifiedName', function(req, res) {
+	fs.readFile( __dirname + '/data/stories/stories.json', 'utf8', function(err, data) {
+		var stories = JSON.parse(data);
+		var filteredStory = stories.filter(function(story) {
+			return story.modifiedName === req.params.modifiedName;
+		});
+		res.end(JSON.stringify(filteredStory));
+	});
+});
+
+/**
  * Server setup and config
  */
 var server = app.listen(7411, function() {

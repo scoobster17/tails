@@ -4,12 +4,12 @@
 	<ul>
 		<li ng-repeat="story in stories">
 			<h2>
-				<a href="#/stories/:id">
+				<a href="#/stories/{{ story.modifiedName }}">
 					{{ story.name }}
 				</a>
 			</h2>
 			<p>
-				<a href="#/stories/:id">
+				<a href="#/stories/{{ story.modifiedName }}">
 					{{ story.shortDescription }}
 				</a>
 			</p>

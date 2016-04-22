@@ -22,6 +22,12 @@
 				controller: 'storiesListCtrl'
 			})
 
+				// story details page
+				.when('/stories/:modifiedName', {
+					templateUrl: 'templates/stories/details.html',
+					controller: 'storyDetailsCtrl'
+				})
+
 			////////////////////////////////////////////////////////////////////
 			// AUTHOR SECTION
 			////////////////////////////////////////////////////////////////////
