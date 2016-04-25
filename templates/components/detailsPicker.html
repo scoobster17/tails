@@ -1,0 +1,8 @@
+<fieldset>
+	<div class="{{ pickerType }}" ng-repeat="option in pickerOptions">
+		<label>
+			<input type="{{ pickerType }}" name="{{ update.inputName }}Picker" value="{{ option.value }}" data-text="{{ option.name }}" />
+			{{ option.name }}
+		</label>
+	</div>
+</fieldset>

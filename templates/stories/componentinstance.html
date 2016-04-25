@@ -2,15 +2,51 @@
 	<h1>{{ instance.name + text.heading + story.name }}</h1>
 	<p>{{ text.intro + instance.name }}</p>
 	<form>
-		<fieldset ng-repeat="fieldset in component.fieldsets">
+		<fieldset ng-repeat="fieldset in component.form.fieldsets">
 			<h2>
 				{{ fieldset.name }}
 			</h2>
 			<div class="form-group" ng-repeat="field in fieldset.fields">
-				<label class="control-label">
+				<label class="control-label" for="{{ field.inputName }}">
 					{{ field.label }}
 				</label>
-				<input type="{{ field.type }}" name="{{ field.inputName }}" class="form-control" />
+				<input
+					ng-if="field.type !== 'select' && field.type !== 'textarea'"
+					type="{{ field.type }}"
+					name="{{ field.inputName }}"
+					id="{{ field.inputName }}"
+					class="form-control"
+					ng-disabled="!editMode"
+					value="{{ instance.details[field.inputName] }}"
+				/>
+				<select
+					ng-if="field.type === 'select'"
+					class="form-control"
+					id="{{ field.inputName }}"
+					ng-disabled="!editMode"
+				>
+					<option value="-1">
+						Please select
+					</option>
+					<option ng-repeat="option in field.options" value="{{ option.value }}">
+						{{ option.name }}
+					</option>
+				</select>
+				<textarea
+					ng-if="field.type === 'textarea'"
+					class="form-control"
+					id="{{ field.inputName }}"
+					ng-disabled="!editMode"
+					value="{{ instance.details[field.inputName] }}"
+				>
+				</textarea>
+				<details-picker
+					update="field"
+					picker-type="{{ field.pickerType }}"
+					picker-options="pickerOptions[field.inputName]"
+					ng-if="component.associateCharactersAndLocations && (field.inputName === 'location' || field.inputName === 'characters')"
+				>
+				</details-picker>
 			</div>
 		</fieldset>
 	</form>
