@@ -5834,7 +5834,9 @@ button.close {
   right: 15px; }
 
 .storyComponents .storyDetailsTabs {
-  border-bottom: 1px solid #ccc; }
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 20px;
+  padding-bottom: 20px; }
 
 .storyComponents .panel {
   margin-bottom: 0; }

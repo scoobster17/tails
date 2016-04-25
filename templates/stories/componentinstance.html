@@ -1,0 +1,15 @@
+<section>
+	<h1>{{ instance.name + text.heading + story.name }}</h1>
+	<p>{{ text.intro + instance.name }}</p>
+	<form>
+		<fieldset>
+			<div class="form-group">
+				<label class="control-label">Name</label>
+				<input type="text" class="form-control" />
+			</div>
+		</fieldset>
+	</form>
+	<a href="#/stories/{{ story.modifiedName + '/' + component.modifiedComponentName }}" class="btn btn-default">
+		{{ text.backBtn }}{{ component.name | lowercase }}
+	</a>
+</section>

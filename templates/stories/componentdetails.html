@@ -1,0 +1,29 @@
+<section>
+	<h1>
+		{{ component.name + text.heading + story.name }}
+	</h1>
+	<p ng-if="!component.list.length">
+		There are not yet any {{ component.name | lowercase }} for {{ story.name }}
+	</p>
+	<p ng-if="component.list.length">
+		{{ text.intro }}{{ component.name | lowercase }}{{ " in your story: " + story.name }}
+	</p>
+	<a class="btn btn-primary">
+		Add new {{ component.singularName | lowercase }}
+	</a>
+	<ul ng-if="component.list.length">
+		<li ng-repeat="instance in component.list">
+			<h2>
+				<a href="#/stories/{{ story.modifiedName + '/' + component.modifiedComponentName + '/' + instance.modifiedName }}">
+					{{ instance.name }}
+				</a>
+			</h2>
+			<a href="#/stories/{{ story.modifiedName + '/' + component.modifiedComponentName + '/' + instance.modifiedName }}">
+				{{ instance.shortDescription }}
+			</a>
+		</li>
+	</ul>
+	<a href="#/stories/{{ story.modifiedName }}" class="btn btn-default">
+		{{ text.backBtn + story.name }}
+	</a>
+</section>

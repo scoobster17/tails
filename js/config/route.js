@@ -28,6 +28,18 @@
 					controller: 'storyDetailsCtrl'
 				})
 
+					// story sub-details page
+					.when('/stories/:modifiedName/:component', {
+						templateUrl: 'templates/stories/componentdetails.html',
+						controller: 'storyComponentDetailsCtrl'
+					})
+
+						// story single sub-detail page
+						.when('/stories/:modifiedName/:component/:modifiedInstanceName', {
+							templateUrl: 'templates/stories/componentinstance.html',
+							controller: 'storyComponentInstanceCtrl'
+						})
+
 			////////////////////////////////////////////////////////////////////
 			// AUTHOR SECTION
 			////////////////////////////////////////////////////////////////////

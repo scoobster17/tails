@@ -20,13 +20,24 @@
 			</h2>
 			<ul ng-if="component.list.length">
 				<li ng-repeat="item in component.list">
-					<a href="#/{{ component.name | lowercase }}/{{ item.modifiedName }}">
+					<a href="#/stories/{{ story.modifiedName }}/{{ component.modifiedComponentName }}/{{ item.modifiedName }}">
 						{{ item.name }}
 					</a>
 				</li>
 			</ul>
-			<a href="#/{{ component.modifiedName }}/new"></a>
-			<p ng-if="!component.list.length">This tail has no {{ component.name | lowercase }} yet.</p>
+			<ul class="list-unstyled list-inline actions">
+				<li ng-if="component.list.length">
+					<a href="#/stories/{{ story.modifiedName }}/{{ component.modifiedComponentName }}" class="btn btn-primary">
+						See all {{ component.modifiedComponentName }}
+					</a>
+				</li>
+				<!--<li>
+					<a href="#/{{ component.modifiedName }}/new" class="btn btn-default">
+						New
+					</a>
+				</li>-->
+			</ul>
+			<p ng-if="!component.list.length">This tail has no {{ component.modifiedComponentName }} yet.</p>
 		</uib-tab>
 	</uib-tabset>
 	<div uib-collapse="hideAddCustomComponent" class="panel panel-default">
@@ -37,9 +48,17 @@
 		</header>
 		<div class="panel-body">
 			<p>Here you can add your own component to customise this story to your needs.</p>
+			<form>
+				<div class="form-group">
+					<label class="control-label">Component Name</label>
+					<input type="text" class="form-control" />
+				</div>
+				<input type="submit" class="btn btn-primary" value="Add custom component to this story" />
+			</form>
 		</div>
 	</div>
 	<a class="btn btn-default" role="button" ng-click="hideAddCustomComponent = !hideAddCustomComponent">
-		Add custom component&hellip;
+		<span ng-if="hideAddCustomComponent">Add custom component&hellip;</span>
+		<span ng-if="!hideAddCustomComponent">Hide form</span>
 	</a>
 </section>

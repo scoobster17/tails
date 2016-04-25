@@ -127,6 +127,20 @@
 			"list": {
 				"heading": "Your tails",
 				"intro": "Here is a list of all your stories:"
+			},
+			"details": {
+				"heading": "test",
+				"backBtn": "Back to stories list"
+			},
+			"componentdetails": {
+				"heading": " in ",
+				"intro": "Here is a list of all ",
+				"backBtn": "Back to "
+			},
+			"componentinstance": {
+				"heading": " in ",
+				"intro": "Here are the details for ",
+				"backBtn": "Back to "
 			}
 		}
 	}

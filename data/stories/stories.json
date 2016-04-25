@@ -7,32 +7,42 @@
         "components": [
             {
                 "name": "Scenes",
+                "singularName": "Scene",
+                "modifiedComponentName": "scenes",
                 "list": [
                     {
                         "name": "Scene 1",
-                        "modifiedName": "scene-1"
+                        "modifiedName": "scene-1",
+                        "shortDescription": "Short description for scene 1"
                     },
                     {
                         "name": "Scene 2",
-                        "modifiedName": "scene-2"
+                        "modifiedName": "scene-2",
+                        "shortDescription": "Short description for scene 2"
                     }
                 ]
             },
             {
                 "name": "Characters",
+                "singularName": "Character",
+                "modifiedComponentName": "characters",
                 "list": [
                     {
                         "name": "Character 1",
-                        "modifiedName": "character-1"
+                        "modifiedName": "character-1",
+                        "shortDescription": "Short description for character 1"
                     },
                     {
                         "name": "Character 2",
-                        "modifiedName": "character-2"
+                        "modifiedName": "character-2",
+                        "shortDescription": "Short description for character 2"
                     }
                 ]
             },
             {
-                "name": "Locations"
+                "name": "Locations",
+                "singularName": "Location",
+                "modifiedComponentName": "locations"
             }
         ]
     },
