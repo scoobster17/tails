@@ -2,7 +2,7 @@
 
 	angular.module('tailsApp')
 
-	.controller('storyComponentDetailsCtrl', ['$scope', '$rootScope', '$routeParams', 'TextFactory', 'StoriesFactory', function($scope, $rootScope, $routeParams, TextFactory, StoriesFactory) {
+	.controller('storyComponentDetailsCtrl', ['$scope', '$rootScope', '$routeParams', 'TextFactory', 'StoriesFactory', '$window', function($scope, $rootScope, $routeParams, TextFactory, StoriesFactory, $window) {
 
 		// on view change change the title for accessibility
 		$scope.$on('$viewContentLoaded', function() {
@@ -22,7 +22,11 @@
 			$scope.component = $scope.story.components.filter(function(component) {
 				return component.modifiedComponentName === $routeParams.component;
 			});
-			$scope.component = $scope.component[0];
+			if ($scope.component.length > 0) {
+				$scope.component = $scope.component[0];
+			} else {
+				$window.location.href = '#/stories/' + $scope.story.modifiedName;
+			}
 		});
 
 	}]);
