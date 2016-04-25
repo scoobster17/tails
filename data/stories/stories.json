@@ -20,6 +20,38 @@
                         "modifiedName": "scene-2",
                         "shortDescription": "Short description for scene 2"
                     }
+                ],
+                "fieldsets": [
+                    {
+                        "name": "Structure",
+                        "fields": [
+                            {
+                                "label": "Name",
+                                "inputName": "name",
+                                "type": "text"
+                            },
+                            {
+                                "label": "Short Description",
+                                "inputName": "shortDescription",
+                                "type": "textarea"
+                            },
+                            {
+                                "label": "Position in Sequence",
+                                "inputName": "posInSeq",
+                                "type": "number"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Relations",
+                        "fields": [
+                            {
+                                "label": "Links to",
+                                "inputName": "linksTo",
+                                "type": "text"
+                            }
+                        ]
+                    }
                 ]
             },
             {

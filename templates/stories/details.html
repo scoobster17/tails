@@ -57,8 +57,17 @@
 			</form>
 		</div>
 	</div>
-	<a class="btn btn-default" role="button" ng-click="hideAddCustomComponent = !hideAddCustomComponent">
-		<span ng-if="hideAddCustomComponent">Add custom component&hellip;</span>
-		<span ng-if="!hideAddCustomComponent">Hide form</span>
-	</a>
+	<ul class="list-unstyled list-inline actions">
+		<li>
+			<a href="#/stories" class="btn btn-default">
+				{{ text.backBtn }}
+			</a>
+		</li>
+		<li>
+			<a class="btn btn-default" role="button" ng-click="hideAddCustomComponent = !hideAddCustomComponent">
+				<span ng-if="hideAddCustomComponent">Add custom component&hellip;</span>
+				<span ng-if="!hideAddCustomComponent">Hide form</span>
+			</a>
+		</li>
+	</ul>
 </section>

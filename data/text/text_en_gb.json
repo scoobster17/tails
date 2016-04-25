@@ -126,7 +126,8 @@
 		"stories": {
 			"list": {
 				"heading": "Your tails",
-				"intro": "Here is a list of all your stories:"
+				"intro": "Here is a list of all your stories:",
+				"backBtn": "Back to home"
 			},
 			"details": {
 				"heading": "test",

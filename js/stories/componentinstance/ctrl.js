@@ -29,7 +29,6 @@
 			if ($scope.instance.length > 0) {
 				$scope.instance = $scope.instance[0];
 			} else {
-				console.log($scope.component.modifiedComponentName);
 				$window.location.href = '#/stories/' + $scope.story.modifiedName + '/' + $scope.component.modifiedComponentName;
 			}
 		});

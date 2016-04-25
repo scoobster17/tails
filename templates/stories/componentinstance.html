@@ -2,10 +2,15 @@
 	<h1>{{ instance.name + text.heading + story.name }}</h1>
 	<p>{{ text.intro + instance.name }}</p>
 	<form>
-		<fieldset>
-			<div class="form-group">
-				<label class="control-label">Name</label>
-				<input type="text" class="form-control" />
+		<fieldset ng-repeat="fieldset in component.fieldsets">
+			<h2>
+				{{ fieldset.name }}
+			</h2>
+			<div class="form-group" ng-repeat="field in fieldset.fields">
+				<label class="control-label">
+					{{ field.label }}
+				</label>
+				<input type="{{ field.type }}" name="{{ field.inputName }}" class="form-control" />
 			</div>
 		</fieldset>
 	</form>
