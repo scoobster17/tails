@@ -2,7 +2,12 @@
 
 	angular.module('tailsApp')
 
-	.controller('storyComponentDetailsCtrl', ['$scope', '$rootScope', '$routeParams', 'TextFactory', 'StoriesFactory', '$window', function($scope, $rootScope, $routeParams, TextFactory, StoriesFactory, $window) {
+	.controller('storyComponentDetailsCtrl', ['$scope', '$rootScope', '$routeParams', 'TextFactory', 'StoriesFactory', '$window', 'constants', function($scope, $rootScope, $routeParams, TextFactory, StoriesFactory, $window, constants) {
+
+		$scope.modalOptions = constants.modalOptions;
+
+		// show overlay to ask for initial story details
+		$scope.initAddComponentInstance = $rootScope.showModal;
 
 		// on view change change the title for accessibility
 		$scope.$on('$viewContentLoaded', function() {

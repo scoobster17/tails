@@ -8,9 +8,7 @@
 	<p ng-if="component.list.length">
 		{{ text.intro }}{{ component.name | lowercase }}{{ " in your story: " + story.name }}
 	</p>
-	<a class="btn btn-primary">
-		Add new {{ component.singularName | lowercase }}
-	</a>
+	<add-component-instance></add-component-instance>
 	<ul ng-if="component.list.length">
 		<li ng-repeat="instance in component.list">
 			<h2>

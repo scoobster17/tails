@@ -22,10 +22,17 @@
 				"country": /^[a-z\- ]+$/i,
 				"postcode": /^([a-z]{1,2}[0-9][a-z0-9]? ?[0-9][a-z]{1,2})|([0-9]{5})$/i
 			}
+		},
+		"modalOptions": {
+			"addComponentInstance": {
+				templateUrl: 'templates/stories/addComponentInstanceModal.html',
+				controller: 'addComponentInstanceModalCtrl',
+				windowClass: "modal fade in"
+			}
 		}
 	})
 
-	.run(function($rootScope, constants){
+	.run(['$rootScope', 'constants', '$uibModal', function($rootScope, constants, $modal){
 
 		$rootScope.date = new Date();
 
@@ -76,6 +83,15 @@
 
 		};
 
-	});
+		$rootScope.showModal = function(data, modalOptions) {
+			modalOptions.resolve = {
+				data: function() {
+					return data;
+				}
+			};
+			data.scope.modalInstance = $modal.open(modalOptions);
+		};
+
+	}]);
 
 })();

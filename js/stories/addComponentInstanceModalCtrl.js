@@ -2,7 +2,7 @@
 
 	angular.module('tailsApp')
 
-	.controller('addComponentInstanceCtrl', ['$scope', '$rootScope', 'TextFactory', '$uibModalInstance', 'story', 'component', function($scope, $rootScope, TextFactory, $uibModalInstance, story, component) {
+	.controller('addComponentInstanceModalCtrl', ['$scope', '$rootScope', 'TextFactory', '$uibModalInstance', 'data', function($scope, $rootScope, TextFactory, $uibModalInstance, data) {
 
 		// get component text
 		var textQuery = TextFactory.query();
@@ -10,12 +10,12 @@
 			$scope.addComponentInstanceText = data[0].text.stories.modal.addComponentInstance;
 		});
 
-		$scope.story = story;
-		$scope.component = component;
+		$scope.story = data.story;
+		$scope.component = data.component;
 		$scope.instance = {
 			name: "",
-			story: story.name,
-			component: component.name
+			story: data.story.name,
+			component: data.component.name
 		};
 
 		/**
@@ -26,11 +26,11 @@
 		};
 
 		$scope.triggerAddInstance = function(formIsValid, instance) {
-			$scope.closeModal();
 			if (!formIsValid) {
 				$scope.submitted = true;
 				return false;
 			};
+			$scope.closeModal();
 			$rootScope.$emit('addComponentInstance', [$scope.instance]);
 		};
 

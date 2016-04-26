@@ -2,10 +2,11 @@
 
 	angular.module('tailsApp')
 
-	.controller('storyDetailsCtrl', ['$scope', '$rootScope', '$routeParams', 'TextFactory', 'StoriesFactory', '$uibModal', function($scope, $rootScope, $routeParams, TextFactory, StoriesFactory, $modal) {
+	.controller('storyDetailsCtrl', ['$scope', '$rootScope', '$routeParams', 'TextFactory', 'StoriesFactory', 'constants', function($scope, $rootScope, $routeParams, TextFactory, StoriesFactory, constants) {
 
 		$scope.activeStoryDetailsTab = 0;
 		$scope.hideAddCustomComponent = true;
+		$scope.modalOptions = constants.modalOptions;
 
 		// on view change change the title for accessibility
 		$scope.$on('$viewContentLoaded', function() {
@@ -34,21 +35,7 @@
 		}
 
 		// show overlay to ask for initial story details
-		$scope.initAddComponentInstance = function(story, component) {
-			$scope.modalInstance = $modal.open({
-				templateUrl: 'templates/stories/addComponentInstance.html',
-				controller: 'addComponentInstanceCtrl',
-				resolve: {
-					story: function() {
-						return story;
-					},
-					component: function() {
-						return component;
-					}
-				},
-				windowClass: "modal fade in"
-			});
-		};
+		$scope.initAddComponentInstance = $rootScope.showModal;
 
 	}]);
 
