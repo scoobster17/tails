@@ -31,11 +31,11 @@
 						See all {{ component.modifiedComponentName }}
 					</a>
 				</li>
-				<!--<li>
-					<a href="#/{{ component.modifiedName }}/new" class="btn btn-default">
-						New
-					</a>
-				</li>-->
+				<li>
+					<button class="btn btn-default" ng-click="initAddComponentInstance(story, component)">
+						Add a {{ component.singularName | lowercase }}
+					</button>
+				</li>
 			</ul>
 			<p ng-if="!component.list.length">This tail has no {{ component.modifiedComponentName }} yet.</p>
 		</uib-tab>

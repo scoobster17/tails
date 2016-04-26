@@ -2,7 +2,7 @@
 
 	angular.module('tailsApp')
 
-	.controller('storyDetailsCtrl', ['$scope', '$rootScope', '$routeParams', 'TextFactory', 'StoriesFactory', function($scope, $rootScope, $routeParams, TextFactory, StoriesFactory) {
+	.controller('storyDetailsCtrl', ['$scope', '$rootScope', '$routeParams', 'TextFactory', 'StoriesFactory', '$uibModal', function($scope, $rootScope, $routeParams, TextFactory, StoriesFactory, $modal) {
 
 		$scope.activeStoryDetailsTab = 0;
 		$scope.hideAddCustomComponent = true;
@@ -32,6 +32,23 @@
 		$scope.isActiveStoryDetailsTab = function(tabIndex) {
 			return tabIndex === $scope.activeStoryDetailsTab;
 		}
+
+		// show overlay to ask for initial story details
+		$scope.initAddComponentInstance = function(story, component) {
+			$scope.modalInstance = $modal.open({
+				templateUrl: 'templates/stories/addComponentInstance.html',
+				controller: 'addComponentInstanceCtrl',
+				resolve: {
+					story: function() {
+						return story;
+					},
+					component: function() {
+						return component;
+					}
+				},
+				windowClass: "modal fade in"
+			});
+		};
 
 	}]);
 

@@ -142,6 +142,21 @@
 				"heading": " in ",
 				"intro": "Here are the details for ",
 				"backBtn": "Back to "
+			},
+			"modal": {
+				"addComponentInstance": {
+					"heading": "Add a ",
+					"labels": {
+						"name": " name",
+						"story": "Story name",
+						"component": "componentName"
+					},
+					"cancelBtn": "Cancel",
+					"confirmBtn": "Add ",
+					"errors": {
+						"instanceName": "Please enter a valid name"
+					}
+				}
 			}
 		}
 	}
