@@ -1,0 +1,28 @@
+<header class="modal-header">
+	<button type="button" class="close" ng-click="closeModal()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	<h4 class="modal-title" id="addStoryHeading">
+		{{ addStoryText.heading }}
+	</h4>
+</header>
+<form class="modal-body" name="addStoryForm" novalidate ng-submit="triggerAddStory(addStoryForm.$valid, instance)">
+	<div class="form-group" ng-class="{'has-error has-feedback': (submitted || addStoryForm.storyName.$dirty) && addStoryForm.storyName.$invalid}">
+		<label class="control-label" for="storyName">
+			{{ addStoryText.labels.name }}
+		</label>
+		<input type="text" id="storyName" name="storyName" ng-model="story.name" class="form-control" required autofocus />
+		<span ng-show="(submitted || addStoryForm.storyName.$dirty) && addStoryForm.storyName.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+		<p ng-show="(submitted || addStoryForm.storyName.$dirty) && addStoryForm.storyName.$invalid" class="help-block">
+			{{ addStoryText.errors.storyName }}
+		</p>
+	</div>
+	<ul class="list-unstyled list-inline">
+		<li>
+			<button class="btn btn-default" ng-click="closeModal()">
+				{{ addStoryText.cancelBtn }}
+			</button>
+		</li>
+		<li>
+			<input type="submit" class="btn btn-primary" value="{{ addStoryText.confirmBtn }}" />
+		</li>
+	</ul>
+</form>

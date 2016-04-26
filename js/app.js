@@ -24,8 +24,13 @@
 			}
 		},
 		"modalOptions": {
+			"addStory": {
+				templateUrl: 'templates/stories/modals/addStoryModal.html',
+				controller: 'addStoryModalCtrl',
+				windowClass: "modal fade in"
+			},
 			"addComponentInstance": {
-				templateUrl: 'templates/stories/addComponentInstanceModal.html',
+				templateUrl: 'templates/stories/modals/addComponentInstanceModal.html',
 				controller: 'addComponentInstanceModalCtrl',
 				windowClass: "modal fade in"
 			}

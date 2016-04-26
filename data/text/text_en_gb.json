@@ -144,12 +144,23 @@
 				"backBtn": "Back to "
 			},
 			"modal": {
+				"addStory": {
+					"heading": "Add a story",
+					"labels": {
+						"name": "Story name"
+					},
+					"cancelBtn": "Cancel",
+					"confirmBtn": "Add story",
+					"errors": {
+						"storyName": "Please enter a valid name"
+					}
+				},
 				"addComponentInstance": {
 					"heading": "Add a ",
 					"labels": {
 						"name": " name",
 						"story": "Story name",
-						"component": "componentName"
+						"component": "Adding to component"
 					},
 					"cancelBtn": "Cancel",
 					"confirmBtn": "Add ",

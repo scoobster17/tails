@@ -44,7 +44,11 @@
 
 		// TODO: Link up to add BE
 		$scope.addComponentInstance = function(data) {
+
 			console.log('addComponentInstance: ', data);
+
+			// go to components list page #/stories/story-name/component-name
+
 		};
 
 	}]);
