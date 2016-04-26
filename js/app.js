@@ -1,6 +1,6 @@
 (function(){
 
-	angular.module('tailsApp', ['ngRoute', 'ngResource', 'ngAnimate', 'ui.bootstrap'])
+	angular.module('tailsApp', ['ngRoute', 'ngResource', 'ngAnimate', 'ui.bootstrap', 'angular-spinkit'])
 
 	.constant("constants", {
 		"appName": "Tails",
