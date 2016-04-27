@@ -2,6 +2,9 @@
 
 	angular.module('tailsApp')
 
+	/**
+	 * Directive for the Add Component Instance button that triggers an overlay
+	 */
 	.directive('addComponentInstance', function() {
 		return {
 			restrict: 'E',

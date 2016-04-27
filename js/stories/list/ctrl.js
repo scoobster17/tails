@@ -26,6 +26,7 @@
 			$scope.stories = data;
 		});
 
+		// Make the stored common modal options available to the scope
 		$scope.modalOptions = constants.modalOptions;
 
 		// show overlay to ask for initial story details

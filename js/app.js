@@ -1,7 +1,11 @@
 (function(){
 
+	// defining app dependencies
 	angular.module('tailsApp', ['ngRoute', 'ngResource', 'ngAnimate', 'ui.bootstrap', 'angular-spinkit'])
 
+	/**
+	 * Defining constants for use throughout the app
+	 */
 	.constant("constants", {
 		"appName": "Tails",
 		"creator": "Phil Gibbins",
@@ -37,8 +41,16 @@
 		}
 	})
 
+	/**
+	 * Defining code that needs to run to setup the app. Features values bound
+	 * to the $rootScope.
+	 * @param  {dependency} $rootScope
+	 * @param  {Object} 	constants
+	 * @param  {dependency} $uibModal
+	 */
 	.run(['$rootScope', 'constants', '$uibModal', function($rootScope, constants, $modal){
 
+		// set the date (for use in the footer for example)
 		$rootScope.date = new Date();
 
 		/**
@@ -55,8 +67,8 @@
 
 		/**
 		 * Function to escape HTML from user input
-		 * @param  {[type]} html [description]
-		 * @return {[type]}      [description]
+		 * @param  {String} html This is the HTML to be escaped
+		 * @return {String}      This is the escaped HTML
 		 */
 		$rootScope.escapeHtml = function(html) {
 			var newHtml = html;
@@ -88,6 +100,14 @@
 
 		};
 
+		/**
+		 * Method to intercept a modal being shown to make passed data available
+		 * in the modal
+		 * @param  {Object} data         Must contain the scope, and any other
+		 *                               data that is needed in the modal
+		 * @param  {Object} modalOptions Options for the modal for instance
+		 *                               template, controller, windowClass
+		 */
 		$rootScope.showModal = function(data, modalOptions) {
 			modalOptions.resolve = {
 				data: function() {

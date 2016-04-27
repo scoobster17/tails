@@ -2,6 +2,14 @@
 
 	angular.module('tailsApp')
 
+	/**
+	 * Controller for the Add Story Modal
+	 * @param  {dependency} $scope
+	 * @param  {dependency} $rootScope
+	 * @param  {dependency} TextFactory			Supplied text to modal
+	 * @param  {dependency} $uibModalInstance
+	 * @param  {Object} 	data				Data to be used by modal
+	 */
 	.controller('addStoryModalCtrl', ['$scope', '$rootScope', 'TextFactory', '$uibModalInstance', 'data', function($scope, $rootScope, TextFactory, $uibModalInstance, data) {
 
 		// get component text
@@ -17,6 +25,12 @@
 			$uibModalInstance.dismiss();
 		};
 
+		/**
+		 * On successful submission on form in modal we trigger an event to
+		 * acknoweledge the story should be stored.
+		 * @param  {boolean} formIsValid Whether or not the form is valid
+		 * @param  {Object}  story       Object of ng-model to be stored
+		 */
 		$scope.triggerAddStory = function(formIsValid, story) {
 			if (!formIsValid) {
 				$scope.submitted = true;

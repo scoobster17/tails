@@ -1,7 +1,7 @@
 /**
  * Server.js
  *
- * Starts a node server to supply resources and data
+ * Starts a node server and supplies resources & data to app
  */
 
 /**
@@ -27,7 +27,7 @@ app.use(express.static('templates'));
 app.use('/templates', express.static('templates'));
 
 /**
- * Supply pages to URLs
+ * Supply data and pages to URL requests
  */
 app.get('/', function(req, res) {
 	fs.readFile( __dirname + '/index.html', 'utf8', function(err, data) {
@@ -58,10 +58,16 @@ app.get('/storiesData', function(req, res) {
  */
 app.get('/storiesData/:modifiedName', function(req, res) {
 	fs.readFile( __dirname + '/data/stories/stories.json', 'utf8', function(err, data) {
+
+		// parse the response into JSON format
 		var stories = JSON.parse(data);
+
+		// filter the response data to return only the story that matches param
 		var filteredStory = stories.filter(function(story) {
 			return story.modifiedName === req.params.modifiedName;
 		});
+
+		// return story in string JSON format
 		res.end(JSON.stringify(filteredStory));
 	});
 });
@@ -71,14 +77,24 @@ app.get('/storiesData/:modifiedName', function(req, res) {
  */
 app.get('/storiesData/:modifiedName/:modifiedComponentName', function(req, res) {
 	fs.readFile( __dirname + '/data/stories/stories.json', 'utf8', function(err, data) {
+
+		// parse the response into JSON format
 		var stories = JSON.parse(data);
+
+		// filter the response data to return only the story that matches param
 		var filteredStory = stories.filter(function(story) {
 			return story.modifiedName === req.params.modifiedName;
 		});
+
+		// cancel if no matching story if found
 		if (!filteredStory[0].components) return false;
+
+		// filter the matching story's components to return only one matching param
 		var filteredComponent = filteredStory[0].components.filter(function(component) {
 			return component.modifiedComponentName === req.params.modifiedComponentName;
 		});
+
+		// return component in string JSON format
 		res.end(JSON.stringify(filteredComponent));
 	});
 });

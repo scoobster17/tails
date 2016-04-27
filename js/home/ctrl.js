@@ -4,9 +4,10 @@
 
 	/**
 	 * Controller for Home page
-	 * @param  {dependency} $scope
-	 * @param  {dependency} $rootScope
-	 * @param  {dependency} TextFactory  Factory for retrieving text for page
+	 * @param {dependency} $scope
+	 * @param {dependency} $rootScope
+	 * @param {dependency} TextFactory  Factory for retrieving text for page
+	 * @param {Object} 	   constants 	App constants object
 	 */
 	.controller('homeCtrl', ['$scope', '$rootScope', 'TextFactory', 'constants', function($scope, $rootScope, TextFactory, constants) {
 
@@ -21,9 +22,10 @@
 			$scope.text = data[0].text.home;
 		});
 
+		// get the modal options form the constants object
 		$scope.modalOptions = constants.modalOptions;
 
-		// show overlay to ask for initial story details
+		// bind rootScope show overlay method to ask for initial story details
 		$scope.initAddStory = $rootScope.showModal;
 
 	}]);

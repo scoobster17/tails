@@ -2,6 +2,9 @@
 
 	angular.module('tailsApp')
 
+	/**
+	 * Directive for the site header
+	 */
 	.directive('globalHeader', function() {
 		return {
 			restrict: 'E',

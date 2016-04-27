@@ -2,6 +2,12 @@
 
 	angular.module('tailsApp')
 
+	/**
+	 * Directive to render a details picker; better UI than asking a user to
+	 * type out all options. This provides either checkboxes or radios which
+	 * when checked update the options string in a hidden field.
+	 * @param  {dependency} $timeout
+	 */
 	.directive('detailsPicker', ['$timeout', function($timeout) {
 		return {
 			restrict: 'E',

@@ -48,7 +48,6 @@
 
 		/**
 		 * Resets the input form for adding a checklist item
-		 * @return {[type]} [description]
 		 */
 		$scope.cancelAddItem = function() {
 			$scope.resetAddForm();
@@ -89,6 +88,10 @@
 			});
 		};
 
+		/**
+		 * Update an item in the wishlist by storing the changes
+		 * @param  {Object} item The item being updated
+		 */
 		$scope.updateItem = function(item) {
 			var itemToEditIndex = $scope.getItemIndex(item);
 			$scope.editedItem.description = $rootScope.escapeHtml($scope.editedItem.description);
@@ -96,13 +99,15 @@
 			$scope.resetEditForm();
 		};
 
+		/**
+		 * Cancel editing an item
+		 */
 		$scope.revertItem = function() {
 			$scope.resetEditForm();
 		}
 
 		/**
-		 * Clears the form and hides the add item form
-		 * @return {[type]} [description]
+		 * Clears the add item form and hides it
 		 */
 		$scope.resetAddForm = function() {
 			$scope.addingItem = false;
@@ -110,6 +115,9 @@
 			$scope.addItemForm.$setPristine();
 		};
 
+		/**
+		 * Clears the edit item form and hides it
+		 */
 		$scope.resetEditForm = function() {
 			$scope.editingItem = false;
 			$scope.originalItem = {};
@@ -118,6 +126,7 @@
 
 		/**
 		 * Function to call modal requesting user to confirm deletion of item
+		 * @param {Object} iten The item details so they can be displayed in modal
 		 */
 		$scope.requestConfirmRemoveItem = function(item) {
 			$scope.modalInstance = $modal.open({
@@ -144,6 +153,10 @@
 			$scope.removeItem(data[0]);
 		});
 
+		/**
+		 * Function to get the item index in the list
+		 * @param  {Object} itemToFind The item to find in the checklist
+		 */
 		$scope.getItemIndex = function(itemToFind) {
 			return $scope.checklist.items.findIndex(function(item) {
 				if (item.id == itemToFind.id) {

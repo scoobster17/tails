@@ -2,6 +2,9 @@
 
 	angular.module('tailsApp')
 
+	/**
+	 * Directive for the add story button, which triggers an overlay
+	 */
 	.directive('addStory', function() {
 		return {
 			restrict: 'E',

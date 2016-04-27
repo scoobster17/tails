@@ -1,10 +1,16 @@
 <section class="jumbotron">
 	<h1>{{ text.heading }}</h1>
 	<p>{{ text.intro }}</p>
-	<a href="#/stories" class="btn btn-primary">
-		{{ text.stories.linkText }}
-	</a>
-	<add-story></add-story>
+	<ul class="list-unstyled list-inline">
+		<li>
+			<a href="#/stories" class="btn btn-primary">
+				{{ text.stories.linkText }}
+			</a>
+		</li>
+		<li>
+			<add-story></add-story>
+		</li>
+	</ul>
 </section>
 <section class="panel panel-default">
 	<header class="panel-heading">

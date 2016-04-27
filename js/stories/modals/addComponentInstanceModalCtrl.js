@@ -2,6 +2,14 @@
 
 	angular.module('tailsApp')
 
+	/**
+	 * Controller for the Add Component Instance Modal
+	 * @param  {dependency} $scope
+	 * @param  {dependency} $rootScope
+	 * @param  {dependency} TextFactory       	Factory supplying text to modal
+	 * @param  {dependency} $uibModalInstance
+	 * @param  {Object}		data				Data being passed to the modal
+	 */
 	.controller('addComponentInstanceModalCtrl', ['$scope', '$rootScope', 'TextFactory', '$uibModalInstance', 'data', function($scope, $rootScope, TextFactory, $uibModalInstance, data) {
 
 		// get component text
@@ -10,6 +18,10 @@
 			$scope.addComponentInstanceText = data[0].text.stories.modal.addComponentInstance;
 		});
 
+		/*
+			Make data available in scope and initialise the instance object for
+			ng-model so the modal is pre-filled with data
+		 */
 		$scope.story = data.story;
 		$scope.component = data.component;
 		$scope.instance = {
@@ -25,6 +37,12 @@
 			$uibModalInstance.dismiss();
 		};
 
+		/**
+		 * When the submit button is pressed, if the form is valid we emit an
+		 * event whereby we acknowledge the instance is to be stored.
+		 * @param  {boolean} formIsValid Check as to whether the form is valid
+		 * @param  {Object} instance    The object of ng-model containing data
+		 */
 		$scope.triggerAddInstance = function(formIsValid, instance) {
 			if (!formIsValid) {
 				$scope.submitted = true;

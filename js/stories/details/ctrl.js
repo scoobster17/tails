@@ -2,8 +2,18 @@
 
 	angular.module('tailsApp')
 
+	/**
+	 * Controller for the story details view
+	 * @param  {dependency} $scope
+	 * @param  {dependency} $rootScope
+	 * @param  {dependency} $routeParams
+	 * @param  {dependency} TextFactory
+	 * @param  {dependency} StoriesFactory
+	 * @param  {Object} 	constants		App constants
+	 */
 	.controller('storyDetailsCtrl', ['$scope', '$rootScope', '$routeParams', 'TextFactory', 'StoriesFactory', 'constants', function($scope, $rootScope, $routeParams, TextFactory, StoriesFactory, constants) {
 
+		// initial view config, making modal options available to scope
 		$scope.activeStoryDetailsTab = 0;
 		$scope.hideAddCustomComponent = true;
 		$scope.modalOptions = constants.modalOptions;
@@ -26,10 +36,12 @@
 			$scope.customComponentIndex = $scope.story.components.length + 1;
 		});
 
+		// set the active story details tab to show that tab
 		$scope.setActiveStoryDetailsTab = function(tabIndex) {
 			$scope.activeStoryDetailsTab = tabIndex;
 		};
 
+		// check if the current story details tab is active
 		$scope.isActiveStoryDetailsTab = function(tabIndex) {
 			return tabIndex === $scope.activeStoryDetailsTab;
 		}

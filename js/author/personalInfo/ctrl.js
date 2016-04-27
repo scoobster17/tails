@@ -22,7 +22,7 @@
 			$scope.text = data[0].text.author.personalInfo;
 		});
 
-		// page data
+		// page data and regex's for form validation
 		$scope.year = $rootScope.date.getFullYear();
 		$scope.regex = constants.regex;
 

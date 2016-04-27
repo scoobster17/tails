@@ -2,6 +2,10 @@
 
 	angular.module('tailsApp')
 
+	/**
+	 * Adding config including routing to supply templates to URL requests
+	 * @param  {dependency} $routeProvider
+	 */
 	.config(function($routeProvider) {
 
 		$routeProvider
