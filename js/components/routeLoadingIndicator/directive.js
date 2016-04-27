@@ -16,8 +16,8 @@
 
 				$rootScope.$on('$routeChangeSuccess', function() {
 					setTimeout(function() {
-						angular.element(elem).animate({opacity: 0, "zIndex": -1}, 200).removeClass('shown');
-					}, 200);
+						angular.element(elem).animate({opacity: 0, "zIndex": -1}, 100).removeClass('shown');
+					}, 100);
 				});
 			}
 		};
