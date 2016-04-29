@@ -16,9 +16,12 @@
                         "modifiedName": "scene-1",
                         "shortDescription": "Short description for scene 1",
                         "details": {
-                            "act": "Prologue",
+                            "name": "Scene 1",
+                            "shortDescription": "Short description for scene 1",
+                            "act": "prologue",
                             "posInSeq": "2",
-                            "time": "evening"
+                            "time": "evening",
+                            "location": "Location 1, Location 3"
                         }
                     },
                     {
@@ -188,6 +191,10 @@
                         "name": "Location 2",
                         "modifiedName": "location-2",
                         "shortDescription": "Short description for location 2"
+                    },{
+                        "name": "Location 3",
+                        "modifiedName": "location-3",
+                        "shortDescription": "Short description for location 3"
                     }
                 ]
             }

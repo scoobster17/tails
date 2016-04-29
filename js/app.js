@@ -117,6 +117,19 @@
 			data.scope.modalInstance = $modal.open(modalOptions);
 		};
 
+		/**
+		 * Function to copy properties of an object to another
+		 * @param  {Object} objectToCopy      The object to copy properties from
+		 * @return {Object}                   The new destination object
+		 */
+		$rootScope.copyObject = function(objectToCopy) {
+			var destinationObject = {};
+			for (var prop in objectToCopy) {
+				destinationObject[prop] = objectToCopy[prop];
+			}
+			return destinationObject;
+		};
+
 	}]);
 
 })();

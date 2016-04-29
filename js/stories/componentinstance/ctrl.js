@@ -17,9 +17,10 @@
 	.controller('storyComponentInstanceCtrl', ['$scope', '$rootScope', '$routeParams', 'TextFactory', 'StoriesFactory', '$window', function($scope, $rootScope, $routeParams, TextFactory, StoriesFactory, $window) {
 
 		// Set up the view
-		// $scope.editMode = false;
-		$scope.editMode = true;
+		$scope.editMode = false;
 		$scope.pickerOptions = {};
+		$scope.originalInstanceDetails = {};
+		$scope.editedInstanceDetails = {};
 
 		// on view change change the title for accessibility
 		$scope.$on('$viewContentLoaded', function() {
@@ -51,11 +52,13 @@
 			});
 			if ($scope.instance.length > 0) {
 				$scope.instance = $scope.instance[0];
+				$scope.originalInstanceDetails = $rootScope.copyObject($scope.instance.details);
+				$scope.editedInstanceDetails = $rootScope.copyObject($scope.originalInstanceDetails);
 			} else {
 				$window.location.href = '#/stories/' + $scope.story.modifiedName + '/' + $scope.component.modifiedComponentName;
 			}
 
-			// set locations data to a scoep variable
+			// set locations data to a scope variable
 			$scope.pickerOptions.location = $scope.story.components.filter(function(instance) {
 				return instance.modifiedComponentName === 'locations';
 			});
@@ -67,6 +70,39 @@
 			});
 			$scope.pickerOptions.characters = $scope.pickerOptions.characters[0].list;
 		});
+
+		/**
+		 * Function to make the instance details editable
+		 */
+		$scope.enterEditMode = function() {
+			$scope.editMode = true;
+		};
+
+		/**
+		 * Function to make the instance details uneditable
+		 */
+		$scope.exitEditMode = function() {
+			$scope.editedInstanceDetails = $rootScope.copyObject($scope.originalInstanceDetails);
+			$scope.editMode = false;
+		};
+
+		/**
+		 * Function to save changes to the instance and exit edit mode
+		 */
+		$scope.saveChanges = function() {
+
+			// update the edited details in the scope
+			$scope.originalInstanceDetails = $rootScope.copyObject($scope.editedInstanceDetails);
+
+			// update the details in the JSON
+			$scope.instance.details = $rootScope.copyObject($scope.editedInstanceDetails);
+
+			// TODO: link to BE
+			console.log('save to BE', $scope.editedInstanceDetails);
+
+			// exit editing mode
+			$scope.exitEditMode();
+		};
 
 	}]);
 

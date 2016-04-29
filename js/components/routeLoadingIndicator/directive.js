@@ -15,13 +15,14 @@
 
 				// When a route change is requested, show the loading 'screen'
 				$rootScope.$on('$routeChangeStart', function() {
-					angular.element(elem).css({'opacity': '1', "zIndex": 1000}).addClass('shown');
+					angular.element(elem).css({'opacity': '1', "zIndex": 1000});
+					// window.scrollTo(0,0);
 				});
 
 				// When a route change has finished, fade out the loading 'screen'
 				$rootScope.$on('$routeChangeSuccess', function() {
 					setTimeout(function() {
-						angular.element(elem).animate({opacity: 0, "zIndex": -1}, 100).removeClass('shown');
+						angular.element(elem).animate({opacity: 0, "zIndex": -1}, 100);
 					}, 100);
 				});
 			}

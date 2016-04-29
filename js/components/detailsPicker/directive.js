@@ -17,7 +17,8 @@
 			scope: {
 				update: '=update',
 				pickerType: '@pickerType',
-				pickerOptions: '=pickerOptions'
+				pickerOptions: '=pickerOptions',
+				editMode: '=editMode'
 			},
 			link: function($scope) {
 				$timeout(function() {
@@ -26,6 +27,15 @@
 					var $fieldToUpdate   = $('#' + $scope.update.inputName);
 					var $fieldsetToCheck = $fieldToUpdate.next();
 					var $fieldsToCheck   = $fieldsetToCheck.find('input');
+
+					// update the view as per the value
+					//var idsToCheck = valueToCheck.split(', ');
+					$fieldsToCheck.each(function(){
+						console.log($(this));
+						/*if ($(this).id in array idsToCheck) {
+							$(this).attr('checked', 'checked');
+						}*/
+					});
 
 					// when one of the fields is selected or unselected
 					$fieldsToCheck.change(function() {
