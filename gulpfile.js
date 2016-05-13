@@ -11,6 +11,7 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 var watch = require('gulp-watch');
 var karmaServer = require('karma').Server;
+var open = require('gulp-open');
 
 /**
  * Task to compile Sass
@@ -28,6 +29,14 @@ gulp.task('watch', function() {
 	watch('css/**/*.scss', function() {
 		gulp.start('sass');
 	});
+});
+
+/**
+ * Task to open Jasmine HTML report in default browser
+ */
+gulp.task('show-report', function() {
+	gulp.src('./testing/app-test-reports/story-app-tests.html')
+		.pipe(open());
 });
 
 /**
