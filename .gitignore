@@ -7,3 +7,6 @@
 # Third Party Source Config
 bower_components/
 node_modules/
+
+# Testing reports
+testing/app-test-reports/

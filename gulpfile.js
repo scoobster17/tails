@@ -10,6 +10,7 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var watch = require('gulp-watch');
+var karmaServer = require('karma').Server;
 
 /**
  * Task to compile Sass
@@ -27,4 +28,14 @@ gulp.task('watch', function() {
 	watch('css/**/*.scss', function() {
 		gulp.start('sass');
 	});
+});
+
+/**
+ * Task to fire up Karma Testing Server
+ */
+gulp.task('test', function(done) {
+	return new karmaServer({
+		configFile: __dirname + '/karma.conf.js',
+		singleRun: true
+	}, done).start();
 });
