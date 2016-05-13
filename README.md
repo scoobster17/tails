@@ -10,7 +10,7 @@ prefer to call them 'tails'.
 Installation
 ------------
 
-This app uses a MEAN stack so it will require `node` and `bower` to be installed
+This app uses a MEAN stack so it will require `node` (latest stable release, tested with 4.4.4) and `bower` to be installed
 as well as following these steps:
 
 1. Install npm modules `npm install`
@@ -50,6 +50,21 @@ such as 'characters' or 'scenes'.
 
 There are also some pages for you to jot down things about the author (yourself)
 or make notes or a to-do list to keep track of your tasks.
+
+Processes
+---------
+
+To compile the styles, there is a gulp task:
+
+```gulp watch```
+
+This process runs whilst changes are made.
+
+There is currently no JavaScript minification happening.
+
+To test the code there is a gulp task:
+
+```gulp test```
 
 About
 -----
