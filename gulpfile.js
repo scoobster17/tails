@@ -14,6 +14,7 @@ var karmaServer = require('karma').Server;
 var open = require('gulp-open');
 var util = require('gulp-util');
 var color = require('gulp-color');
+var clean = require('gulp-clean');
 
 /**
  * Variables
@@ -41,11 +42,13 @@ gulp.task('watch', function() {
 /**
  * Task to fire up Karma Testing Server and run tests
  */
-gulp.task('run-tests', function(done) {
+gulp.task('run-tests', ['delete-report'], function(done) {
 	return new karmaServer({
 		configFile: __dirname + '/karma.conf.js',
 		singleRun: true
-	}, done).start();
+	}, function() {
+		done(); // console stacktrace if not in anon func
+	}).start();
 });
 
 /**
@@ -71,14 +74,23 @@ gulp.task('test', function() {
 	if (Object.keys(util.env).length > 1) {
 
 		// if flags to show report are present
-		if(util.env['run-tests-then-open-report'] || util.env['r']) {
-			gulp.start('open-report');
+		if(util.env['show-report'] || util.env['r']) {
+			gulp.start('run-tests-then-open-report');
 		} else {
 			console.log(color('\nERROR:\n\nWith the "gulp test" command please only use a flag of either "--show-report" or "-r" to open an HTML version of the report rather than just seeing the results in the command line.\n', 'RED'));
 		}
+
 	} else {
 		gulp.start('run-tests');
 	}
+});
+
+/**
+ * Task to delete test reports
+ */
+gulp.task('delete-report', function() {
+	return gulp.src('testing/app-test-reports/story-app-tests.html')
+		.pipe(clean());
 });
 
 /**

@@ -66,6 +66,9 @@ To test the code there is a gulp task:
 
 ```gulp test```
 
+You can add a flag to the above command to open an HTML report of the tests.
+Simply add the ```-r``` or ```--show-report``` flag.
+
 About
 -----
 
