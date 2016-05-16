@@ -19,7 +19,7 @@ var clean = require('gulp-clean');
 /**
  * Variables
  */
-var testReportUrl = './testing/app-test-reports/story-app-tests.html';
+var testReportUrl = './testing/reports/report.html';
 
 /**
  * Task to compile Sass
@@ -89,7 +89,7 @@ gulp.task('test', function() {
  * Task to delete test reports
  */
 gulp.task('delete-report', function() {
-	return gulp.src('testing/app-test-reports/story-app-tests.html')
+	return gulp.src(testReportUrl)
 		.pipe(clean());
 });
 
