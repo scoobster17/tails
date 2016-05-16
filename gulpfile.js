@@ -12,6 +12,13 @@ var sass = require('gulp-sass');
 var watch = require('gulp-watch');
 var karmaServer = require('karma').Server;
 var open = require('gulp-open');
+var util = require('gulp-util');
+var color = require('gulp-color');
+
+/**
+ * Variables
+ */
+var testReportUrl = './testing/app-test-reports/story-app-tests.html';
 
 /**
  * Task to compile Sass
@@ -32,19 +39,68 @@ gulp.task('watch', function() {
 });
 
 /**
- * Task to open Jasmine HTML report in default browser
+ * Task to fire up Karma Testing Server and run tests
  */
-gulp.task('show-report', function() {
-	gulp.src('./testing/app-test-reports/story-app-tests.html')
-		.pipe(open());
-});
-
-/**
- * Task to fire up Karma Testing Server
- */
-gulp.task('test', function(done) {
+gulp.task('run-tests', function(done) {
 	return new karmaServer({
 		configFile: __dirname + '/karma.conf.js',
 		singleRun: true
 	}, done).start();
+});
+
+/**
+ * Task to simply open Jasmine HTML report in default browser
+ */
+gulp.task('open-report', function() {
+	gulp.src(testReportUrl)
+		.pipe(open());
+});
+
+/** Task to open Jasmine HTML report after running tests */
+gulp.task('run-tests-then-open-report', ['run-tests'], function() {
+	gulp.src(testReportUrl)
+		.pipe(open());
+});
+
+/**
+ * Task to run tests then show the report if -r or --show-report flag added
+ */
+gulp.task('test', function() {
+
+	// check if flags present
+	if (Object.keys(util.env).length > 1) {
+
+		// if flags to show report are present
+		if(util.env['run-tests-then-open-report'] || util.env['r']) {
+			gulp.start('open-report');
+		} else {
+			console.log(color('\nERROR:\n\nWith the "gulp test" command please only use a flag of either "--show-report" or "-r" to open an HTML version of the report rather than just seeing the results in the command line.\n', 'RED'));
+		}
+	} else {
+		gulp.start('run-tests');
+	}
+});
+
+/**
+ * Task to list functions that can be run by gulp
+ */
+gulp.task('help', function() {
+	console.log(color('\nGULP HELP FOR APP', 'GREEN'));
+	console.log(color('=================\n', 'GREEN'));
+	console.log(color('"gulp sass"', 'YELLOW'));
+		console.log('Task to compile styles\n');
+	console.log(color('"gulp watch"', 'YELLOW'));
+		console.log('Task to watch for changes and compile styles when changes found\n');
+	/*console.log(color('"gulp run-tests"', 'YELLOW'));
+		console.log('Task to run automation tests (unpreferred; long way)\n');
+	console.log(color('"gulp open-report"', 'YELLOW'));
+		console.log('Task to simply show the test report from the last tests run\n');
+	console.log(color('"gulp run-tests-then-open-report"', 'YELLOW'));
+		console.log('Task to run automation tests and then open the test report (unpreferred; long way)\n');*/
+	console.log(color('"gulp test"', 'YELLOW'));
+		console.log('Task to run automation tests and optionally open the test report');
+		console.log('    (no flag)       run tests only (reports in cmd only)');
+		console.log('    -r              open HTML report after running tests');
+		console.log('    -show-report    open HTML report after running tests');
+	console.log('\n');
 });

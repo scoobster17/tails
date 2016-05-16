@@ -1,4 +1,4 @@
-describe("Check Controller: homeCtrl", function() {
+describe("Homepage - ", function() {
 
 	beforeEach(module('tailsApp'));
 

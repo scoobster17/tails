@@ -9,7 +9,8 @@ module.exports = function(config) {
 			outputDir: 'testing/app-test-reports',
 			namedFiles: true,
 			focusOnFailures: false,
-			reportName: 'story-app-tests'
+			reportName: 'story-app-tests',
+			pageTitle: 'Story Planner App Automated Tests'
 		},
 		browsers: ['PhantomJS'],
 		files: [
