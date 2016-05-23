@@ -6,10 +6,10 @@ module.exports = function(config) {
 		frameworks: ['jasmine'],
 		reporters: ['spec', 'html'],
 		htmlReporter: {
-			outputDir: 'testing/reports',
+			outputDir: 'testing/reports/unit/',
 			namedFiles: true,
 			focusOnFailures: false,
-			reportName: 'report',
+			reportName: 'unit-test-report',
 			pageTitle: 'Story Planner App Automated Tests'
 		},
 		browsers: ['PhantomJS'],
@@ -53,7 +53,7 @@ module.exports = function(config) {
 			'js/author/notes/ctrl.js',
 
 			'bower_components/angular-mocks/angular-mocks.js',
-			'testing/tests/**/*.js'
+			'testing/tests/unit/**/*.js'
 		]
 	});
 };

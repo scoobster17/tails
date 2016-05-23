@@ -1,11 +1,13 @@
-describe('Protractor Demo App', function() {
+describe('Home page tests', function() {
 
-	it('test 1', function() {
-		browser.get('http://localhost:7411/');
+	var appUrl = 'http://localhost:7411/';
+
+	it('Check home page title value', function() {
+		browser.get(appUrl);
 		expect(browser.getTitle()).toEqual('Home | Tails');
 	});
 
-	describe('test 2 block', function() {
+	/*describe('test 2 block', function() {
 
 		it('test 2', function() {
 			browser.get('http://localhost:7411/#/stories');
@@ -17,5 +19,5 @@ describe('Protractor Demo App', function() {
 			expect(browser.getTitle()).toEqual('Author | Tails');
 		});
 
-	});
+	});*/
 });
