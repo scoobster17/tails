@@ -56,18 +56,33 @@ Processes
 
 To compile the styles, there is a gulp task:
 
+```gulp sass```
+
+The following process compiles the styles when a file is changed:
+
 ```gulp watch```
 
-This process runs whilst changes are made.
-
-There is currently no JavaScript minification happening.
+*There is currently no JavaScript minification happening.*
 
 To test the code there is a gulp task:
 
-```gulp test```
+```
+gulp test
+gulp test -u
+gulp test -e -r
+gulp test -ur
+```
 
-You can add a flag to the above command to open an HTML report of the tests.
-Simply add the ```-r``` or ```--show-report``` flag.
+You must add flags to the above command to determine the type of tests and open
+an HTML report of the tests.
+
+Use the ```-u``` flag for unit tests (using karma), and the ```-e``` flag for
+end to end tests (using protractor);
+
+Simply add the ```-r``` flag to open the report after the tests have been run
+for either type.
+
+You can chain these flags or use them separately: ``` -u -e -r ``` or ``` -uer ```
 
 About
 -----
