@@ -6,6 +6,8 @@
 
 /* ************************************************************************** */
 
+/* GULP CONFIG */
+
 /**
  * Dependencies
  */
@@ -19,8 +21,6 @@ var clean = require('gulp-clean');
 var shell = require('gulp-shell');
 var yargs = require('yargs').argv;
 
-/* ************************************************************************** */
-
 /**
  * Variables
  */
@@ -28,6 +28,8 @@ var unitTestReportUrl = './testing/reports/unit/unit-test-report.html';
 var e2eTestReportUrl = './testing/reports/e2e/e2e-test-report.html';
 
 /* ************************************************************************** */
+
+/* STYLES */
 
 /**
  * Task to compile Sass
@@ -48,6 +50,8 @@ gulp.task('watch', function() {
 });
 
 /* ************************************************************************** */
+
+/* UNIT TESTING */
 
 /**
  * Task to fire up Karma Testing Server and run unit tests
@@ -87,6 +91,8 @@ gulp.task('delete-unit-test-report', function() {
 
 /* ************************************************************************** */
 
+/* E2E TESTING */
+
 /**
  * Task to run e2e tests
  */
@@ -117,6 +123,9 @@ gulp.task('run-e2e-tests-then-open-e2e-test-report', ['run-e2e-tests'], function
 });
 
 /* ************************************************************************** */
+
+/* TEST COMMANDS */
+/* (PUBLIC FACING IN HELP, SHORTHAND AND INTENDED FOR USE) */
 
 /**
  * Task (shorthand) to handle all testing based on flags passed
@@ -154,6 +163,10 @@ gulp.task('test', function() {
 		console.log(color('\nERROR:\n\nWith the "gulp test" command please only use a flag of "-u", "-e" or "-r" to run unit tests, run e2e tests and open an HTML version of the report rather than just seeing the results in the command line respectively.\n', 'RED'));
 	}
 });
+
+/* ************************************************************************** */
+
+/* HELP */
 
 /**
  * Task to list functions that can be run by gulp
