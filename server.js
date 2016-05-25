@@ -4,12 +4,16 @@
  * Starts a node server and supplies resources & data to app
  */
 
+'use strict';
+
 /**
  * Dependencies
  */
 var express = require('express');
 var app = express();
 var fs = require('fs');
+var mongoUtil = require('./mongoUtil'); // use ./ to look for local module not npm module
+mongoUtil.connect();
 
 /**
  * Allow access to directories with static content for CSS, JS etc
@@ -51,6 +55,11 @@ app.get('/storiesData', function(req, res) {
 	fs.readFile( __dirname + '/data/stories/stories.json', 'utf8', function(err, data) {
 		res.end(data);
 	});
+
+	/*var stories = mongoUtil.stories();
+	stories.find().toArray(function(err, docs) {
+		res.json(docs);
+	});*/
 });
 
 /**
