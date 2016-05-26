@@ -7,10 +7,13 @@
 		</a>
 	</p>
 	<h2>About this story</h2>
+	<h3>Short Description</h3>
+	<div ng-bind-html="story.shortDescription | trustHtml"></div>
+	<h3>Long Description</h3>
 	<div ng-bind-html="story.longDescription | trustHtml"></div>
 </section>
 <section class="storyComponents">
-	<uib-tabset class="storyDetailsTabs">
+	<uib-tabset class="tabs storyDetailsTabs">
 		<uib-tab index="$index" ng-repeat="component in story.components" active="isActiveStoryDetailsTab($index)">
 			<uib-tab-heading ng-click="setActiveStoryDetailsTab($index)">
 				{{ component.name }}

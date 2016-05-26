@@ -18,6 +18,10 @@ mongoUtil.connect();
 /**
  * Allow access to directories with static content for CSS, JS etc
  */
+
+// For when migrating files to app folder
+// app.use( express.static(__dirname + "/../app") );
+
 app.use(express.static('bower_components'));
 app.use('/bower_components', express.static('bower_components'));
 
@@ -52,21 +56,21 @@ app.get('/text', function(req, res) {
  * Get stories data (TEMPORARY until introduce Mongo)
  */
 app.get('/storiesData', function(req, res) {
-	fs.readFile( __dirname + '/data/stories/stories.json', 'utf8', function(err, data) {
+	/*fs.readFile( __dirname + '/data/stories/stories.json', 'utf8', function(err, data) {
 		res.end(data);
-	});
+	});*/
 
-	/*var stories = mongoUtil.stories();
+	var stories = mongoUtil.stories();
 	stories.find().toArray(function(err, docs) {
 		res.json(docs);
-	});*/
+	});
 });
 
 /**
  * Get stories data (TEMPORARY until introduce Mongo)
  */
 app.get('/storiesData/:modifiedName', function(req, res) {
-	fs.readFile( __dirname + '/data/stories/stories.json', 'utf8', function(err, data) {
+	/*fs.readFile( __dirname + '/data/stories/stories.json', 'utf8', function(err, data) {
 
 		// parse the response into JSON format
 		var stories = JSON.parse(data);
@@ -78,7 +82,31 @@ app.get('/storiesData/:modifiedName', function(req, res) {
 
 		// return story in string JSON format
 		res.end(JSON.stringify(filteredStory));
+	});*/
+
+	var storyModifiedName = req.params.modifiedName;
+	var stories = mongoUtil.stories();
+	stories.find({modifiedName: storyModifiedName}).limit(1).toArray(function(err, doc) {
+		if (err) {
+			res.sendStatus(400);
+		}
+		res.json(doc);
+	})
+});
+
+/**
+ * Save new story to MongoDB
+ */
+app.get('/addStory', function(req, res) {
+
+	var storyDetails = req.query;
+	var stories = mongoUtil.stories();
+
+	stories.save(storyDetails, function(err, saved) {
+		if (err || !saved) res.sendStatus(400);
+		res.json({success: true});
 	});
+
 });
 
 /**

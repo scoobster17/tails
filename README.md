@@ -10,25 +10,23 @@ prefer to call them 'tails'.
 Installation
 ------------
 
-This app uses a MEAN stack so it will require `node` (latest stable release, tested with 4.4.4) and `bower` to be installed
-as well as following these steps:
+This app uses a MEAN stack so it will require `node` (latest stable release,
+tested with 4.4.4), `mongoDB`, and `bower` to be installed as well as following
+these steps:
 
 1. Install npm modules `npm install`
 2. Install bower components `bower install`
 
-There is one other hack to make the bootstrap glyphicons work (wasn't able to find a real solution in the short time I tried investigating). This needs to be done by you because this is a bower component that is not stored in this repo.
+You will also need to set up a database for this to work. Once you have mongo
+installed, run ``` mongod ``` in one shell to set up your database
+server, then in another shell session, run the following commands to open a database
+connection and create the database in your local environment (this session can
+be closed when the database has been created):
 
-In the file:
-
-``` /bower_components/bootstrap-sass/assets/stylesheets/bootstrap/variables.scss ```
-
-Change this line:
-
-``` $icon-font-path: if($bootstrap-sass-asset-helper, "bootstrap/", "../fonts/bootstrap/") !default; ```
-
-To:
-
-``` $icon-font-path: if($bootstrap-sass-asset-helper, "bootstrap/", "../bower_components/bootstrap-sass/assets/fonts/bootstrap/") !default; ```
+```
+mongo
+> use tails
+```
 
 Usage
 -----

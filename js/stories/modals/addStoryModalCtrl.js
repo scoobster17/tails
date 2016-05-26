@@ -51,9 +51,48 @@
 		// TODO: Link up to add BE
 		$scope.addStory = function(data) {
 
-			console.log('addStory: ', data);
+			if (!data || !data instanceof Object) return false; // show error?
 
-			// go to stories list page #/stories
+			// set the modifiedName for Angular routing
+			data.modifiedName = $rootScope.prepareForUrl(data.name);
+
+			// add default components to the new story for details page
+			data.components = [
+				{
+		            "name": "Scenes",
+		            "singularName": "Scene",
+		            "associateCharactersAndLocations": true
+		        },
+		        {
+		            "name": "Characters",
+		            "singularName": "Character",
+		            "associateCharactersAndLocations": false
+		        },
+		        {
+		            "name": "Locations",
+		            "singularName": "Location",
+		            "associateCharactersAndLocations": false
+		        }
+			];
+
+			// loop through components to generate modifiedComponentName for Angular routing
+			var noOfComponents = data.components.length;
+			for (var i=0; i<noOfComponents; i++) {
+				data.components[i].modifiedComponentName = $rootScope.prepareForUrl(data.components[i].name);
+			}
+
+			// perform AJAX call to BE to store data
+			$.ajax({
+				url: '/addStory',
+				data: data,
+				dataType: 'json',
+				success: function(data, textStatus, jqXHR) {
+					console.log(data, textStatus, jqXHR);
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+					console.log(jqXHR, textStatus, errorThrown);
+				}
+			});
 
 		};
 
