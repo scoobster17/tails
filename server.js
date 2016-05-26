@@ -110,6 +110,21 @@ app.get('/addStory', function(req, res) {
 });
 
 /**
+ * Remove a story from MongoDB
+ */
+app.get('/deleteStory', function(req, res) {
+
+	var storyName = req.query.name;
+	var stories = mongoUtil.stories();
+
+	stories.remove({name: storyName}, function(err, result) {
+		if (err || !result) res.sendStatus(400);
+		res.json({success: true});
+	});
+
+});
+
+/**
  * Get stories data (TEMPORARY until introduce Mongo)
  */
 app.get('/storiesData/:modifiedName/:modifiedComponentName', function(req, res) {

@@ -49,6 +49,9 @@
 		// show overlay to ask for initial story details
 		$scope.initAddComponentInstance = $rootScope.showModal;
 
+		// show overlay to ask for confirmation to delete a story
+		$scope.initDeleteStory = $rootScope.showModal;
+
 	}]);
 
 })();
