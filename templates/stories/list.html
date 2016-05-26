@@ -1,7 +1,7 @@
 <section>
 	<h1>{{ text.heading }}</h1>
-	<p>{{ text.intro }}</p>
-	<add-story></add-story>
+	<p ng-if="!stories.length">{{ text.noStories }}</p>
+	<p ng-if="stories.length">{{ text.intro }}</p>
 	<ul>
 		<li ng-repeat="story in stories">
 			<h2>
@@ -16,7 +16,14 @@
 			</p>
 		</li>
 	</ul>
-	<a href="#/" class="btn btn-default">
-		{{ text.backBtn }}
-	</a>
+	<ul class="list-unstyled list-inline actions">
+		<li>
+			<a href="#/" class="btn btn-default">
+				{{ text.backBtn }}
+			</a>
+		</li>
+		<li>
+			<add-story></add-story>
+		</li>
+	</ul>
 </section>

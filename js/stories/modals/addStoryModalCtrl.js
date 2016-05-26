@@ -36,7 +36,6 @@
 				$scope.submitted = true;
 				return false;
 			};
-			$scope.closeModal();
 			$rootScope.$emit('addStory', [$scope.story]);
 		};
 
@@ -87,10 +86,22 @@
 				data: data,
 				dataType: 'json',
 				success: function(data, textStatus, jqXHR) {
-					console.log(data, textStatus, jqXHR);
+					// console.log(data, textStatus, jqXHR);
+					$scope.closeModal();
+					$rootScope.$emit('storyAdded');
 				},
 				error: function(jqXHR, textStatus, errorThrown) {
-					console.log(jqXHR, textStatus, errorThrown);
+					//console.log(jqXHR, textStatus, errorThrown);
+
+					var errorHTML = [
+						'<div class="alert alert-danger" role="alert">',
+							'<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>',
+							'<span class="sr-only">Error:</span>There was a probelm trying to add your story.',
+						'</div>'
+					].join('');
+
+					// show error
+					$('.modal-body').prepend(errorHTML);
 				}
 			});
 

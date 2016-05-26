@@ -21,16 +21,28 @@
 		});
 
 		// get stories data
-		var storiesQuery = StoriesFactory.query();
-		storiesQuery.$promise.then(function(data) {
-			$scope.stories = data;
-		});
+		var getStoriesData = function() {
+			var storiesQuery = StoriesFactory.query();
+			storiesQuery.$promise.then(function(data) {
+				$scope.stories = data;
+			});
+		}
+		getStoriesData();
 
 		// Make the stored common modal options available to the scope
 		$scope.modalOptions = constants.modalOptions;
 
 		// show overlay to ask for initial story details
 		$scope.initAddStory = $rootScope.showModal;
+
+		// bind an event to a story being added (triggered by modal)
+		var storyAddedEvt = $rootScope.$on('storyAdded', function(event, data) {
+			// $scope.$apply();
+			getStoriesData();
+		});
+
+		// unbind the $on above, so we don't get repeated calls. (Manual for rootScope only)
+		$scope.$on('$destroy', storyAddedEvt);
 
 	}]);
 

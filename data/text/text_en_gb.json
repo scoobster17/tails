@@ -126,6 +126,7 @@
 		"stories": {
 			"list": {
 				"heading": "Your tails",
+				"noStories": "You don't have any tails yet! Click the 'add a story' button below to get started.",
 				"intro": "Here is a list of all your stories:",
 				"backBtn": "Back to home"
 			},

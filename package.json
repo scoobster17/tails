@@ -31,7 +31,6 @@
     "gulp-open": "^2.0.0",
     "gulp-sass": "^2.2.0",
     "gulp-shell": "^0.5.2",
-    "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.5",
     "jasmine-core": "^2.4.1",
     "karma": "^0.13.22",
@@ -43,7 +42,6 @@
     "protractor-jasmine2-html-reporter": "0.0.6"
   },
   "dependencies": {
-    "gulp-util": "^3.0.7",
     "mongodb": "^2.1.20",
     "yargs": "^4.7.1"
   }

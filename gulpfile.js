@@ -44,7 +44,7 @@ gulp.task('sass', function() {
  * Task to watch for changes in Sass files and trigger the Sass compilation
  */
 gulp.task('watch', function() {
-	watch('css/**/*.scss', function() {
+	watch(['css/**/*.scss', 'bower_components/**/*.scss'], function() {
 		gulp.start('sass');
 	});
 });
