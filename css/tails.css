@@ -5817,6 +5817,10 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
+[aria-hidden="true"] {
+  visibility: hidden;
+  position: absolute; }
+
 .globalHeader {
   position: relative;
   z-index: 1001; }

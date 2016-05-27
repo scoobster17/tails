@@ -41,7 +41,7 @@
 				success: function(data, textStatus, jqXHR) {
 					// console.log(data, textStatus, jqXHR);
 					$scope.closeModal();
-					$location.path('/stories'); // NOT WORKING
+					$location.path('/stories');
 				},
 				error: function(jqXHR, textStatus, errorThrown) {
 					//console.log(jqXHR, textStatus, errorThrown);

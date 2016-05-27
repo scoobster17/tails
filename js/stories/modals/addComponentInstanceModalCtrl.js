@@ -10,7 +10,7 @@
 	 * @param  {dependency} $uibModalInstance
 	 * @param  {Object}		data				Data being passed to the modal
 	 */
-	.controller('addComponentInstanceModalCtrl', ['$scope', '$rootScope', 'TextFactory', '$uibModalInstance', 'data', function($scope, $rootScope, TextFactory, $uibModalInstance, data) {
+	.controller('addComponentInstanceModalCtrl', ['$scope', '$rootScope', '$location', 'TextFactory', '$uibModalInstance', 'data', function($scope, $rootScope, $location, TextFactory, $uibModalInstance, data) {
 
 		// get component text
 		var textQuery = TextFactory.query();
@@ -27,7 +27,8 @@
 		$scope.instance = {
 			name: "",
 			story: data.story.name,
-			component: data.component.name
+			component: data.component.name,
+			componentIndex: data.component.componentIndex
 		};
 
 		/**
@@ -63,9 +64,28 @@
 		// TODO: Link up to add BE
 		$scope.addComponentInstance = function(data) {
 
-			console.log('addComponentInstance: ', data);
+			if (!data || !data instanceof Object) return false; // show error?
 
-			// go to components list page #/stories/story-name/component-name
+			var urlStoryName = $rootScope.prepareForUrl(data.story);
+			var urlComponentName = $rootScope.prepareForUrl(data.component);
+
+			data.modifiedStoryName = urlStoryName;
+			data.modifiedComponentName = urlComponentName;
+
+			$.ajax({
+				url: '/addComponentInstance',
+				data: data,
+				dataType: 'json',
+				success: function(data, textStatus, jqXHR) {
+					console.log(data, textStatus, jqXHR);
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+					console.log(jqXHR, textStatus, errorThrown);
+				}
+			});
+
+			// go to components list page
+			// $location.path('/stories/' + urlStoryName + '/' + urlComponentName);
 
 		};
 

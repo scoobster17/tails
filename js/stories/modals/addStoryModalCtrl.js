@@ -60,17 +60,20 @@
 				{
 		            "name": "Scenes",
 		            "singularName": "Scene",
-		            "associateCharactersAndLocations": true
+		            "associateCharactersAndLocations": true,
+		            "componentIndex": 0
 		        },
 		        {
 		            "name": "Characters",
 		            "singularName": "Character",
-		            "associateCharactersAndLocations": false
+		            "associateCharactersAndLocations": false,
+		            "componentIndex": 1
 		        },
 		        {
 		            "name": "Locations",
 		            "singularName": "Location",
-		            "associateCharactersAndLocations": false
+		            "associateCharactersAndLocations": false,
+		            "componentIndex": 2
 		        }
 			];
 

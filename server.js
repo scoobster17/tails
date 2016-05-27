@@ -125,6 +125,70 @@ app.get('/deleteStory', function(req, res) {
 });
 
 /**
+ * Save new story to MongoDB
+ */
+app.get('/addComponentInstance', function(req, res) {
+
+	var stories = mongoUtil.stories();
+	var componentInstanceDetails = req.query;
+	var componentIndex = componentInstanceDetails.componentIndex;
+
+	// construct mongo query object with dynamic property name for component search
+ 	var queryObj = {
+ 		modifiedName: componentInstanceDetails.modifiedStoryName
+ 	}
+ 	queryObj["components." + componentIndex + ".list.0"] = {
+		$exists: true
+	};
+
+	// check whether the component has any instances
+	stories.find(queryObj).next(function(err, doc) {
+		if (err) res.sendStatus(400);
+
+		// if the component does not have any instances, create an array and
+		// insert the instance as first
+		if (doc == null) {
+			stories.update(
+				{
+					modifiedName: componentInstanceDetails.modifiedStoryName,
+					"components.modifiedComponentName": componentInstanceDetails.modifiedComponentName
+				},
+				{
+					$set: {
+						"components.$.list": [
+							req.query
+						]
+					}
+				},
+				function(err, saved) {
+					if (err || !saved) res.sendStatus(400);
+					res.json({success: true});
+				}
+			);
+
+		// if entries exist, append to the component instances list
+		} else {
+			stories.update(
+				{
+					modifiedName: componentInstanceDetails.modifiedStoryName,
+					"components.modifiedComponentName": componentInstanceDetails.modifiedComponentName
+				},
+				{
+					$addToSet: {
+						"components.$.list": req.query
+					}
+				},
+				function(err, saved) {
+					if (err || !saved) res.sendStatus(400);
+					res.json({success: true});
+				}
+			);
+		}
+	});
+
+});
+
+/**
  * Get stories data (TEMPORARY until introduce Mongo)
  */
 app.get('/storiesData/:modifiedName/:modifiedComponentName', function(req, res) {

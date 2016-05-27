@@ -5,6 +5,7 @@
 	</h4>
 </header>
 <form class="modal-body" name="addComponentInstanceForm" novalidate ng-submit="triggerAddInstance(addComponentInstanceForm.$valid, instance)">
+	<input type="text" name="componentIndex" ng-model="instance.componentIndex" disabled aria-hidden="true" />
 	<div class="form-group">
 		<label class="control-label" for="storyName">
 			{{ addComponentInstanceText.labels.story }}
