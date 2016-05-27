@@ -48,6 +48,36 @@ To:
 $icon-font-path: if($bootstrap-sass-asset-helper, "bootstrap/", "/bower_components/bootstrap-sass/assets/fonts/bootstrap/") !default;
 ```
 
+Import data
+-----------
+
+If you have used the app before and exported a JSON file of your story to backup
+your database, you can import it using the following command:
+
+```
+gulp import-db
+```
+
+This relies on your backup being in the ```data/stories``` directory with a name
+of ```stories.json```.
+
+You will find this file already exists in the folder. This is an example backup
+JSON file for import, so running the ```gulp import-db``` command will simply
+restore this data to your local environment.
+
+Backup data
+-----------
+
+To backup your story data once you have done some planning, run the following
+command to generate a ```stories-seed.json``` file in the ```data/stories```
+directory. **You will need to move / copy this file to another location,
+otherwise this data may be lost, as other processes may delete / replace this
+file when run.**
+
+```
+gulp backup-db
+```
+
 Usage
 -----
 

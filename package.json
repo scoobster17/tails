@@ -42,6 +42,8 @@
     "protractor-jasmine2-html-reporter": "0.0.6"
   },
   "dependencies": {
+    "gulp-confirm": "^1.0.4",
+    "gulp-expect-file": "0.0.7",
     "mongodb": "^2.1.20",
     "yargs": "^4.7.1"
   }

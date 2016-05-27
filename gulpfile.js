@@ -20,12 +20,25 @@ var color = require('gulp-color');
 var clean = require('gulp-clean');
 var shell = require('gulp-shell');
 var yargs = require('yargs').argv;
+var confirm = require('gulp-confirm');
+var expect = require('gulp-expect-file');
 
 /**
  * Variables
  */
 var unitTestReportUrl = './testing/reports/unit/unit-test-report.html';
 var e2eTestReportUrl = './testing/reports/e2e/e2e-test-report.html';
+
+/* ************************************************************************** */
+
+/* */
+
+/**
+ * Task to start app server
+ */
+gulp.task('start-app-server', shell.task([
+	'node server.js'
+]));
 
 /* ************************************************************************** */
 
@@ -92,6 +105,13 @@ gulp.task('delete-unit-test-report', function() {
 /* ************************************************************************** */
 
 /* E2E TESTING */
+
+/**
+ * Task to start the e2e testing server
+ */
+gulp.task('start-e2e-test-server', shell.task([
+	'webdriver-manager start'
+]));
 
 /**
  * Task to run e2e tests
@@ -166,10 +186,43 @@ gulp.task('test', function() {
 
 /* ************************************************************************** */
 
-/* DATABASE BACKUP */
+/* DATABASE HANDLING */
 
-gulp.task('bdb', shell.task([
-	'mongoexport --db tails --collection stories --out data/stories/stories.json --jsonArray --pretty'
+/**
+ * Task to start the mongoDB server
+ */
+gulp.task('start-db-server', shell.task([
+	'mongod'
+]));
+
+/**
+ * Task to backup the Database to a seed file
+ */
+gulp.task('backup-db', shell.task([
+	'mongoexport --db tails --collection stories --type json --out data/stories/stories-seed.json --jsonArray --pretty'
+]));
+
+/**
+ * Task to import data into database from seed file
+ */
+gulp.task('import-db', function() {
+	var filePath = 'data/stories/stories-seed.json';
+	return gulp.src(filePath)
+		.pipe(expect(filePath))
+		.pipe(confirm({
+			question: 'Are you sure you want to import this database? All existing stories and data will be lost! (y/n)',
+			input: '_key:y'
+		}))
+		.pipe(shell([
+			'mongoimport --db tails --collection stories --type json --file data/stories/stories-seed.json --jsonArray --drop'
+		]));
+});
+
+/**
+ * Task to reset the database to it's initial state
+ */
+gulp.task('reset-db', shell.task([
+	'sh reset-db.sh'
 ]));
 
 /* ************************************************************************** */
