@@ -1,213 +1,91 @@
-[
-    {
-        "name": "Story 1",
-        "modifiedName": "story-1",
-        "shortDescription": "Story 1 description",
-        "longDescription": "<p>Story one is about a boy who is a web developer, who has just started working for a company called Marvel. He decides to make an app to track his story ideas for the newest and greatest comic of all time.</p><p>Along the way he faces an angry boss who will stop at nothing to stop his comic from getting published and made into a movie.</p>",
-        "components": [
-            {
-                "name": "Scenes",
-                "singularName": "Scene",
-                "modifiedComponentName": "scenes",
-                "associateCharactersAndLocations": true,
-                "list": [
-                    {
-                        "name": "Scene 1",
-                        "modifiedName": "scene-1",
-                        "shortDescription": "Short description for scene 1",
-                        "details": {
-                            "name": "Scene 1",
-                            "shortDescription": "Short description for scene 1",
-                            "act": "prologue",
-                            "posInSeq": "2",
-                            "time": "evening",
-                            "location": "Location 1, Location 3"
-                        }
-                    },
-                    {
-                        "name": "Scene 2",
-                        "modifiedName": "scene-2",
-                        "shortDescription": "Short description for scene 2"
-                    }
-                ],
-                "form": {
-                    "fieldsets": [
-                        {
-                            "name": "General Information",
-                            "fields": [
-                                {
-                                    "label": "Name",
-                                    "inputName": "name",
-                                    "type": "text"
-                                },
-                                {
-                                    "label": "Short Description",
-                                    "inputName": "shortDescription",
-                                    "type": "textarea"
-                                },
-                                {
-                                    "label": "Act",
-                                    "inputName": "act",
-                                    "type": "select",
-                                    "options": [
-                                        {
-                                            "name": "Prologue",
-                                            "value": "prologue"
-                                        },
-                                        {
-                                            "name": "Act 1",
-                                            "value": "act1"
-                                        },
-                                        {
-                                            "name": "Act 2",
-                                            "value": "act2"
-                                        },
-                                        {
-                                            "name": "Act 3",
-                                            "value": "act3"
-                                        },
-                                        {
-                                            "name": "Epilogue",
-                                            "value": "epilogue"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "label": "Position in Sequence",
-                                    "inputName": "posInSeq",
-                                    "type": "text"
-                                }
-                            ]
-                        },
-                        {
-                            "name": "Timing & Geographical Details",
-                            "fields": [
-                                {
-                                    "label": "Time (date, time, or ballpark)",
-                                    "inputName": "time",
-                                    "type": "text"
-                                },
-                                {
-                                    "label": "Location",
-                                    "inputName": "location",
-                                    "type": "hidden",
-                                    "pickerType": "radio"
-                                }
-                            ]
-                        },
-                        {
-                            "name": "Scene Importance and Atmosphere",
-                            "fields": [
-                                {
-                                    "label": "Importance",
-                                    "inputName": "importance",
-                                    "type": "select",
-                                    "options": [
-                                        {
-                                            "name": "5: Very High",
-                                            "value": "5"
-                                        },
-                                        {
-                                            "name": "4: High",
-                                            "value": "4"
-                                        },
-                                        {
-                                            "name": "3: Medium",
-                                            "value": "3"
-                                        },
-                                        {
-                                            "name": "2: Low",
-                                            "value": "2"
-                                        },
-                                        {
-                                            "name": "1: Trivial",
-                                            "value": "1"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "label": "Tension",
-                                    "inputName": "tension",
-                                    "type": "select",
-                                    "options": [
-                                        {"name":10, "value": 10},
-                                        {"name":9, "value": 9},
-                                        {"name":8, "value": 8},
-                                        {"name":7, "value": 7},
-                                        {"name":6, "value": 6},
-                                        {"name":5, "value": 5},
-                                        {"name":4, "value": 4},
-                                        {"name":3, "value": 3},
-                                        {"name":2, "value": 2},
-                                        {"name":1, "value": 1}
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "name": "Characters",
-                            "fields": [
-                                {
-                                    "label": "Characters involved in scene",
-                                    "inputName": "characters",
-                                    "type": "hidden",
-                                    "pickerType": "checkbox"
-                                }
-                            ]
-                        }
-                    ]
-                }
-            },
-            {
-                "name": "Characters",
-                "singularName": "Character",
-                "modifiedComponentName": "characters",
-                "associateCharactersAndLocations": false,
-                "list": [
-                    {
-                        "name": "Character 1",
-                        "modifiedName": "character-1",
-                        "shortDescription": "Short description for character 1"
-                    },
-                    {
-                        "name": "Character 2",
-                        "modifiedName": "character-2",
-                        "shortDescription": "Short description for character 2"
-                    }
-                ]
-            },
-            {
-                "name": "Locations",
-                "singularName": "Location",
-                "modifiedComponentName": "locations",
-                "associateCharactersAndLocations": false,
-                "list": [
-                    {
-                        "name": "Location 1",
-                        "modifiedName": "location-1",
-                        "shortDescription": "Short description for location 1"
-                    },
-                    {
-                        "name": "Location 2",
-                        "modifiedName": "location-2",
-                        "shortDescription": "Short description for location 2"
-                    },{
-                        "name": "Location 3",
-                        "modifiedName": "location-3",
-                        "shortDescription": "Short description for location 3"
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "name": "Story 2",
-        "modifiedName": "story-2",
-        "shortDescription": "Story 2 description"
-    },
-    {
-    	"name": "Story 3",
-    	"modifiedName": "story-3",
-    	"shortDescription": "Story 3 description"
-    }
-]
+[{
+	"_id": {
+		"$oid": "57483e55959f87d00de94459"
+	},
+	"name": "Story 1",
+	"modifiedName": "story-1",
+	"components": [
+		{
+			"name": "Scenes",
+			"singularName": "Scene",
+			"associateCharactersAndLocations": "true",
+			"componentIndex": "0",
+			"modifiedComponentName": "scenes",
+			"list": [
+				{
+					"name": "Scene 1",
+					"story": "Story 1",
+					"component": "Scenes",
+					"componentIndex": "0",
+					"modifiedStoryName": "story-1",
+					"modifiedComponentName": "scenes",
+					"modifiedName": "scene-1"
+				},
+				{
+					"name": "Scene 2",
+					"story": "Story 1",
+					"component": "Scenes",
+					"componentIndex": "0",
+					"modifiedStoryName": "story-1",
+					"modifiedComponentName": "scenes",
+					"modifiedName": "scene-2"
+				}
+			]
+		},
+		{
+			"name": "Characters",
+			"singularName": "Character",
+			"associateCharactersAndLocations": "false",
+			"componentIndex": "1",
+			"modifiedComponentName": "characters",
+			"list": [
+				{
+					"name": "Character 1",
+					"story": "Story 1",
+					"component": "Characters",
+					"componentIndex": "1",
+					"modifiedStoryName": "story-1",
+					"modifiedComponentName": "characters",
+					"modifiedName": "character-1"
+				},
+				{
+					"name": "Character 2",
+					"story": "Story 1",
+					"component": "Characters",
+					"componentIndex": "1",
+					"modifiedStoryName": "story-1",
+					"modifiedComponentName": "characters",
+					"modifiedName": "character-2"
+				}
+			]
+		},
+		{
+			"name": "Locations",
+			"singularName": "Location",
+			"associateCharactersAndLocations": "false",
+			"componentIndex": "2",
+			"modifiedComponentName": "locations",
+			"list": [
+				{
+					"name": "Location 1",
+					"story": "Story 1",
+					"component": "Locations",
+					"componentIndex": "2",
+					"modifiedStoryName": "story-1",
+					"modifiedComponentName": "locations",
+					"modifiedName": "location-1"
+				},
+				{
+					"name": "Location 2",
+					"story": "Story 1",
+					"component": "Locations",
+					"componentIndex": "2",
+					"modifiedStoryName": "story-1",
+					"modifiedComponentName": "locations",
+					"modifiedName": "location-2"
+				}
+			]
+		}
+	]
+}]
+

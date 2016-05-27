@@ -166,6 +166,14 @@ gulp.task('test', function() {
 
 /* ************************************************************************** */
 
+/* DATABASE BACKUP */
+
+gulp.task('bdb', shell.task([
+	'mongoexport --db tails --collection stories --out data/stories/stories.json --jsonArray --pretty'
+]));
+
+/* ************************************************************************** */
+
 /* HELP */
 
 /**
