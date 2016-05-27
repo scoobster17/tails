@@ -68,24 +68,27 @@
 
 			var urlStoryName = $rootScope.prepareForUrl(data.story);
 			var urlComponentName = $rootScope.prepareForUrl(data.component);
+			var urlComponentInstanceName = $rootScope.prepareForUrl(data.name);
 
 			data.modifiedStoryName = urlStoryName;
 			data.modifiedComponentName = urlComponentName;
+			data.modifiedName = urlComponentInstanceName;
 
 			$.ajax({
 				url: '/addComponentInstance',
 				data: data,
 				dataType: 'json',
 				success: function(data, textStatus, jqXHR) {
-					console.log(data, textStatus, jqXHR);
+					//console.log(data, textStatus, jqXHR);
+
+					// go to component instance details page
+					$location.path('/stories/' + urlStoryName + '/' + urlComponentName + '/' + urlComponentInstanceName);
 				},
 				error: function(jqXHR, textStatus, errorThrown) {
-					console.log(jqXHR, textStatus, errorThrown);
+					//console.log(jqXHR, textStatus, errorThrown);
 				}
 			});
 
-			// go to components list page
-			// $location.path('/stories/' + urlStoryName + '/' + urlComponentName);
 
 		};
 
