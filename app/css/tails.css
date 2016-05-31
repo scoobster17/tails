@@ -5824,6 +5824,11 @@ button.close {
 .globalHeader {
   position: relative;
   z-index: 1001; }
+  .globalHeader .navbar {
+    border-top: none; }
+  .globalHeader .navbar-brand {
+    background: url("../img/branding/logo.jpg") no-repeat 5px -14px;
+    padding-left: 40px; }
 
 .globalFooter {
   border-top: 1px solid #ccc;
