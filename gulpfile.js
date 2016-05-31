@@ -246,6 +246,12 @@ gulp.task('help', function() {
 		console.log('    -r    open HTML report after running tests');
 		console.log('You can pass >1 flag by chaining or separating them:');
 		console.log('"gulp test -u -e -r"    This will run both types of tests and show reports');
-		console.log('"gulp test -uer"        Does the same as the above command')
+		console.log('"gulp test -uer"        Does the same as the above command\n')
+	console.log(color('"gulp backup-db"', 'YELLOW'));
+		console.log('Task to backup data stored in the local database into a seed file\n');
+	console.log(color('"gulp import-db"', 'YELLOW'));
+		console.log('Task to import data stored in a seed file into the local database\n');
+	console.log(color('"gulp reset-db"', 'YELLOW'));
+		console.log('Task to delete all data in the local database to reset to initial state\n');
 	console.log('\n');
 });
