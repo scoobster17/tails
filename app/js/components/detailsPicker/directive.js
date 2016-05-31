@@ -12,7 +12,7 @@
 		return {
 			restrict: 'E',
 			replace: true,
-			templateUrl: 'templates/components/detailsPicker.html',
+			templateUrl: 'js/components/detailsPicker/detailsPicker.html',
 			controller: 'detailsPickerCtrl',
 			scope: {
 				update: '=update',

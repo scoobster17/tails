@@ -10,7 +10,7 @@
 			restrict: 'E',
 			replace: true,
 			controller: function() {},
-			templateUrl: 'templates/stories/deleteStory.html'
+			templateUrl: 'js/stories/deleteStory/deleteStory.html'
 		}
 	});
 

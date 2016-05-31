@@ -10,7 +10,7 @@
 		return {
 			restrict: 'E',
 			replace: true,
-			templateUrl: 'templates/components/routeLoadingIndicator.html',
+			templateUrl: 'js/components/routeLoadingIndicator/routeLoadingIndicator.html',
 			link: function(scope, elem, attrs) {
 
 				// When a route change is requested, show the loading 'screen'

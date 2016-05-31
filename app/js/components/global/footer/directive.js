@@ -8,7 +8,7 @@
 	.directive('globalFooter', function() {
 		return {
 			restrict: 'E',
-			templateUrl: 'templates/global/footer.html',
+			templateUrl: 'js/components/global/footer/footer.html',
 			replace: true,
 			controller: 'footerCtrl'
 		};
