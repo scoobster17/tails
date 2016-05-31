@@ -49,10 +49,18 @@
 		</header>
 		<div class="panel-body">
 			<p>Here you can add your own component to customise this story to your needs.</p>
-			<form>
+			<form name="addComponentForm" novalidate ng-submit="triggerAddComponent(addComponentForm.$valid, component)">
+				<div class="form-group">
+					<label class="control-label">Story</label>
+					<input type="text" name="story" id="story" class="form-control" disabled ng-model="component.story" />
+				</div>
 				<div class="form-group">
 					<label class="control-label">Component Name</label>
-					<input type="text" class="form-control" />
+					<input type="text" name="componentName" id="componentName" class="form-control" ng-model="component.name" />
+					<span ng-show="(submitted || addComponentForm.componentName.$dirty) && addComponentForm.componentName.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+					<p ng-show="(submitted || addComponentForm.componentName.$dirty) && addComponentForm.componentName.$invalid" class="help-block">
+						{{ addComponentInstanceText.errors.instanceName }}
+					</p>
 				</div>
 				<input type="submit" class="btn btn-primary" value="Add custom component to this story" />
 			</form>

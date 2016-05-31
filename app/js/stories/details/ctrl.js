@@ -17,6 +17,8 @@
 		$scope.activeStoryDetailsTab = 0;
 		$scope.hideAddCustomComponent = true;
 		$scope.modalOptions = constants.modalOptions;
+		$scope.component = {};
+		$scope.submitted = false;
 
 		// on view change change the title for accessibility
 		$scope.$on('$viewContentLoaded', function() {
@@ -34,6 +36,7 @@
 		storyQuery.$promise.then(function(data){
 			$scope.story = data[0];
 			$scope.customComponentIndex = $scope.story.components.length + 1;
+			$scope.component.story = $scope.story.name;
 		});
 
 		// set the active story details tab to show that tab
@@ -51,6 +54,35 @@
 
 		// show overlay to ask for confirmation to delete a story
 		$scope.initDeleteStory = $rootScope.showModal;
+
+		/**
+		 * When the submit button is pressed, if the form is valid we handle
+		 * adding a component to the story
+		 * @param  {boolean} formIsValid Check as to whether the form is valid
+		 * @param  {Object} component    The object of ng-model containing data
+		 */
+		$scope.triggerAddComponent = function(formIsValid, component) {
+
+			if (!formIsValid) {
+				$scope.submitted = true;
+				return false;
+			};
+
+			component.modifiedStoryName = $rootScope.prepareForUrl(component.story);
+			component.modifiedComponentName = $rootScope.prepareForUrl(component.name);
+
+			$.ajax({
+				url: '/addComponent',
+				data: component,
+				dataType: 'json',
+				success: function(data, textStatus, jqXHR) {
+					console.log(data, textStatus, jqXHR);
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+					console.log(jqXHR, textStatus, errorThrown);
+				}
+			});
+		};
 
 	}]);
 

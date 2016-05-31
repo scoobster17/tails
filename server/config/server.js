@@ -122,7 +122,31 @@ app.get('/deleteStory', function(req, res) {
 });
 
 /**
- * Save new story to MongoDB
+ * Save new story component to MongoDB
+ */
+app.get('/addComponent', function(req, res) {
+
+	var componentDetails = req.query;
+	var stories = mongoUtil.stories();
+
+	stories.update(
+		{
+			modifiedName: componentDetails.modifiedStoryName,
+		},
+		{
+			$addToSet: {
+				"components": req.query
+			}
+		},
+		function(err, saved) {
+			if (err || !saved) res.sendStatus(400);
+			res.json({success: true});
+		}
+	);
+});
+
+/**
+ * Save new story component instance to MongoDB
  */
 app.get('/addComponentInstance', function(req, res) {
 
