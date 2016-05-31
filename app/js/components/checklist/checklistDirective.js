@@ -11,7 +11,7 @@
 			restrict: 'E',
 			replace: true,
 			controller: 'checklistCtrl',
-			templateUrl: 'templates/components/checklist.html',
+			templateUrl: 'js/components/checklist/checklist.html',
 			scope: {
 				type: '@type'
 			}

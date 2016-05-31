@@ -29,17 +29,17 @@
 		},
 		"modalOptions": {
 			"addStory": {
-				templateUrl: 'templates/stories/modals/addStoryModal.html',
+				templateUrl: 'js/stories/modals/addStory/addStoryModal.html',
 				controller: 'addStoryModalCtrl',
 				windowClass: "modal fade in"
 			},
 			"deleteStory": {
-				templateUrl: 'templates/stories/modals/deleteStoryModal.html',
+				templateUrl: 'js/stories/modals/deleteStory/deleteStoryModal.html',
 				controller: 'deleteStoryModalCtrl',
 				windowClass: "modal fade in"
 			},
 			"addComponentInstance": {
-				templateUrl: 'templates/stories/modals/addComponentInstanceModal.html',
+				templateUrl: 'js/stories/modals/addComponentInstance/addComponentInstanceModal.html',
 				controller: 'addComponentInstanceModalCtrl',
 				windowClass: "modal fade in"
 			}
