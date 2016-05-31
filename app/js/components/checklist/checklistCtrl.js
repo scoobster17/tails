@@ -130,7 +130,7 @@
 		 */
 		$scope.requestConfirmRemoveItem = function(item) {
 			$scope.modalInstance = $modal.open({
-				templateUrl: 'templates/author/confirmToDoRemoval.html',
+				templateUrl: 'js/author/todo/confirmToDoRemoval.html',
 				controller: 'confirmRemovalCtrl',
 				resolve: {
 					item: function() {

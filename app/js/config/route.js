@@ -12,7 +12,7 @@
 
 			// home page
 			.when('/', {
-				templateUrl: 'templates/home.html',
+				templateUrl: 'js/home/home.html',
 				controller: 'homeCtrl'
 			})
 
@@ -50,25 +50,25 @@
 
 			// author home page
 			.when('/author', {
-				templateUrl: 'templates/author/home.html',
+				templateUrl: 'js/author/home/home.html',
 				controller: 'authorCtrl'
 			})
 
 				// author personal info page
 				.when('/author/personalInfo', {
-					templateUrl: 'templates/author/personalInfo.html',
+					templateUrl: 'js/author/personalInfo/personalInfo.html',
 					controller: 'authorPersonalInfoCtrl'
 				})
 
 				// author to-do list page
 				.when('/author/todo', {
-					templateUrl: 'templates/author/todo.html',
+					templateUrl: 'js/author/todo/todo.html',
 					controller: 'authorToDoCtrl'
 				})
 
 				// author notes page
 				.when('/author/notes', {
-					templateUrl: 'templates/author/notes.html',
+					templateUrl: 'js/author/notes/notes.html',
 					controller: 'authorNotesCtrl'
 				})
 

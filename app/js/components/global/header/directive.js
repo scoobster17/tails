@@ -8,7 +8,7 @@
 	.directive('globalHeader', function() {
 		return {
 			restrict: 'E',
-			templateUrl: 'templates/global/header.html',
+			templateUrl: 'js/components/global/header/header.html',
 			replace: true,
 			controller: 'headerCtrl'
 		};
