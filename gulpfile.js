@@ -31,7 +31,7 @@ var e2eTestReportUrl = './testing/reports/e2e/e2e-test-report.html';
 
 /* ************************************************************************** */
 
-/* */
+/* APP SETUP */
 
 /**
  * Task to start app server
@@ -71,7 +71,7 @@ gulp.task('watch', function() {
  */
 gulp.task('run-unit-tests', ['delete-unit-test-report'], function(done) {
 	return new karmaServer({
-		configFile: __dirname + '/karma.conf.js',
+		configFile: __dirname + '/testing/tests/unit/karma.conf.js',
 		singleRun: true
 	}, function() {
 		done(); // console stacktrace if not in anon func
@@ -131,6 +131,7 @@ gulp.task('run-e2e-tests', function() {
  */
 gulp.task('open-e2e-test-report', function() {
 	gulp.src(e2eTestReportUrl)
+		.pipe(expect(e2eTestReportUrl))
 		.pipe(open());
 });
 
@@ -139,6 +140,7 @@ gulp.task('open-e2e-test-report', function() {
  */
 gulp.task('run-e2e-tests-then-open-e2e-test-report', ['run-e2e-tests'], function() {
 	gulp.src(e2eTestReportUrl)
+		.pipe(expect(e2eTestReportUrl))
 		.pipe(open());
 });
 
