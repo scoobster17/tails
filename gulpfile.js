@@ -28,6 +28,7 @@ var expect = require('gulp-expect-file');
  */
 var unitTestReportUrl = './testing/reports/unit/unit-test-report.html';
 var e2eTestReportUrl = './testing/reports/e2e/e2e-test-report.html';
+var dbSeedFilePath = 'server/database/data/stories/stories-seed.json';
 
 /* ************************************************************************** */
 
@@ -131,7 +132,6 @@ gulp.task('run-e2e-tests', function() {
  */
 gulp.task('open-e2e-test-report', function() {
 	gulp.src(e2eTestReportUrl)
-		.pipe(expect(e2eTestReportUrl))
 		.pipe(open());
 });
 
@@ -140,7 +140,6 @@ gulp.task('open-e2e-test-report', function() {
  */
 gulp.task('run-e2e-tests-then-open-e2e-test-report', ['run-e2e-tests'], function() {
 	gulp.src(e2eTestReportUrl)
-		.pipe(expect(e2eTestReportUrl))
 		.pipe(open());
 });
 
@@ -201,22 +200,21 @@ gulp.task('start-db-server', shell.task([
  * Task to backup the Database to a seed file
  */
 gulp.task('backup-db', shell.task([
-	'mongoexport --db tails --collection stories --type json --out data/stories/stories-seed.json --jsonArray --pretty'
+	'mongoexport --db tails --collection stories --type json --out ' + dbSeedFilePath + ' --jsonArray --pretty'
 ]));
 
 /**
  * Task to import data into database from seed file
  */
 gulp.task('import-db', function() {
-	var filePath = 'data/stories/stories-seed.json';
-	return gulp.src(filePath)
-		.pipe(expect(filePath))
+	return gulp.src(dbSeedFilePath)
+		.pipe(expect(dbSeedFilePath))
 		.pipe(confirm({
 			question: 'Are you sure you want to import this database? All existing stories and data will be lost! (y/n)',
 			input: '_key:y'
 		}))
 		.pipe(shell([
-			'mongoimport --db tails --collection stories --type json --file data/stories/stories-seed.json --jsonArray --drop'
+			'mongoimport --db tails --collection stories --type json --file ' + dbSeedFilePath + ' --jsonArray --drop'
 		]));
 });
 
@@ -224,7 +222,7 @@ gulp.task('import-db', function() {
  * Task to reset the database to it's initial state
  */
 gulp.task('reset-db', shell.task([
-	'sh reset-db.sh'
+	'sh server/database/scripts/reset-db.sh'
 ]));
 
 /* ************************************************************************** */
