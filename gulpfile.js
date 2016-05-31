@@ -41,6 +41,38 @@ gulp.task('start-app-server', shell.task([
 	'node server/config/server.js'
 ]));
 
+/**
+ * Task to start servers for app, testing and database
+ */
+gulp.task('start', function() {
+
+	var noOfArgs = Object.keys(yargs).length;
+	var flagErrorMsg = '\nERROR:\n\nWith the "gulp start" command please only use a flag of "-d", "-a" or "-e" to run the database, app and e2e test servers respectively.\n';
+
+	// check if one flag present (other than _ and $0)
+	if (noOfArgs > 2 && noOfArgs < 4) {
+
+		switch (true) {
+			case (typeof yargs.d !== 'undefined'):
+				gulp.start('start-db-server');
+				break;
+			case (typeof yargs.a !== 'undefined'):
+				gulp.start('start-app-server');
+				break;
+			case (typeof yargs.e !== 'undefined'):
+				gulp.start('start-e2e-test-server');
+				break;
+			default:
+				// if incorrect flags provided show error msg
+				console.log(color(flagErrorMsg, 'RED'));
+		}
+
+	// if wrong number of flags provided show error msg
+	} else {
+		console.log(color(flagErrorMsg, 'RED'));
+	}
+});
+
 /* ************************************************************************** */
 
 /* STYLES */
@@ -235,6 +267,11 @@ gulp.task('reset-db', shell.task([
 gulp.task('help', function() {
 	console.log(color('\nGULP HELP FOR APP', 'GREEN'));
 	console.log(color('=================\n', 'GREEN'));
+	console.log(color('"gulp start"', 'YELLOW'));
+		console.log('Task to start servers');
+		console.log('    -d    start database (mongo) server');
+		console.log('    -a    start app server');
+		console.log('    -e    start e2e test server\n');
 	console.log(color('"gulp sass"', 'YELLOW'));
 		console.log('Task to compile styles\n');
 	console.log(color('"gulp watch"', 'YELLOW'));
