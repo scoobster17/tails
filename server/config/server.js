@@ -12,27 +12,18 @@
 var express = require('express');
 var app = express();
 var fs = require('fs');
-var mongoUtil = require('./mongoUtil'); // use ./ to look for local module not npm module
+var mongoUtil = require('../database/config/mongoUtil'); // use ./ to look for local module not npm module
 mongoUtil.connect();
 
 /**
  * Allow access to directories with static content for CSS, JS etc
  */
 
-// For when migrating files to app folder
-// app.use( express.static(__dirname + "/../app") );
+// Point server to app and it's assets
+app.use( express.static(__dirname + "/../../app") );
 
 app.use(express.static('bower_components'));
 app.use('/bower_components', express.static('bower_components'));
-
-app.use(express.static('css'));
-app.use('/css', express.static('css'));
-
-app.use(express.static('js'));
-app.use('/js', express.static('js'));
-
-app.use(express.static('templates'));
-app.use('/templates', express.static('templates'));
 
 /**
  * Supply data and pages to URL requests
@@ -44,21 +35,24 @@ app.get('/', function(req, res) {
 });
 
 /**
- * Get text data (TEMPORARY until introduce Mongo)
+ * Get text data
  */
 app.get('/text', function(req, res) {
-	fs.readFile( __dirname + '/data/text/text_en_gb.json', 'utf8', function(err, data) {
+	fs.readFile( __dirname + '/../database/data/text/text_en_gb.json', 'utf8', function(err, data) {
 		res.end(data);
 	});
 });
 
 /**
- * Get stories data (TEMPORARY until introduce Mongo)
+ * Get stories data
  */
 app.get('/storiesData', function(req, res) {
-	/*fs.readFile( __dirname + '/data/stories/stories.json', 'utf8', function(err, data) {
-		res.end(data);
-	});*/
+	/*
+		MANUAL DATA BEFORE APP RE-ORGANISED
+		fs.readFile( __dirname + '/data/stories/stories.json', 'utf8', function(err, data) {
+			res.end(data);
+		});
+	*/
 
 	var stories = mongoUtil.stories();
 	stories.find().toArray(function(err, docs) {
@@ -67,22 +61,25 @@ app.get('/storiesData', function(req, res) {
 });
 
 /**
- * Get stories data (TEMPORARY until introduce Mongo)
+ * Get data for a specific story
  */
 app.get('/storiesData/:modifiedName', function(req, res) {
-	/*fs.readFile( __dirname + '/data/stories/stories.json', 'utf8', function(err, data) {
+	/*
+		MANUAL DATA BEFORE APP RE-ORGANISED
+		fs.readFile( __dirname + '/data/stories/stories.json', 'utf8', function(err, data) {
 
-		// parse the response into JSON format
-		var stories = JSON.parse(data);
+			// parse the response into JSON format
+			var stories = JSON.parse(data);
 
-		// filter the response data to return only the story that matches param
-		var filteredStory = stories.filter(function(story) {
-			return story.modifiedName === req.params.modifiedName;
+			// filter the response data to return only the story that matches param
+			var filteredStory = stories.filter(function(story) {
+				return story.modifiedName === req.params.modifiedName;
+			});
+
+			// return story in string JSON format
+			res.end(JSON.stringify(filteredStory));
 		});
-
-		// return story in string JSON format
-		res.end(JSON.stringify(filteredStory));
-	});*/
+	*/
 
 	var storyModifiedName = req.params.modifiedName;
 	var stories = mongoUtil.stories();
@@ -189,7 +186,7 @@ app.get('/addComponentInstance', function(req, res) {
 });
 
 /**
- * Get stories data (TEMPORARY until introduce Mongo)
+ * Get data for a specific component for a story
  */
 app.get('/storiesData/:modifiedName/:modifiedComponentName', function(req, res) {
 	fs.readFile( __dirname + '/data/stories/stories.json', 'utf8', function(err, data) {
@@ -202,7 +199,7 @@ app.get('/storiesData/:modifiedName/:modifiedComponentName', function(req, res) 
 			return story.modifiedName === req.params.modifiedName;
 		});
 
-		// cancel if no matching story if found
+		// cancel if no matching story is found
 		if (!filteredStory[0].components) return false;
 
 		// filter the matching story's components to return only one matching param

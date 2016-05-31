@@ -37,7 +37,7 @@ var e2eTestReportUrl = './testing/reports/e2e/e2e-test-report.html';
  * Task to start app server
  */
 gulp.task('start-app-server', shell.task([
-	'node server.js'
+	'node server/config/server.js'
 ]));
 
 /* ************************************************************************** */
@@ -48,16 +48,16 @@ gulp.task('start-app-server', shell.task([
  * Task to compile Sass
  */
 gulp.task('sass', function() {
-	return gulp.src('./css/**/*.scss')
+	return gulp.src('./app/css/**/*.scss')
 		.pipe(sass().on('error', sass.logError))
-		.pipe(gulp.dest('./css'));
+		.pipe(gulp.dest('./app/css'));
 });
 
 /**
  * Task to watch for changes in Sass files and trigger the Sass compilation
  */
 gulp.task('watch', function() {
-	watch(['css/**/*.scss', 'bower_components/**/*.scss'], function() {
+	watch(['app/css/**/*.scss', 'bower_components/**/*.scss'], function() {
 		gulp.start('sass');
 	});
 });
