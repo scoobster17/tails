@@ -22,25 +22,25 @@
 
 			// stories list page
 			.when('/stories', {
-				templateUrl: 'templates/stories/list.html',
+				templateUrl: 'js/stories/list/list.html',
 				controller: 'storiesListCtrl'
 			})
 
 				// story details page
 				.when('/stories/:modifiedName', {
-					templateUrl: 'templates/stories/details.html',
+					templateUrl: 'js/stories/details/details.html',
 					controller: 'storyDetailsCtrl'
 				})
 
 					// story sub-details page
 					.when('/stories/:modifiedName/:component', {
-						templateUrl: 'templates/stories/componentdetails.html',
+						templateUrl: 'js/stories/componentdetails/componentdetails.html',
 						controller: 'storyComponentDetailsCtrl'
 					})
 
 						// story single sub-detail page
 						.when('/stories/:modifiedName/:component/:modifiedInstanceName', {
-							templateUrl: 'templates/stories/componentinstance.html',
+							templateUrl: 'js/stories/componentinstance/componentinstance.html',
 							controller: 'storyComponentInstanceCtrl'
 						})
 
