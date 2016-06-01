@@ -11,16 +11,22 @@
 	 * @param  {dependency} StoriesFactory
 	 * @param  {Object} 	constants		App constants
 	 */
-	.controller('storyDetailsCtrl', ['$scope', '$rootScope', '$routeParams', 'TextFactory', 'StoriesFactory', 'constants', function($scope, $rootScope, $routeParams, TextFactory, StoriesFactory, constants) {
+	.controller('storyDetailsCtrl', ['$scope', '$rootScope', '$routeParams', '$route', 'TextFactory', 'StoriesFactory', 'constants', function($scope, $rootScope, $routeParams, $route, TextFactory, StoriesFactory, constants) {
 
 		// initial view config, making modal options available to scope
 		$scope.activeStoryDetailsTab = 0;
 		$scope.hideAddCustomComponent = true;
 		$scope.modalOptions = constants.modalOptions;
-		$scope.component = {
-			associateCharactersAndLocations: false
+		var resetNewComponent = function() {
+			$scope.component = {
+				associateCharactersAndLocations: false
+			};
+			if ($scope.addComponentForm) $scope.addComponentForm.$setPristine();
 		};
 		$scope.submitted = false;
+
+		// reset new component form on load
+		resetNewComponent();
 
 		// on view change change the title for accessibility
 		$scope.$on('$viewContentLoaded', function() {
@@ -34,17 +40,21 @@
 		});
 
 		// get story data
-		var storyQuery = StoriesFactory.get({modifiedName: $routeParams.modifiedName});
-		storyQuery.$promise.then(function(data){
-			$scope.story = data[0];
-			$scope.customComponentIndex = $scope.story.components.length + 1;
-			$scope.component.story = $scope.story.name;
-		});
+		var getStoriesData = function(now) {
+			var storyQuery = StoriesFactory.get({modifiedName: $routeParams.modifiedName});
+			storyQuery.$promise.then(function(data){
+				$scope.story = data[0];
+				$scope.customComponentIndex = $scope.story.components.length + 1;
+				$scope.component.story = $scope.story.name;
+			});
+		};
+		getStoriesData();
 
 		// set the active story details tab to show that tab
-		$scope.setActiveStoryDetailsTab = function(tabIndex) {
+		var setActiveStoryDetailsTab = function(tabIndex) {
 			$scope.activeStoryDetailsTab = tabIndex;
 		};
+		$scope.setActiveStoryDetailsTab = setActiveStoryDetailsTab;
 
 		// check if the current story details tab is active
 		$scope.isActiveStoryDetailsTab = function(tabIndex) {
@@ -63,6 +73,13 @@
 		$scope.triggerPluralDirty = function() {
 			$scope.addComponentForm.componentNamePlural.$setDirty();
 			$scope.addComponentForm.componentNamePlural.$setTouched();
+		};
+
+		/**
+		 * Function to reload the route after adding a component
+		 */
+		var reloadRoute = function() {
+			$route.reload();
 		};
 
 		/**
@@ -86,10 +103,24 @@
 				data: component,
 				dataType: 'json',
 				success: function(data, textStatus, jqXHR) {
-					console.log(data, textStatus, jqXHR);
+					// console.log(data, textStatus, jqXHR);
+
+					// get the updated story data including the new component
+					// getStoriesData();
+
+					// clear and hide the add component form
+					// resetNewComponent();
+					// $('#customComponentFormTrigger').click();
+
+					// set the active tab
+					// setActiveStoryDetailsTab(1);
+
+					// refresh the route as updating page doesn't seem to be working
+					reloadRoute();
+
 				},
 				error: function(jqXHR, textStatus, errorThrown) {
-					console.log(jqXHR, textStatus, errorThrown);
+					console.log(jqXHR, textStatus, errorThrown); // show error
 				}
 			});
 		};
