@@ -38,6 +38,11 @@
 				controller: 'deleteStoryModalCtrl',
 				windowClass: "modal fade in"
 			},
+			"deleteComponent": {
+				templateUrl: 'js/stories/modals/deleteComponent/deleteComponentModal.html',
+				controller: 'deleteComponentModalCtrl',
+				windowClass: "modal fade in"
+			},
 			"addComponentInstance": {
 				templateUrl: 'js/stories/modals/addComponentInstance/addComponentInstanceModal.html',
 				controller: 'addComponentInstanceModalCtrl',

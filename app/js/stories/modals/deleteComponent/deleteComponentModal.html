@@ -1,0 +1,25 @@
+<header class="modal-header">
+	<button type="button" class="close" ng-click="closeModal()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	<h4 class="modal-title" id="deleteStoryHeading">
+		{{ deleteComponentText.heading }}
+	</h4>
+</header>
+<div class="modal-body">
+	<p>{{ deleteComponentText.areYouSureText }}</p>
+	<p class="well text-center">&ldquo;{{ component.name }}&rdquo;</p>
+	<p ng-bind-html="deleteComponentText.disclaimer | trustHtml"></p>
+</div>
+<footer class="modal-footer">
+	<ul class="list-unstyled list-inline">
+		<li>
+			<button class="btn btn-default" ng-click="closeModal()" autofocus>
+				{{ deleteComponentText.cancelBtn }}
+			</button>
+		</li>
+		<li>
+			<button ng-click="deleteComponent(component.componentIndex, story.modifiedName)" class="btn btn-danger">
+				{{ deleteComponentText.confirmBtn }}
+			</button>
+		</li>
+	</ul>
+</footer>

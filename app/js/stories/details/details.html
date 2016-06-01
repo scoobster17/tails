@@ -31,11 +31,14 @@
 			<ul class="list-unstyled list-inline actions">
 				<li ng-if="component.list.length">
 					<a href="#/stories/{{ story.modifiedName }}/{{ component.modifiedComponentName }}" class="btn btn-primary">
-						Go to {{ component.modifiedComponentName }}
+						Go to {{ component.name | lowercase }}
 					</a>
 				</li>
 				<li>
 					<add-component-instance></add-component-instance>
+				</li>
+				<li ng-if="component.componentIndex > 2">
+					<delete-component></delete-component>
 				</li>
 			</ul>
 			<p ng-if="!component.list.length">This tail has no {{ component.modifiedComponentName }} yet.</p>

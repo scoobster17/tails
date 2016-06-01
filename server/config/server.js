@@ -176,7 +176,7 @@ app.get('/deleteComponent', function(req, res) {
 	var componentDetails = req.query;
 
 	stories.update(
-		{modifiedName: req.query.modifiedStoryName},
+		{modifiedName: req.query.storyModifiedName},
 		{
 			$pull: {
 				components: {

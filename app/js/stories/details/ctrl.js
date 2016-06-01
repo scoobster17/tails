@@ -64,7 +64,8 @@
 		// show overlay to ask for initial story details
 		$scope.initAddComponentInstance = $rootScope.showModal;
 
-		// show overlay to ask for confirmation to delete a story
+		// show overlay to ask for confirmation to delete a story and component
+		$scope.initDeleteComponent = $rootScope.showModal;
 		$scope.initDeleteStory = $rootScope.showModal;
 
 		/**

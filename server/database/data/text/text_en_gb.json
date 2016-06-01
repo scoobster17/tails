@@ -163,6 +163,13 @@
 					"cancelBtn": "Cancel",
 					"confirmBtn": "Delete"
 				},
+				"confirmDeleteComponentModal": {
+					"heading": "Confirm removing component",
+					"areYouSureText": "Are you sure you want to remove this component?",
+					"disclaimer": "This will permanently remove the component and all it's instances, and this data <strong>cannot</strong> be recovered.",
+					"cancelBtn": "Cancel",
+					"confirmBtn": "Delete"
+				},
 				"addComponentInstance": {
 					"heading": "Add a ",
 					"labels": {
