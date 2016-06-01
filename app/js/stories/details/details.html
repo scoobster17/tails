@@ -49,18 +49,32 @@
 		</header>
 		<div class="panel-body">
 			<p>Here you can add your own component to customise this story to your needs.</p>
-			<form name="addComponentForm" novalidate ng-submit="triggerAddComponent(addComponentForm.$valid, component)">
+			<form name="addComponentForm" novalidate ng-submit="triggerPluralDirty();triggerAddComponent(addComponentForm.$valid, component)">
 				<div class="form-group">
 					<label class="control-label">Story</label>
 					<input type="text" name="story" id="story" class="form-control" disabled ng-model="component.story" />
 				</div>
-				<div class="form-group">
-					<label class="control-label">Component Name</label>
-					<input type="text" name="componentName" id="componentName" class="form-control" ng-model="component.name" />
-					<span ng-show="(submitted || addComponentForm.componentName.$dirty) && addComponentForm.componentName.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
-					<p ng-show="(submitted || addComponentForm.componentName.$dirty) && addComponentForm.componentName.$invalid" class="help-block">
-						{{ addComponentInstanceText.errors.instanceName }}
+				<div class="form-group" ng-class="{'has-error has-feedback': (submitted || addComponentForm.componentNameSingular.$dirty) && addComponentForm.componentNameSingular.$invalid}">
+					<label class="control-label">Component Name (singular)</label>
+					<input type="text" name="componentNameSingular" id="componentNameSingular" class="form-control" ng-model="component.singularName" required ng-keyup="updatePlural($event)" />
+					<span ng-show="(submitted || addComponentForm.componentNameSingular.$dirty) && addComponentForm.componentNameSingular.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+					<p ng-show="(submitted || addComponentForm.componentNameSingular.$dirty) && addComponentForm.componentNameSingular.$invalid" class="help-block">
+						Please enter a valid component name, for example 'Idea' or 'Mission'.
 					</p>
+				</div>
+				<div class="form-group" ng-class="{'has-error has-feedback': submitted && addComponentForm.componentNamePlural.$invalid}">
+					<label class="control-label">Component Name (plural)</label>
+					<input type="text" name="componentNamePlural" id="componentNamePlural" class="form-control" ng-model="component.name" required />
+					<span ng-show="submitted && addComponentForm.componentNamePlural.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+					<p ng-show="submitted && addComponentForm.componentNamePlural.$invalid" class="help-block">
+						Please enter a valid component name, for example 'Ideas' or 'Missions'.
+					</p>
+				</div>
+				<div class="checkbox">
+					<label for="associateCharactersAndLocations">
+						<input type="checkbox" name="associateCharactersAndLocations" id="associateCharactersAndLocations" ng-model="component.associateCharactersAndLocations" />
+						Associate Characters and Locations
+					</label>
 				</div>
 				<input type="submit" class="btn btn-primary" value="Add custom component to this story" />
 			</form>

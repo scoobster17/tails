@@ -126,23 +126,70 @@ app.get('/deleteStory', function(req, res) {
  */
 app.get('/addComponent', function(req, res) {
 
-	var componentDetails = req.query;
 	var stories = mongoUtil.stories();
+	var componentDetails = req.query;
+	var modifiedStoryName = componentDetails.modifiedStoryName;
+
+	// same as db.stories.findOne({name: "Story 1"}).components.length;
+	stories.find(
+		{
+			modifiedName: componentDetails.modifiedStoryName
+		}
+	).limit(1).toArray(function(err, doc) {
+
+		if (err) {
+			res.sendStatus(400);
+		}
+
+		// set the componentIndex based on the number of existing components
+		componentDetails.componentIndex = doc[0].components.length;
+
+		// remove details that we don't want saved
+		delete componentDetails.modifiedStoryName;
+		delete componentDetails.story;
+
+		// update the database with the new component
+		stories.update(
+			{
+				modifiedName: modifiedStoryName,
+			},
+			{
+				$addToSet: {
+					"components": componentDetails
+				}
+			},
+			function(err, saved) {
+				if (err || !saved) res.sendStatus(400);
+				res.json({success: true});
+			}
+		);
+
+	});
+});
+
+/**
+ * Remove a component from a story
+ */
+app.get('/deleteComponent', function(req, res) {
+
+	var stories = mongoUtil.stories();
+	var componentDetails = req.query;
 
 	stories.update(
+		{modifiedName: req.query.modifiedStoryName},
 		{
-			modifiedName: componentDetails.modifiedStoryName,
-		},
-		{
-			$addToSet: {
-				"components": req.query
+			$pull: {
+				components: {
+					componentIndex: parseInt(req.query.componentIndex)
+				}
 			}
 		},
 		function(err, saved) {
 			if (err || !saved) res.sendStatus(400);
 			res.json({success: true});
 		}
-	);
+	)
+
 });
 
 /**

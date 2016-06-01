@@ -17,7 +17,9 @@
 		$scope.activeStoryDetailsTab = 0;
 		$scope.hideAddCustomComponent = true;
 		$scope.modalOptions = constants.modalOptions;
-		$scope.component = {};
+		$scope.component = {
+			associateCharactersAndLocations: false
+		};
 		$scope.submitted = false;
 
 		// on view change change the title for accessibility
@@ -56,6 +58,14 @@
 		$scope.initDeleteStory = $rootScope.showModal;
 
 		/**
+		 * Function to set possibly untouched field input as touched for validation
+		 */
+		$scope.triggerPluralDirty = function() {
+			$scope.addComponentForm.componentNamePlural.$setDirty();
+			$scope.addComponentForm.componentNamePlural.$setTouched();
+		};
+
+		/**
 		 * When the submit button is pressed, if the form is valid we handle
 		 * adding a component to the story
 		 * @param  {boolean} formIsValid Check as to whether the form is valid
@@ -82,6 +92,20 @@
 					console.log(jqXHR, textStatus, errorThrown);
 				}
 			});
+		};
+
+		/**
+		 * Function to update the plural field if untouched to pre-fill with
+		 * same value as singular value being entered plus an 's' for usability.
+		 * Still editable so if an 's' isn't correct it can be changed manually
+		 */
+		$scope.updatePlural = function(event) {
+			var singularValue = $(event.target).val();
+			var $pluralInput = $('#componentNamePlural');
+
+			if ($pluralInput.hasClass('ng-pristine')) {
+				$scope.component.name = singularValue + 's';
+			}
 		};
 
 	}]);
