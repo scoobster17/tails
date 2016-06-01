@@ -22,13 +22,16 @@ var shell = require('gulp-shell');
 var yargs = require('yargs').argv;
 var confirm = require('gulp-confirm');
 var expect = require('gulp-expect-file');
+var spawn = require('child_process').spawn;
+var node;
 
 /**
  * Variables
  */
+var serverConfigFilePath = 'server/config/server.js';
+var dbSeedFilePath = 'server/database/data/stories/stories-seed.json';
 var unitTestReportUrl = './testing/reports/unit/unit-test-report.html';
 var e2eTestReportUrl = './testing/reports/e2e/e2e-test-report.html';
-var dbSeedFilePath = 'server/database/data/stories/stories-seed.json';
 
 /* ************************************************************************** */
 
@@ -37,9 +40,27 @@ var dbSeedFilePath = 'server/database/data/stories/stories-seed.json';
 /**
  * Task to start app server
  */
-gulp.task('start-app-server', shell.task([
-	'node server/config/server.js'
-]));
+/*gulp.task('start-app-server', shell.task([
+	'node ' + serverConfigFilePath
+]));*/
+gulp.task('start-app-server', function() {
+	if (node) node.kill();
+	node = spawn('node', [serverConfigFilePath], {stdio: 'inherit'});
+	node.on('close', function(code) {
+		if (code === 8) {
+			gulp.log('Error detected, waiting for changes...');
+		}
+	});
+});
+
+/**
+ * Task to start app server then restart if changes to server config
+ */
+gulp.task('watch-app-server', ['start-app-server'], function() {
+	watch(serverConfigFilePath, function() {
+		gulp.start('start-app-server');
+	});
+});
 
 /**
  * Task to start servers for app, testing and database
@@ -89,7 +110,7 @@ gulp.task('sass', function() {
 /**
  * Task to watch for changes in Sass files and trigger the Sass compilation
  */
-gulp.task('watch', function() {
+gulp.task('watch-css', function() {
 	watch(['app/css/**/*.scss', 'bower_components/**/*.scss'], function() {
 		gulp.start('sass');
 	});
@@ -274,8 +295,10 @@ gulp.task('help', function() {
 		console.log('    -e    start e2e test server\n');
 	console.log(color('"gulp sass"', 'YELLOW'));
 		console.log('Task to compile styles\n');
-	console.log(color('"gulp watch"', 'YELLOW'));
+	console.log(color('"gulp watch-css"', 'YELLOW'));
 		console.log('Task to watch for changes and compile styles when changes found\n');
+	console.log(color('"gulp watch-app-server"', 'YELLOW'));
+		console.log('Task to watch for changes to server config and restart the app server when changes made. Should be run when developing only, making changes to server.js file\n');
 	console.log(color('"gulp test"', 'YELLOW'));
 		console.log('Task to run automation tests and optionally open the test report');
 		console.log('    -u    run unit tests');
