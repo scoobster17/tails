@@ -47,6 +47,11 @@
 				templateUrl: 'js/stories/modals/addComponentInstance/addComponentInstanceModal.html',
 				controller: 'addComponentInstanceModalCtrl',
 				windowClass: "modal fade in"
+			},
+			"deleteComponentInstance": {
+				templateUrl: 'js/stories/modals/deleteComponentInstance/deleteComponentInstanceModal.html',
+				controller: 'deleteComponentInstanceModalCtrl',
+				windowClass: "modal fade in"
 			}
 		}
 	})

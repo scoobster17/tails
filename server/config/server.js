@@ -257,6 +257,35 @@ app.get('/addComponentInstance', function(req, res) {
 });
 
 /**
+ * Remove a component instance from a story
+ */
+app.get('/deleteComponentInstance', function(req, res) {
+
+	var stories = mongoUtil.stories();
+	var instanceDetails = req.query;
+
+	// same as db.stories.update({modifiedName: "story-1", "components.componentIndex": 3},{$pull: {"components.$.list": {"name": "Idea 1"}}});
+	stories.update(
+		{
+			modifiedName: instanceDetails.modifiedStoryName,
+			"components.componentIndex": parseInt(instanceDetails.componentIndex)
+		},
+		{
+			$pull: {
+				"components.$.list": {
+					"name": instanceDetails.name
+				}
+			}
+		},
+		function(err, saved) {
+			if (err || !saved) res.sendStatus(400);
+			res.json({success: true});
+		}
+	)
+
+});
+
+/**
  * Get data for a specific component for a story
  */
 app.get('/storiesData/:modifiedName/:modifiedComponentName', function(req, res) {

@@ -14,7 +14,7 @@
 	 * @param  {dependency} StoriesFactory
 	 * @param  {dependency} $window
 	 */
-	.controller('storyComponentInstanceCtrl', ['$scope', '$rootScope', '$routeParams', 'TextFactory', 'StoriesFactory', '$window', function($scope, $rootScope, $routeParams, TextFactory, StoriesFactory, $window) {
+	.controller('storyComponentInstanceCtrl', ['$scope', '$rootScope', '$routeParams', 'TextFactory', 'StoriesFactory', '$window', 'constants', function($scope, $rootScope, $routeParams, TextFactory, StoriesFactory, $window, constants) {
 
 		// Set up the view
 		$scope.editMode = false;
@@ -103,6 +103,12 @@
 			// exit editing mode
 			$scope.exitEditMode();
 		};
+
+		// get the modal options form the constants object
+		$scope.modalOptions = constants.modalOptions;
+
+		// show overlay to ask for initial story details
+		$scope.initDeleteComponentInstance = $rootScope.showModal;
 
 	}]);
 

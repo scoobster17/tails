@@ -182,6 +182,13 @@
 					"errors": {
 						"instanceName": "Please enter a valid name"
 					}
+				},
+				"confirmDeleteComponentInstanceModal": {
+					"heading": "Confirm removing component instance",
+					"areYouSureText": "Are you sure you want to remove this component instance?",
+					"disclaimer": "This will permanently remove the component instance, and this data <strong>cannot</strong> be recovered.",
+					"cancelBtn": "Cancel",
+					"confirmBtn": "Delete"
 				}
 			}
 		}

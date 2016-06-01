@@ -72,6 +72,11 @@
 	</form>
 	<ul class="list-unstyled list-inline">
 		<li>
+			<a href="#/stories/{{ story.modifiedName }}" class="btn btn-default">
+				{{ text.backBtn }}{{ story.name | lowercase }}<span ng-if="editMode === true"> (cancels changes)</span>
+			</a>
+		</li>
+		<li>
 			<a href="#/stories/{{ story.modifiedName + '/' + component.modifiedComponentName }}" class="btn btn-default">
 				{{ text.backBtn }}{{ component.name | lowercase }}<span ng-if="editMode === true"> (cancels changes)</span>
 			</a>
@@ -90,6 +95,9 @@
 			<button ng-click="saveChanges()" class="btn btn-primary">
 				Save changes
 			</button>
+		</li>
+		<li ng-if="editMode === true">
+			<delete-component-instance></delete-component-instance>
 		</li>
 	</ul>
 </section>
