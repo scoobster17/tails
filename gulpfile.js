@@ -13,6 +13,7 @@
  */
 var gulp = require('gulp');
 var sass = require('gulp-sass');
+var sourcemaps = require('gulp-sourcemaps');
 var watch = require('gulp-watch');
 var karmaServer = require('karma').Server;
 var open = require('gulp-open');
@@ -103,7 +104,9 @@ gulp.task('start', function() {
  */
 gulp.task('sass', function() {
 	return gulp.src('./app/css/**/*.scss')
+		.pipe(sourcemaps.init())
 		.pipe(sass().on('error', sass.logError))
+		.pipe(sourcemaps.write())
 		.pipe(gulp.dest('./app/css'));
 });
 
