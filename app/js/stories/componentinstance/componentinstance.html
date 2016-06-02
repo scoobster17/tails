@@ -19,11 +19,11 @@
 		</li>
 	</ul>
 	<form>
-		<fieldset ng-repeat="fieldset in component.form.fieldsets">
+		<fieldset ng-repeat="fieldset in component.fieldsets | orderObjectBy: 'order'">
 			<h2>
-				{{ fieldset.name }}
+				{{ fieldset.title }}
 			</h2>
-			<div class="form-group" ng-repeat="field in fieldset.fields">
+			<div class="form-group" ng-repeat="field in component.fields | filterObjectBy: 'fieldset': fieldset | orderObjectBy: 'order'">
 				<label class="control-label" for="{{ field.inputName }}">
 					{{ field.label }}
 				</label>
@@ -46,8 +46,8 @@
 					<option value="-1">
 						Please select
 					</option>
-					<option ng-repeat="option in field.options" value="{{ option.value }}">
-						{{ option.name }}
+					<option ng-repeat="option in field.options" value="{{ option | lowercase }}">
+						{{ option }}
 					</option>
 				</select>
 				<textarea
@@ -64,9 +64,12 @@
 					picker-type="{{ field.pickerType }}"
 					picker-options="pickerOptions[field.inputName]"
 					edit-mode="editMode"
-					ng-if="component.associateCharactersAndLocations && (field.inputName === 'location' || field.inputName === 'characters')"
+					ng-if="component.associateCharactersAndLocations && (field.inputName === 'location' || field.inputName === 'characters') && pickerOptions[field.inputName]"
 				>
 				</details-picker>
+				<p ng-if="component.associateCharactersAndLocations && (field.inputName === 'location' || field.inputName === 'characters') && !pickerOptions[field.inputName]">
+					There are currently no options to associate with {{ instance.name }}. Please go to the <a href="#/stories/{{ story.modifiedName }}">story details page</a> to create one.
+				</p>
 			</div>
 		</fieldset>
 	</form>

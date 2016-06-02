@@ -25,6 +25,42 @@
 			var absUrlWithoutStory = $location.absUrl().replace(/\/[^\/]+$/i,'');
 			return absUrlWithoutStory + '/' + str;
 		};
-	}]);
+	}])
+
+	/**
+	 * Order an object by one of it's properties; used to order fields in
+	 * component instance page
+	 */
+	.filter('orderObjectBy', function() {
+		return function(items, field, reverse) {
+			var filtered = [];
+			angular.forEach(items, function(item) {
+				filtered.push(item);
+			});
+			filtered.sort(function(a, b) {
+				return (a[field] > b[field] ? 1 : -1);
+			});
+			if (reverse) filtered.reverse();
+			return filtered;
+		}
+	})
+
+	/**
+	 * Filter an object by one of it's properties; used to filter fileds based
+	 * on the parent fieldset on the component instance page
+	 * @param  {Array}  ) {		return    function(items, field, fieldset) {			var filtered [description]
+	 * @return {[type]}   [description]
+	 */
+	.filter('filterObjectBy', function() {
+		return function(items, field, fieldset) {
+			var filtered = [];
+			angular.forEach(items, function(item) {
+				if (item[field] == fieldset.name) {
+					filtered.push(item);
+				}
+			});
+			return filtered;
+		}
+	});
 
 })();
