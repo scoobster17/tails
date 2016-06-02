@@ -69,6 +69,12 @@
 				return instance.modifiedComponentName === 'characters';
 			});
 			$scope.pickerOptions.characters = $scope.pickerOptions.characters[0].list;
+
+			$scope.pickerOptions.utilities = [
+            	{name: 'gas'},
+            	{name: 'electricity'},
+            	{name: 'water'}
+            ];
 		});
 
 		/**

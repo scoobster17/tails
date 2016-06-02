@@ -363,7 +363,110 @@
 	            "name": "Locations",
 	            "singularName": "Location",
 	            "associateCharactersAndLocations": false,
-	            "componentIndex": 2
+	            "componentIndex": 2,
+	            "fieldsets": {
+	            	"locationInfo": {
+	            		"name": "locationInfo",
+	            		"title": "Location Details",
+	            		"order": 1
+	            	},
+	            	"buildingInfo": {
+	            		"name": "buildingInfo",
+	            		"title": "Building Details",
+	            		"order": 2
+	            	},
+	            	"notes": {
+	            		"name": "notes",
+	            		"title": "Notes",
+	            		"order": 3
+	            	},
+	            },
+	            "fields": {
+	            	"locationName": {
+                        "label": "Name",
+                    	"order": 1,
+                    	"fieldset": "locationInfo",
+                        "inputName": "location-name",
+                        "type": "text"
+                    },
+                    "country": {
+                        "label": "Country",
+                    	"order": 2,
+                    	"fieldset": "locationInfo",
+                        "inputName": "country",
+                        "type": "text"
+                    },
+                    "co-ords": {
+                        "label": "Co-ordinates",
+                    	"order": 3,
+                    	"fieldset": "locationInfo",
+                        "inputName": "co-ords",
+                        "type": "text"
+                    },
+                    "buildingName": {
+                        "label": "Building Name",
+                    	"order": 1,
+                    	"fieldset": "buildingInfo",
+                        "inputName": "building-name",
+                        "type": "text"
+                    },
+                    "address": {
+                        "label": "Address",
+                    	"order": 2,
+                    	"fieldset": "buildingInfo",
+                        "inputName": "address",
+                        "type": "textarea"
+                    },
+                    "purpose": {
+                        "label": "Purpose",
+                    	"order": 3,
+                    	"fieldset": "buildingInfo",
+                        "inputName": "purpose",
+                        "type": "select",
+                        "options": [
+                        	'Multi-purpose',
+                        	'Residential',
+                        	'Business',
+                        	'Social'
+                        ]
+                    },
+                    "size": {
+                        "label": "Size",
+                    	"order": 4,
+                    	"fieldset": "buildingInfo",
+                        "inputName": "size",
+                        "type": "text"
+                    },
+                    "floors": {
+                        "label": "Floors",
+                    	"order": 5,
+                    	"fieldset": "buildingInfo",
+                        "inputName": "floors",
+                        "type": "number"
+                    },
+                    "occupants": {
+                        "label": "Occupants",
+                    	"order": 6,
+                    	"fieldset": "buildingInfo",
+                        "inputName": "occupants",
+                        "type": "text"
+                    },
+                    "utilities": {
+                        "label": "Utilities",
+                    	"order": 7,
+                    	"fieldset": "buildingInfo",
+                        "inputName": "utilities",
+                        "type": "hidden",
+                        "pickerType": "checkbox"
+                    },
+                    "notes": {
+                        "label": "Notes",
+                    	"order": 1,
+                    	"fieldset": "notes",
+                        "inputName": "notes",
+                        "type": "textarea"
+                    },
+               }
 	        }
 		];
 

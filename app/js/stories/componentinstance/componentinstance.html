@@ -64,10 +64,10 @@
 					picker-type="{{ field.pickerType }}"
 					picker-options="pickerOptions[field.inputName]"
 					edit-mode="editMode"
-					ng-if="component.associateCharactersAndLocations && (field.inputName === 'location' || field.inputName === 'characters' || field.inputName === 'family' || field.inputName === 'friends') && pickerOptions[field.inputName]"
+					ng-if="component.associateCharactersAndLocations && (field.inputName === 'location' || field.inputName === 'characters' || field.inputName === 'family' || field.inputName === 'friends' || field.inputName === 'utilities') && pickerOptions[field.inputName]"
 				>
 				</details-picker>
-				<p ng-if="component.associateCharactersAndLocations && (field.inputName === 'location' || field.inputName === 'characters' || field.inputName === 'family' || field.inputName === 'friends') && !pickerOptions[field.inputName]">
+				<p ng-if="component.associateCharactersAndLocations && (field.inputName === 'location' || field.inputName === 'characters' || field.inputName === 'family' || field.inputName === 'friends' || field.inputName === 'utilities') && !pickerOptions[field.inputName]">
 					There are currently no options to associate with {{ instance.name }}. Please go to the <a href="#/stories/{{ story.modifiedName }}">story details page</a> to create one.
 				</p>
 			</div>
