@@ -30,12 +30,11 @@
 
 					// update the view as per the value
 					//var idsToCheck = valueToCheck.split(', ');
-					$fieldsToCheck.each(function(){
-						console.log($(this));
-						/*if ($(this).id in array idsToCheck) {
+					/*$fieldsToCheck.each(function(){
+						if ($(this).id in array idsToCheck) {
 							$(this).attr('checked', 'checked');
-						}*/
-					});
+						}
+					});*/
 
 					// when one of the fields is selected or unselected
 					$fieldsToCheck.change(function() {
