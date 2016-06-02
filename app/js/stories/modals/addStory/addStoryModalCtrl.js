@@ -56,141 +56,7 @@
 			data.modifiedName = $rootScope.prepareForUrl(data.name);
 
 			// add default components to the new story for details page
-			data.components = [
-				{
-		            "name": "Scenes",
-		            "singularName": "Scene",
-		            "associateCharactersAndLocations": true,
-		            "componentIndex": 0,
-		            "fieldsets": {
-		            	"general": {
-		            		"name": "general",
-		            		"title": "General Information",
-		            		"order": 1
-		            	},
-		            	"time and place": {
-		            		"name": "time and place",
-		            		"title": "Timing & Geographical Details",
-		            		"order": 2
-		            	},
-		            	"importance": {
-		            		"name": "importance",
-		            		"title": "Scene Importance and Atmosphere",
-		            		"order": 3
-		            	},
-		            	"characters": {
-		            		"name": "characters",
-		            		"title": "Characters",
-		            		"order": 4
-		            	}
-		            },
-		            "fields": {
-		            	"name": {
-		            		"label": "Name",
-                            "order": 1,
-                            "fieldset": "general",
-                            "inputName": "name",
-                            "type": "text"
-                        },
-                        "shortDesc": {
-                        	"label": "Short Description",
-                            "order": 2,
-                            "fieldset": "general",
-                            "inputName": "shortDescription",
-                            "type": "textarea"
-                        },
-                        "act": {
-                        	"label": "Act",
-                            "order": 3,
-                            "fieldset": "general",
-                            "inputName": "act",
-                            "type": "select",
-                            "options": [
-                                "Prologue",
-                                "Act 1",
-                                "Act 2",
-                                "Act 3",
-                                "Epilogue"
-                            ]
-                        },
-                        "position": {
-                            "label": "Position in Sequence",
-                        	"order": 4,
-                        	"fieldset": "general",
-                            "inputName": "posInSeq",
-                            "type": "text"
-                        },
-                        "datetime": {
-                        	"label": "Time (date, time, or ballpark)",
-                            "order": 1,
-                            "fieldset": "time and place",
-                            "inputName": "time",
-                            "type": "text"
-                        },
-                        "place": {
-                        	"label": "Location",
-                            "order": 2,
-                            "fieldset": "time and place",
-                            "inputName": "location",
-                            "type": "hidden",
-                            "pickerType": "radio"
-                        },
-                        "importance": {
-                        	"label": "Importance",
-                        	"order": 1,
-                        	"fieldset": "importance",
-						    "inputName": "importance",
-						    "type": "select",
-						    "options": [
-					            5,
-					            4,
-					            3,
-					            2,
-					            1
-						    ]
-						},
-                        "tension": {
-                        	"label": "Tension",
-                        	"order": 2,
-                        	"fieldset": "importance",
-						    "inputName": "tension",
-						    "type": "select",
-						    "options": [
-						        10,
-						        9,
-						        8,
-						        7,
-						        6,
-						        5,
-						        4,
-						        3,
-						        2,
-						        1
-						    ]
-                        },
-                        "characters": {
-				            "label": "Characters involved in scene",
-				            "order": 1,
-				            "fieldset": "characters",
-				            "inputName": "characters",
-				            "type": "hidden",
-				            "pickerType": "checkbox"
-				        }
-	                }
-		        },
-		        {
-		            "name": "Characters",
-		            "singularName": "Character",
-		            "associateCharactersAndLocations": false,
-		            "componentIndex": 1
-		        },
-		        {
-		            "name": "Locations",
-		            "singularName": "Location",
-		            "associateCharactersAndLocations": false,
-		            "componentIndex": 2
-		        }
-			];
+			data.components = defaultComponents;
 
 			// loop through components to generate modifiedComponentName for Angular routing
 			var noOfComponents = data.components.length;
@@ -224,6 +90,282 @@
 			});
 
 		};
+
+		// JSON with default component settings
+		var defaultComponents = [
+			{
+	            "name": "Scenes",
+	            "singularName": "Scene",
+	            "associateCharactersAndLocations": true,
+	            "componentIndex": 0,
+	            "fieldsets": {
+	            	"general": {
+	            		"name": "general",
+	            		"title": "General Information",
+	            		"order": 1
+	            	},
+	            	"time and place": {
+	            		"name": "time and place",
+	            		"title": "Timing & Geographical Details",
+	            		"order": 2
+	            	},
+	            	"importance": {
+	            		"name": "importance",
+	            		"title": "Scene Importance and Atmosphere",
+	            		"order": 3
+	            	},
+	            	"characters": {
+	            		"name": "characters",
+	            		"title": "Characters",
+	            		"order": 4
+	            	}
+	            },
+	            "fields": {
+	            	"name": {
+	            		"label": "Name",
+                        "order": 1,
+                        "fieldset": "general",
+                        "inputName": "name",
+                        "type": "text"
+                    },
+                    "shortDesc": {
+                    	"label": "Short Description",
+                        "order": 2,
+                        "fieldset": "general",
+                        "inputName": "shortDescription",
+                        "type": "textarea"
+                    },
+                    "act": {
+                    	"label": "Act",
+                        "order": 3,
+                        "fieldset": "general",
+                        "inputName": "act",
+                        "type": "select",
+                        "options": [
+                            "Prologue",
+                            "Act 1",
+                            "Act 2",
+                            "Act 3",
+                            "Epilogue"
+                        ]
+                    },
+                    "position": {
+                        "label": "Position in Sequence",
+                    	"order": 4,
+                    	"fieldset": "general",
+                        "inputName": "posInSeq",
+                        "type": "text"
+                    },
+                    "datetime": {
+                    	"label": "Time (date, time, or ballpark)",
+                        "order": 1,
+                        "fieldset": "time and place",
+                        "inputName": "time",
+                        "type": "text"
+                    },
+                    "place": {
+                    	"label": "Location",
+                        "order": 2,
+                        "fieldset": "time and place",
+                        "inputName": "location",
+                        "type": "hidden",
+                        "pickerType": "radio"
+                    },
+                    "importance": {
+                    	"label": "Importance",
+                    	"order": 1,
+                    	"fieldset": "importance",
+					    "inputName": "importance",
+					    "type": "select",
+					    "options": [
+				            5,
+				            4,
+				            3,
+				            2,
+				            1
+					    ]
+					},
+                    "tension": {
+                    	"label": "Tension",
+                    	"order": 2,
+                    	"fieldset": "importance",
+					    "inputName": "tension",
+					    "type": "select",
+					    "options": [
+					        10,
+					        9,
+					        8,
+					        7,
+					        6,
+					        5,
+					        4,
+					        3,
+					        2,
+					        1
+					    ]
+                    },
+                    "characters": {
+			            "label": "Characters involved in scene",
+			            "order": 1,
+			            "fieldset": "characters",
+			            "inputName": "characters",
+			            "type": "hidden",
+			            "pickerType": "checkbox"
+			        }
+                }
+	        },
+	        {
+	            "name": "Characters",
+	            "singularName": "Character",
+	            "associateCharactersAndLocations": false,
+	            "componentIndex": 1,
+	            "fieldsets": {
+	            	"personalInfo": {
+	            		"name": "personalInfo",
+	            		"title": "Personal Information",
+	            		"order": 1
+	            	},
+	            	"relevance": {
+	            		"name": "relevance",
+	            		"title": "Relevance",
+	            		"order": 2
+	            	},
+	            	"education": {
+	            		"name": "education",
+	            		"title": "Education",
+	            		"order": 5
+	            	},
+	            	"about": {
+	            		"name": "about",
+	            		"title": "About",
+	            		"order": 3
+	            	},
+	            	"associates": {
+	            		"name": "associates",
+	            		"title": "Associates",
+	            		"order": 4
+	            	}
+	            },
+	            "fields": {
+	            	"name": {
+                        "label": "Name",
+                    	"order": 1,
+                    	"fieldset": "personalInfo",
+                        "inputName": "name",
+                        "type": "text"
+                    },
+                    "age": {
+                        "label": "Age",
+                    	"order": 2,
+                    	"fieldset": "personalInfo",
+                        "inputName": "age",
+                        "type": "number"
+                    },
+                    "address": {
+                        "label": "Address",
+                    	"order": 3,
+                    	"fieldset": "personalInfo",
+                        "inputName": "address",
+                        "type": "textarea"
+                    },
+					"occupation": {
+                        "label": "Occupation",
+                    	"order": 4,
+                    	"fieldset": "personalInfo",
+                        "inputName": "occupation",
+                        "type": "text"
+                    },
+                    "gender": {
+                        "label": "Gender",
+                    	"order": 5,
+                    	"fieldset": "personalInfo",
+                        "inputName": "gender",
+                        "type": "select",
+                        "options": [
+                        	'Male',
+                        	'Female'
+                        ]
+                    },
+                    "school": {
+                        "label": "School",
+                    	"order": 1,
+                    	"fieldset": "education",
+                        "inputName": "school",
+                        "type": "textarea"
+                    },
+                    "college": {
+                        "label": "College",
+                    	"order": 2,
+                    	"fieldset": "education",
+                        "inputName": "college",
+                        "type": "textarea"
+                    },
+                    "university": {
+                        "label": "University",
+                    	"order": 3,
+                    	"fieldset": "education",
+                        "inputName": "university",
+                        "type": "textarea"
+                    },
+                    "academic": {
+                        "label": "Achievements",
+                    	"order": 1,
+                    	"fieldset": "about",
+                        "inputName": "achievements",
+                        "type": "textarea"
+                    },
+                    "skills": {
+                        "label": "Skills",
+                    	"order": 2,
+                    	"fieldset": "about",
+                        "inputName": "skills",
+                        "type": "textarea"
+                    },
+                    "interests": {
+                        "label": "Interests",
+                    	"order": 3,
+                    	"fieldset": "about",
+                        "inputName": "interests",
+                        "type": "textarea"
+                    },
+                    "family": {
+                        "label": "Family",
+                    	"order": 1,
+                    	"fieldset": "associates",
+                        "inputName": "family",
+                        "type": "hidden",
+                        "pickerType": "checkbox"
+                    },
+                    "friends": {
+                        "label": "Friends",
+                    	"order": 1,
+                    	"fieldset": "associates",
+                        "inputName": "friends",
+                        "type": "hidden",
+                        "pickerType": "checkbox"
+                    },
+                    "importance": {
+                    	"info": "Primary characters are main characters; they are crucial to the story. Secondary characters are characters that feature in the story, but are not necessarily crucial to the events. Tertiary characters may not even feature in the story, but may be mentioned / implied by relationships to primary or secondary characters.",
+                        "label": "Importance",
+                    	"order": 1,
+                    	"fieldset": "relevance",
+                        "inputName": "importance",
+                        "type": "select",
+                        "options": [
+                        	'Primary',
+                        	'Secondary',
+                        	'Tertiary'
+                        ]
+                    },
+	            }
+	        },
+	        {
+	            "name": "Locations",
+	            "singularName": "Location",
+	            "associateCharactersAndLocations": false,
+	            "componentIndex": 2
+	        }
+		];
 
 	}]);
 
