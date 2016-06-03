@@ -1,0 +1,117 @@
+<header class="modal-header">
+	<button type="button" class="close" ng-click="closeModal()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	<h4 class="modal-title" id="addFieldHeading">
+		{{ addFieldText.heading + component.singularName + ' to ' + story.name }}
+	</h4>
+</header>
+<form class="modal-body" name="addFieldForm" novalidate ng-submit="triggerAddField(addFieldForm.$valid, field)">
+	<input type="text" name="componentIndex" ng-model="field.componentIndex" disabled aria-hidden="true" />
+	<div class="form-group">
+		<label class="control-label" for="storyName">
+			{{ addFieldText.labels.story }}
+		</label>
+		<input type="text" id="storyName" name="storyName" ng-model="field.story" class="form-control" disabled />
+	</div>
+	<div class="form-group">
+		<label class="control-label" for="componentName">
+			{{ addFieldText.labels.component }}
+		</label>
+		<input type="text" id="componentName" name="componentName" ng-model="field.component" class="form-control" disabled />
+	</div>
+	<div class="form-group" ng-class="{'has-error has-feedback': (submitted || addFieldForm.instanceName.$dirty) && addFieldForm.instanceName.$invalid}">
+		<label class="control-label" for="instanceName">
+			{{ component.singularName }}{{ addFieldText.labels.name }}
+		</label>
+		<input type="text" id="instanceName" name="instanceName" ng-model="field.instanceName" class="form-control" disabled />
+		<span ng-show="(submitted || addFieldForm.instanceName.$dirty) && addFieldForm.instanceName.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+		<p ng-show="(submitted || addFieldForm.instanceName.$dirty) && addFieldForm.instanceName.$invalid" class="help-block">
+			{{ addFieldText.errors.instanceName }}
+		</p>
+	</div>
+	<div class="form-group" ng-class="{'has-error has-feedback': (submitted || addFieldForm.fieldsetName.$dirty) && addFieldForm.fieldsetName.$invalid}">
+		<label class="control-label" for="fieldsetName">
+			{{ addFieldText.labels.fieldsetName }}
+		</label>
+		<input type="text" id="fieldsetName" name="fieldsetName" ng-model="field.fieldsetName" class="form-control" disabled />
+		<span ng-show="(submitted || addFieldForm.fieldsetName.$dirty) && addFieldForm.fieldsetName.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+		<p ng-show="(submitted || addFieldForm.fieldsetName.$dirty) && addFieldForm.fieldsetName.$invalid" class="help-block">
+			{{ addFieldText.errors.fieldsetName }}
+		</p>
+	</div>
+	<div class="form-group" ng-class="{'has-error has-feedback': (submitted || addFieldForm.fieldName.$dirty) && addFieldForm.fieldName.$invalid}">
+		<label class="control-label" for="fieldName">
+			{{ addFieldText.labels.fieldName }}
+		</label>
+		<input type="text" id="fieldName" name="fieldName" ng-model="field.fieldName" class="form-control" required autofocus />
+		<span ng-show="(submitted || addFieldForm.fieldName.$dirty) && addFieldForm.fieldName.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+		<p ng-show="(submitted || addFieldForm.fieldName.$dirty) && addFieldForm.fieldName.$invalid" class="help-block">
+			{{ addFieldText.errors.fieldName }}
+		</p>
+	</div>
+	<div class="form-group" ng-class="{'has-error has-feedback': submitted && !field.fieldType}">
+		<p class="control-label">Field type</p>
+		<div class="radio"> <!-- ng-class="{'has-error has-feedback': (submitted || addFieldForm.fieldType.$dirty) && addFieldForm.fieldType.$invalid}"> -->
+			<label>
+				<input type="radio" id="fieldTypeText" name="fieldTypeText" value="text" ng-model="field.fieldType" ng-required="!field.fieldType" />
+				{{ addFieldText.labels.fieldTypes.text }}
+			</label>
+		</div>
+		<div class="radio">
+			<label>
+				<input type="radio" id="fieldTypeNumber" name="fieldTypeNumber" value="number" ng-model="field.fieldType" ng-required="!field.fieldType" />
+				{{ addFieldText.labels.fieldTypes.number }}
+			</label>
+		</div>
+		<div class="radio">
+			<label>
+				<input type="radio" id="fieldTypeEmail" name="fieldTypeEmail" value="email" ng-model="field.fieldType" ng-required="!field.fieldType" />
+				{{ addFieldText.labels.fieldTypes.email }}
+			</label>
+		</div>
+		<div class="radio">
+			<label>
+				<input type="radio" id="fieldTypeSelect" name="fieldTypeSelect" value="select" ng-model="field.fieldType" ng-required="!field.fieldType" />
+				{{ addFieldText.labels.fieldTypes.select }}
+			</label>
+		</div>
+		<div class="radio">
+			<label>
+				<input type="radio" id="fieldTypeCheckbox" name="fieldTypeCheckbox" value="checkbox" ng-model="field.fieldType" ng-required="!field.fieldType" />
+				{{ addFieldText.labels.fieldTypes.checkbox }}
+			</label>
+		</div>
+		<div class="radio">
+			<label>
+				<input type="radio" id="fieldTypeRadio" name="fieldTypeRadio" value="radio" ng-model="field.fieldType" ng-required="!field.fieldType" />
+				{{ addFieldText.labels.fieldTypes.radio }}
+			</label>
+		</div>
+		<span ng-show="submitted && !field.fieldType" class="glyphicon glyphicon-remove form-control-feedback"></span>
+		<p ng-show="submitted && !field.fieldType" class="help-block">
+			<span class="glyphicon glyphicon-exclamation-sign"></span>
+			{{ addFieldText.errors.fieldType }}
+		</p>
+	</div>
+	<div class="form-group" ng-if="field.fieldType == 'select' || field.fieldType == 'checkbox' || field.fieldType == 'radio'" ng-class="{'has-error has-feedback': (submitted || addFieldForm.options.$dirty) && addFieldForm.options.$invalid}">
+		<p>Enter you options here, seperated by commas only (no spaces or line breaks). Entries should not contain spaces and should be lowercase.</p>
+		<label class="control-label" for="options">
+			{{ addFieldText.labels.options }}
+		</label>
+		<textarea id="options" name="options" ng-model="field.options" class="form-control" ng-required="field.fieldType == 'select' || field.fieldType == 'checkbox' || field.fieldType == 'radio'" ng-pattern="/^[^\s]+$/" />
+		<span ng-show="(submitted || addFieldForm.options.$dirty) && addFieldForm.options.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+		<p ng-show="(submitted || addFieldForm.options.$dirty) && addFieldForm.options.$invalid" class="help-block">
+			{{ addFieldText.errors.options }}
+		</p>
+	</div>
+	</div>
+	<ul class="list-unstyled list-inline">
+		<li>
+			<button class="btn btn-default" ng-click="closeModal()">
+				{{ addFieldText.cancelBtn }}
+			</button>
+		</li>
+		<li>
+			<input type="submit" class="btn btn-primary" value="{{ addFieldText.confirmBtn }}{{ component.singularName | lowercase }} to {{ story.name }}" />
+		</li>
+	</ul>
+</form>

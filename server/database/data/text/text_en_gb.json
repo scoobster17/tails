@@ -189,6 +189,46 @@
 					"disclaimer": "This will permanently remove the component instance, and this data <strong>cannot</strong> be recovered.",
 					"cancelBtn": "Cancel",
 					"confirmBtn": "Delete"
+				},
+				"addFieldset": {
+					"heading": "Add a fieldset",
+					"labels": {
+						"name": " name",
+						"fieldsetName": "Fieldset name",
+						"story": "Story name",
+						"component": "Adding to component"
+					},
+					"cancelBtn": "Cancel",
+					"confirmBtn": "Add ",
+					"errors": {
+						"fieldsetName": "Please enter a valid name"
+					}
+				},
+				"addField": {
+					"heading": "Add a field",
+					"labels": {
+						"name": " name",
+						"story": "Story name",
+						"component": "Adding to component",
+						"fieldsetName": "Fieldset name",
+						"fieldName": "Field name",
+						"fieldTypes": {
+							"text": "Text",
+							"number": "Number",
+							"email": "Email",
+							"select": "Dropdown",
+							"checkbox": "Checkboxes",
+							"radio": "Radio buttons"
+						},
+						"options": "Options to be selected"
+					},
+					"cancelBtn": "Cancel",
+					"confirmBtn": "Add ",
+					"errors": {
+						"fieldName": "Please enter a valid name",
+						"fieldType": "Please choose a type of field",
+						"options": "Please enter valid options"
+					}
 				}
 			}
 		}

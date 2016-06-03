@@ -313,6 +313,145 @@ app.get('/storiesData/:modifiedName/:modifiedComponentName', function(req, res) 
 });
 
 /**
+ * Add a fieldset to the component instance page
+ */
+app.get('/addFieldset', function(req, res) {
+
+	var stories = mongoUtil.stories();
+	var fieldsetDetails = req.query;
+	var modifiedStoryName = fieldsetDetails.modifiedStoryName;
+	var modifiedComponentName = fieldsetDetails.modifiedComponentName;
+
+	// same as db.stories.findOne({name: "Story 1"}).components.length;
+	stories.find(
+		{
+			modifiedName: fieldsetDetails.modifiedStoryName
+		}
+	).limit(1).toArray(function(err, doc) {
+
+		if (err) {
+			res.sendStatus(400);
+		}
+
+		// find the number of fieldsets existing already
+		var fieldsetsObj = (doc[0].components[parseInt(fieldsetDetails.componentIndex)].fieldsets);
+
+		// set the fieldset order to be at the end by default based on the number of existing fieldsets
+		if (fieldsetsObj) {
+			fieldsetDetails.order = Object.keys(fieldsetsObj).length + 1;
+		} else {
+			fieldsetsObj = {};
+			fieldsetDetails.order = 1;
+		}
+
+		// remove details that we don't want saved
+		fieldsetDetails['name'] = fieldsetDetails.modifiedFieldsetName;
+		fieldsetDetails['title'] = fieldsetDetails.fieldsetName;
+		fieldsetsObj[fieldsetDetails.modifiedFieldsetName] = fieldsetDetails;
+		delete fieldsetDetails.modifiedStoryName;
+		delete fieldsetDetails.story;
+		delete fieldsetDetails.componentIndex;
+		delete fieldsetDetails.component;
+		delete fieldsetDetails.instanceName;
+		delete fieldsetDetails.modifiedComponentName;
+		delete fieldsetDetails.modifiedInstanceName;
+		delete fieldsetDetails.modifiedFieldsetName;
+		delete fieldsetDetails.fieldsetName;
+
+		stories.update(
+			{
+				modifiedName: modifiedStoryName,
+				"components.modifiedComponentName": modifiedComponentName
+			},
+			{
+				$set: {
+					"components.$.fieldsets": fieldsetsObj
+				}
+			},
+			function(err, saved) {
+				if (err || !saved) res.sendStatus(400);
+				res.json({success: true});
+			}
+		);
+
+	});
+});
+
+/**
+ * Add a field to the component instance page
+ */
+app.get('/addField', function(req, res) {
+
+	var stories = mongoUtil.stories();
+	var fieldDetails = req.query;
+	var modifiedStoryName = fieldDetails.modifiedStoryName;
+	var modifiedComponentName = fieldDetails.modifiedComponentName;
+
+	// same as db.stories.findOne({name: "Story 1"}).components.length;
+	stories.find(
+		{
+			modifiedName: fieldDetails.modifiedStoryName
+		}
+	).limit(1).toArray(function(err, doc) {
+
+		if (err) {
+			res.sendStatus(400);
+		}
+
+		// find the number of fields existing already
+		var fieldsObj = (doc[0].components[parseInt(fieldDetails.componentIndex)].fields);
+
+		// set the field order to be at the end by default based on the number of existing fields
+		if (fieldsObj) {
+			fieldDetails.order = Object.keys(fieldsObj).length + 1;
+		} else {
+			fieldsObj = {};
+			fieldDetails.order = 1;
+		}
+
+		// if options, separate by comma and remove all spaces
+		fieldDetails.options = fieldDetails.options.replace(/ /g, '');
+		fieldDetails.options = fieldDetails.options.split(',');
+
+		// remove details that we don't want saved
+		fieldDetails['inputName'] = fieldDetails.modifiedFieldName;
+		fieldDetails['label'] = fieldDetails.fieldName;
+		fieldDetails['fieldset'] = fieldDetails.modifiedFieldsetName;
+		fieldDetails['type'] = fieldDetails.fieldType;
+		fieldsObj[fieldDetails.modifiedFieldName] = fieldDetails;
+		delete fieldDetails.modifiedStoryName;
+		delete fieldDetails.story;
+		delete fieldDetails.componentIndex;
+		delete fieldDetails.component;
+		delete fieldDetails.instanceName;
+		delete fieldDetails.modifiedComponentName;
+		delete fieldDetails.modifiedInstanceName;
+		delete fieldDetails.modifiedFieldsetName;
+		delete fieldDetails.modifiedFieldName;
+		delete fieldDetails.fieldsetName;
+		delete fieldDetails.fieldName;
+		delete fieldDetails.fieldType;
+
+		stories.update(
+			{
+				modifiedName: modifiedStoryName,
+				"components.modifiedComponentName": modifiedComponentName
+			},
+			{
+				$set: {
+					"components.$.fields": fieldsObj
+				}
+			},
+			function(err, saved) {
+				if (err || !saved) res.sendStatus(400);
+				res.json({success: true});
+			}
+		);
+
+	});
+});
+
+/**
  * Server setup and config
  */
 var server = app.listen(7411, function() {

@@ -52,6 +52,16 @@
 				templateUrl: 'js/stories/modals/deleteComponentInstance/deleteComponentInstanceModal.html',
 				controller: 'deleteComponentInstanceModalCtrl',
 				windowClass: "modal fade in"
+			},
+			"addFieldset": {
+				templateUrl: 'js/stories/modals/addFieldset/addFieldsetModal.html',
+				controller: 'addFieldsetModalCtrl',
+				windowClass: "modal fade in"
+			},
+			"addField": {
+				templateUrl: 'js/stories/modals/addField/addFieldModal.html',
+				controller: 'addFieldModalCtrl',
+				windowClass: "modal fade in"
 			}
 		}
 	})

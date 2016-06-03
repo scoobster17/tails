@@ -4,6 +4,15 @@
 	font-size: inherit;
 	padding:0;
 }
+p.control-label {
+	display:inline-block;
+	font-weight:bold;
+	margin-bottom: 5px;
+	width:100%;
+	+ .radio {
+		margin-top:0;
+	}
+}
 .dateOfBirthFields {
 	.has-feedback {
 		.form-control {

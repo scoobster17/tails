@@ -45,6 +45,13 @@
 				return component.modifiedComponentName === $routeParams.component;
 			});
 			$scope.component = $scope.component[0];
+			$scope.component.noOfFieldsets = (function() {
+				if ($scope.component.fieldsets) {
+					return Object.keys($scope.component.fieldsets).length;
+				} else {
+					return 0;
+				}
+			})();
 
 			// set instance data to a scope variable, or re-direct if none found
 			$scope.instance = $scope.component.list.filter(function(instance) {
@@ -77,6 +84,12 @@
             	{name: 'electricity'},
             	{name: 'water'}
             ];
+
+            // loop through all data for the instance and apply to pickerOptions
+            /*for (var i; i<) {
+            	//
+            }*/
+
 		});
 
 		/**
@@ -115,8 +128,10 @@
 		// get the modal options form the constants object
 		$scope.modalOptions = constants.modalOptions;
 
-		// show overlay to ask for initial story details
+		// show overlays to ask for further details
 		$scope.initDeleteComponentInstance = $rootScope.showModal;
+		$scope.initAddFieldset = $rootScope.showModal;
+		$scope.initAddField = $rootScope.showModal;
 
 	}]);
 

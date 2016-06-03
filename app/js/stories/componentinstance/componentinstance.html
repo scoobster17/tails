@@ -2,7 +2,7 @@
 	<h1>{{ instance.name + text.heading + story.name }}</h1>
 	<p>{{ text.intro + instance.name }}</p>
 	<ul class="list-unstyled list-inline">
-		<li ng-if="editMode === false">
+		<li ng-if="editMode === false && component.fields">
 			<button role="button" ng-click="enterEditMode()" class="btn btn-default">
 				Edit instance
 			</button>
@@ -18,11 +18,18 @@
 			</button>
 		</li>
 	</ul>
-	<form>
+	<p ng-if="!component.fieldsets">
+		No sections to show.
+		<add-fieldset></add-fieldset>
+	</p>
+	<form ng-if="component.fieldsets">
 		<fieldset ng-repeat="fieldset in component.fieldsets | orderObjectBy: 'order'">
 			<h2>
 				{{ fieldset.title }}
 			</h2>
+			<p ng-if="!components.fields">
+				No fields to show.
+			</p>
 			<div class="form-group" ng-repeat="field in component.fields | filterObjectBy: 'fieldset': fieldset | orderObjectBy: 'order'">
 				<label class="control-label" for="{{ field.inputName }}">
 					{{ field.label }}
@@ -71,6 +78,7 @@
 					There are currently no options to associate with {{ instance.name }}. Please go to the <a href="#/stories/{{ story.modifiedName }}">story details page</a> to create one.
 				</p>
 			</div>
+			<add-field></add-field>
 		</fieldset>
 	</form>
 	<ul class="list-unstyled list-inline">
@@ -84,10 +92,13 @@
 				{{ text.backBtn }}{{ component.name | lowercase }}<span ng-if="editMode === true"> (cancels changes)</span>
 			</a>
 		</li>
-		<li ng-if="editMode === false">
+		<li ng-if="editMode === false && component.fields">
 			<button role="button" ng-click="enterEditMode()" class="btn btn-default">
 				Edit instance
 			</button>
+		</li>
+		<li ng-if="editMode === true">
+			<add-fieldset></add-fieldset>
 		</li>
 		<li ng-if="editMode === true">
 			<button ng-click="exitEditMode()" class="btn btn-default">

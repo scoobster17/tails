@@ -97,6 +97,7 @@
 	            "name": "Scenes",
 	            "singularName": "Scene",
 	            "associateCharactersAndLocations": true,
+                "modifiedComponentName": "scenes",
 	            "componentIndex": 0,
 	            "fieldsets": {
 	            	"general": {
@@ -217,6 +218,7 @@
 	        {
 	            "name": "Characters",
 	            "singularName": "Character",
+                "modifiedComponentName": "characters",
 	            "associateCharactersAndLocations": false,
 	            "componentIndex": 1,
 	            "fieldsets": {
@@ -363,6 +365,7 @@
 	            "name": "Locations",
 	            "singularName": "Location",
 	            "associateCharactersAndLocations": false,
+                "modifiedComponentName": "locations",
 	            "componentIndex": 2,
 	            "fieldsets": {
 	            	"locationInfo": {

@@ -1,0 +1,51 @@
+<header class="modal-header">
+	<button type="button" class="close" ng-click="closeModal()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	<h4 class="modal-title" id="addFieldsetHeading">
+		{{ addFieldsetText.heading + component.singularName + ' to ' + story.name }}
+	</h4>
+</header>
+<form class="modal-body" name="addFieldsetForm" novalidate ng-submit="triggerAddFieldset(addFieldsetForm.$valid, fieldset)">
+	<input type="text" name="componentIndex" ng-model="fieldset.componentIndex" disabled aria-hidden="true" />
+	<div class="form-group">
+		<label class="control-label" for="storyName">
+			{{ addFieldsetText.labels.story }}
+		</label>
+		<input type="text" id="storyName" name="storyName" ng-model="fieldset.story" class="form-control" disabled />
+	</div>
+	<div class="form-group">
+		<label class="control-label" for="componentName">
+			{{ addFieldsetText.labels.component }}
+		</label>
+		<input type="text" id="componentName" name="componentName" ng-model="fieldset.component" class="form-control" disabled />
+	</div>
+	<div class="form-group" ng-class="{'has-error has-feedback': (submitted || addFieldsetForm.instanceName.$dirty) && addFieldsetForm.instanceName.$invalid}">
+		<label class="control-label" for="instanceName">
+			{{ component.singularName }}{{ addFieldsetText.labels.name }}
+		</label>
+		<input type="text" id="instanceName" name="instanceName" ng-model="fieldset.instanceName" class="form-control" disabled />
+		<span ng-show="(submitted || addFieldsetForm.instanceName.$dirty) && addFieldsetForm.instanceName.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+		<p ng-show="(submitted || addFieldsetForm.instanceName.$dirty) && addFieldsetForm.instanceName.$invalid" class="help-block">
+			{{ addFieldsetText.errors.instanceName }}
+		</p>
+	</div>
+	<div class="form-group" ng-class="{'has-error has-feedback': (submitted || addFieldsetForm.fieldsetName.$dirty) && addFieldsetForm.fieldsetName.$invalid}">
+		<label class="control-label" for="fieldsetName">
+			{{ addFieldsetText.labels.fieldsetName }}
+		</label>
+		<input type="text" id="fieldsetName" name="fieldsetName" ng-model="fieldset.fieldsetName" class="form-control" required autofocus />
+		<span ng-show="(submitted || addFieldsetForm.fieldsetName.$dirty) && addFieldsetForm.fieldsetName.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+		<p ng-show="(submitted || addFieldsetForm.fieldsetName.$dirty) && addFieldsetForm.fieldsetName.$invalid" class="help-block">
+			{{ addFieldsetText.errors.fieldsetName }}
+		</p>
+	</div>
+	<ul class="list-unstyled list-inline">
+		<li>
+			<button class="btn btn-default" ng-click="closeModal()">
+				{{ addFieldsetText.cancelBtn }}
+			</button>
+		</li>
+		<li>
+			<input type="submit" class="btn btn-primary" value="{{ addFieldsetText.confirmBtn }}{{ component.singularName | lowercase }} to {{ story.name }}" />
+		</li>
+	</ul>
+</form>
