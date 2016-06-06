@@ -33,7 +33,8 @@
 			instanceName: data.instance.name,
 			fieldsetName: data.fieldset.title,
 			fieldName: '',
-			options: ''
+			options: '',
+			association: ''
 		};
 
 		/**

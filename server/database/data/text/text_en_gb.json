@@ -214,11 +214,16 @@
 						"fieldName": "Field name",
 						"fieldTypes": {
 							"text": "Text",
+							"textarea": "Multiline text box",
 							"number": "Number",
 							"email": "Email",
 							"select": "Dropdown",
 							"checkbox": "Checkboxes",
 							"radio": "Radio buttons"
+						},
+						"optionType": {
+							"associated": "Associate with another component",
+							"custom": "Enter my own options to pick from"
 						},
 						"options": "Options to be selected"
 					},
@@ -227,6 +232,8 @@
 					"errors": {
 						"fieldName": "Please enter a valid name",
 						"fieldType": "Please choose a type of field",
+						"optionType": "Please choose the type of options to be associated with this field",
+						"association": "Please choose a component to associate this field with",
 						"options": "Please enter valid options"
 					}
 				}

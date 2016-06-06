@@ -27,7 +27,7 @@
 			<h2>
 				{{ fieldset.title }}
 			</h2>
-			<p ng-if="!components.fields">
+			<p ng-if="!component.fields">
 				No fields to show.
 			</p>
 			<div class="form-group" ng-repeat="field in component.fields | filterObjectBy: 'fieldset': fieldset | orderObjectBy: 'order'">
@@ -35,7 +35,7 @@
 					{{ field.label }}
 				</label>
 				<input
-					ng-if="field.type !== 'select' && field.type !== 'textarea'"
+					ng-if="field.type !== 'select' && field.type !== 'textarea' && field.type !== 'checkbox' && field.type !== 'radio'"
 					type="{{ field.type }}"
 					name="{{ field.inputName }}"
 					id="{{ field.inputName }}"
@@ -69,13 +69,13 @@
 				</textarea>
 				<details-picker
 					update="field"
-					picker-type="{{ field.pickerType }}"
+					picker-type="{{ field.type }}"
 					picker-options="pickerOptions[field.inputName]"
 					edit-mode="editMode"
-					ng-if="component.associateCharactersAndLocations && (field.inputName === 'location' || field.inputName === 'characters' || field.inputName === 'family' || field.inputName === 'friends' || field.inputName === 'utilities') && pickerOptions[field.inputName]"
+					ng-if="pickerOptions[field.inputName] && (field.association !== '' || field.options !== '')"
 				>
 				</details-picker>
-				<p ng-if="component.associateCharactersAndLocations && (field.inputName === 'location' || field.inputName === 'characters' || field.inputName === 'family' || field.inputName === 'friends' || field.inputName === 'utilities') && !pickerOptions[field.inputName]">
+				<p ng-if="field.association !== '' && !pickerOptions[field.inputName]">
 					There are currently no options to associate with {{ instance.name }}. Please go to the <a href="#/stories/{{ story.modifiedName }}">story details page</a> to create one.
 				</p>
 			</div>

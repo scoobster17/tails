@@ -99,122 +99,147 @@
 	            "associateCharactersAndLocations": true,
                 "modifiedComponentName": "scenes",
 	            "componentIndex": 0,
-	            "fieldsets": {
-	            	"general": {
-	            		"name": "general",
-	            		"title": "General Information",
-	            		"order": 1
-	            	},
-	            	"time and place": {
-	            		"name": "time and place",
-	            		"title": "Timing & Geographical Details",
-	            		"order": 2
-	            	},
-	            	"importance": {
-	            		"name": "importance",
-	            		"title": "Scene Importance and Atmosphere",
-	            		"order": 3
-	            	},
-	            	"characters": {
-	            		"name": "characters",
-	            		"title": "Characters",
-	            		"order": 4
-	            	}
-	            },
-	            "fields": {
-	            	"name": {
-	            		"label": "Name",
-                        "order": 1,
-                        "fieldset": "general",
-                        "inputName": "name",
-                        "type": "text"
+	            "fieldsets" : {
+                    "general-information" : {
+                        "order" : 1,
+                        "name" : "general-information",
+                        "title" : "General Information"
                     },
-                    "shortDesc": {
-                    	"label": "Short Description",
-                        "order": 2,
-                        "fieldset": "general",
-                        "inputName": "shortDescription",
-                        "type": "textarea"
+                    "time-and-place" : {
+                        "order" : 2,
+                        "name" : "time-and-place",
+                        "title" : "Time and Place"
                     },
-                    "act": {
-                    	"label": "Act",
-                        "order": 3,
-                        "fieldset": "general",
-                        "inputName": "act",
-                        "type": "select",
-                        "options": [
+                    "scene-importance-and-atmosphere" : {
+                        "order" : 3,
+                        "name" : "scene-importance-and-atmosphere",
+                        "title" : "Scene Importance and Atmosphere"
+                    },
+                    "characters" : {
+                        "order" : 4,
+                        "name" : "characters",
+                        "title" : "Characters"
+                    }
+                },
+                "fields" : {
+                    "name" : {
+                        "options" : "",
+                        "association" : "",
+                        "order" : "1",
+                        "inputName" : "name",
+                        "label" : "Name",
+                        "fieldset" : "general-information",
+                        "type" : "text"
+                    },
+                    "short-description" : {
+                        "options" : "",
+                        "association" : "",
+                        "order" : "2",
+                        "inputName" : "short-description",
+                        "label" : "Short Description",
+                        "fieldset" : "general-information",
+                        "type" : "textarea"
+                    },
+                    "long-description" : {
+                        "options" : "",
+                        "association" : "",
+                        "order" : "3",
+                        "inputName" : "long-description",
+                        "label" : "Long Description",
+                        "fieldset" : "general-information",
+                        "type" : "textarea"
+                    },
+                    "act" : {
+                        "options" : [
                             "Prologue",
-                            "Act 1",
-                            "Act 2",
-                            "Act 3",
+                            "Act1",
+                            "Act2",
+                            "Act3",
                             "Epilogue"
-                        ]
+                        ],
+                        "association" : "",
+                        "optionType" : "custom",
+                        "order" : "4",
+                        "inputName" : "act",
+                        "label" : "Act",
+                        "fieldset" : "general-information",
+                        "type" : "select"
                     },
-                    "position": {
-                        "label": "Position in Sequence",
-                    	"order": 4,
-                    	"fieldset": "general",
-                        "inputName": "posInSeq",
-                        "type": "text"
+                    "position-in-sequence" : {
+                        "options" : "",
+                        "association" : "",
+                        "order" : "5",
+                        "inputName" : "position-in-sequence",
+                        "label" : "Position in Sequence",
+                        "fieldset" : "general-information",
+                        "type" : "text"
                     },
-                    "datetime": {
-                    	"label": "Time (date, time, or ballpark)",
-                        "order": 1,
-                        "fieldset": "time and place",
-                        "inputName": "time",
-                        "type": "text"
+                    "time" : {
+                        "options" : "",
+                        "association" : "",
+                        "order" : "6",
+                        "inputName" : "time",
+                        "label" : "Time",
+                        "fieldset" : "time-and-place",
+                        "type" : "text"
                     },
-                    "place": {
-                    	"label": "Location",
-                        "order": 2,
-                        "fieldset": "time and place",
-                        "inputName": "location",
-                        "type": "hidden",
-                        "pickerType": "radio",
-                        "association": "locations"
+                    "place" : {
+                        "options" : "",
+                        "association" : "locations",
+                        "optionType" : "associated",
+                        "order" : "7",
+                        "inputName" : "place",
+                        "label" : "Place",
+                        "fieldset" : "time-and-place",
+                        "type" : "radio"
                     },
-                    "importance": {
-                    	"label": "Importance",
-                    	"order": 1,
-                    	"fieldset": "importance",
-					    "inputName": "importance",
-					    "type": "select",
-					    "options": [
-				            5,
-				            4,
-				            3,
-				            2,
-				            1
-					    ]
-					},
-                    "tension": {
-                    	"label": "Tension",
-                    	"order": 2,
-                    	"fieldset": "importance",
-					    "inputName": "tension",
-					    "type": "select",
-					    "options": [
-					        10,
-					        9,
-					        8,
-					        7,
-					        6,
-					        5,
-					        4,
-					        3,
-					        2,
-					        1
-					    ]
+                    "importance" : {
+                        "options" : [
+                            "5",
+                            "4",
+                            "3",
+                            "2",
+                            "1"
+                        ],
+                        "association" : "",
+                        "optionType" : "custom",
+                        "order" : "8",
+                        "inputName" : "importance",
+                        "label" : "Importance",
+                        "fieldset" : "scene-importance-and-atmosphere",
+                        "type" : "select"
                     },
-                    "characters": {
-			            "label": "Characters involved in scene",
-			            "order": 1,
-			            "fieldset": "characters",
-			            "inputName": "characters",
-			            "type": "hidden",
-			            "pickerType": "checkbox",
-                        "association": "characters"
-			        }
+                    "tension" : {
+                        "options" : [
+                            "10",
+                            "9",
+                            "8",
+                            "7",
+                            "6",
+                            "5",
+                            "4",
+                            "3",
+                            "2",
+                            "1"
+                        ],
+                        "association" : "",
+                        "optionType" : "custom",
+                        "order" : "9",
+                        "inputName" : "tension",
+                        "label" : "Tension",
+                        "fieldset" : "scene-importance-and-atmosphere",
+                        "type" : "select"
+                    },
+                    "characters-featured" : {
+                        "options" : "",
+                        "association" : "characters",
+                        "optionType" : "associated",
+                        "order" : "10",
+                        "inputName" : "characters-featured",
+                        "label" : "Characters featured",
+                        "fieldset" : "characters",
+                        "type" : "checkbox"
+                    }
                 }
 	        },
 	        {
@@ -223,147 +248,172 @@
                 "modifiedComponentName": "characters",
 	            "associateCharactersAndLocations": false,
 	            "componentIndex": 1,
-	            "fieldsets": {
-	            	"personalInfo": {
-	            		"name": "personalInfo",
-	            		"title": "Personal Information",
-	            		"order": 1
-	            	},
-	            	"relevance": {
-	            		"name": "relevance",
-	            		"title": "Relevance",
-	            		"order": 2
-	            	},
-	            	"education": {
-	            		"name": "education",
-	            		"title": "Education",
-	            		"order": 5
-	            	},
-	            	"about": {
-	            		"name": "about",
-	            		"title": "About",
-	            		"order": 3
-	            	},
-	            	"associates": {
-	            		"name": "associates",
-	            		"title": "Associates",
-	            		"order": 4
-	            	}
-	            },
-	            "fields": {
-	            	"name": {
-                        "label": "Name",
-                    	"order": 1,
-                    	"fieldset": "personalInfo",
-                        "inputName": "name",
-                        "type": "text"
+	            "fieldsets" : {
+                    "personal-information" : {
+                        "order" : 1,
+                        "name" : "personal-information",
+                        "title" : "Personal Information"
                     },
-                    "age": {
-                        "label": "Age",
-                    	"order": 2,
-                    	"fieldset": "personalInfo",
-                        "inputName": "age",
-                        "type": "number"
+                    "relevance" : {
+                        "order" : 2,
+                        "name" : "relevance",
+                        "title" : "Relevance"
                     },
-                    "address": {
-                        "label": "Address",
-                    	"order": 3,
-                    	"fieldset": "personalInfo",
-                        "inputName": "address",
-                        "type": "textarea"
+                    "about" : {
+                        "order" : 3,
+                        "name" : "about",
+                        "title" : "About"
                     },
-					"occupation": {
-                        "label": "Occupation",
-                    	"order": 4,
-                    	"fieldset": "personalInfo",
-                        "inputName": "occupation",
-                        "type": "text"
+                    "associates" : {
+                        "order" : 4,
+                        "name" : "associates",
+                        "title" : "Associates"
                     },
-                    "gender": {
-                        "label": "Gender",
-                    	"order": 5,
-                    	"fieldset": "personalInfo",
-                        "inputName": "gender",
-                        "type": "select",
-                        "options": [
-                        	'Male',
-                        	'Female'
-                        ]
+                    "education" : {
+                        "order" : 5,
+                        "name" : "education",
+                        "title" : "Education"
+                    }
+                },
+                "fields" : {
+                    "name" : {
+                        "options" : "",
+                        "association" : "",
+                        "order" : "1",
+                        "inputName" : "name",
+                        "label" : "Name",
+                        "fieldset" : "personal-information",
+                        "type" : "text"
                     },
-                    "school": {
-                        "label": "School",
-                    	"order": 1,
-                    	"fieldset": "education",
-                        "inputName": "school",
-                        "type": "textarea"
+                    "age" : {
+                        "options" : "",
+                        "association" : "",
+                        "order" : "2",
+                        "inputName" : "age",
+                        "label" : "Age",
+                        "fieldset" : "personal-information",
+                        "type" : "number"
                     },
-                    "college": {
-                        "label": "College",
-                    	"order": 2,
-                    	"fieldset": "education",
-                        "inputName": "college",
-                        "type": "textarea"
+                    "address" : {
+                        "options" : "",
+                        "association" : "",
+                        "order" : "3",
+                        "inputName" : "address",
+                        "label" : "Address",
+                        "fieldset" : "personal-information",
+                        "type" : "textarea"
                     },
-                    "university": {
-                        "label": "University",
-                    	"order": 3,
-                    	"fieldset": "education",
-                        "inputName": "university",
-                        "type": "textarea"
+                    "occupation" : {
+                        "options" : "",
+                        "association" : "",
+                        "order" : "4",
+                        "inputName" : "occupation",
+                        "label" : "Occupation",
+                        "fieldset" : "personal-information",
+                        "type" : "text"
                     },
-                    "academic": {
-                        "label": "Achievements",
-                    	"order": 1,
-                    	"fieldset": "about",
-                        "inputName": "achievements",
-                        "type": "textarea"
+                    "gender" : {
+                        "options" : [
+                            "Male",
+                            "Female"
+                        ],
+                        "association" : "",
+                        "optionType" : "custom",
+                        "order" : "5",
+                        "inputName" : "gender",
+                        "label" : "Gender",
+                        "fieldset" : "personal-information",
+                        "type" : "select"
                     },
-                    "skills": {
-                        "label": "Skills",
-                    	"order": 2,
-                    	"fieldset": "about",
-                        "inputName": "skills",
-                        "type": "textarea"
+                    "school" : {
+                        "options" : "",
+                        "association" : "",
+                        "order" : "6",
+                        "inputName" : "school",
+                        "label" : "School",
+                        "fieldset" : "education",
+                        "type" : "textarea"
                     },
-                    "interests": {
-                        "label": "Interests",
-                    	"order": 3,
-                    	"fieldset": "about",
-                        "inputName": "interests",
-                        "type": "textarea"
+                    "college" : {
+                        "options" : "",
+                        "association" : "",
+                        "order" : "7",
+                        "inputName" : "college",
+                        "label" : "College",
+                        "fieldset" : "education",
+                        "type" : "textarea"
                     },
-                    "family": {
-                        "label": "Family",
-                    	"order": 1,
-                    	"fieldset": "associates",
-                        "inputName": "family",
-                        "type": "hidden",
-                        "pickerType": "checkbox",
-                        "association": "characters"
+                    "university" : {
+                        "options" : "",
+                        "association" : "",
+                        "order" : "8",
+                        "inputName" : "university",
+                        "label" : "University",
+                        "fieldset" : "education",
+                        "type" : "textarea"
                     },
-                    "friends": {
-                        "label": "Friends",
-                    	"order": 1,
-                    	"fieldset": "associates",
-                        "inputName": "friends",
-                        "type": "hidden",
-                        "pickerType": "checkbox",
-                        "association": "characters"
+                    "achievements" : {
+                        "options" : "",
+                        "association" : "",
+                        "order" : "9",
+                        "inputName" : "achievements",
+                        "label" : "Achievements",
+                        "fieldset" : "about",
+                        "type" : "textarea"
                     },
-                    "importance": {
-                    	"info": "Primary characters are main characters; they are crucial to the story. Secondary characters are characters that feature in the story, but are not necessarily crucial to the events. Tertiary characters may not even feature in the story, but may be mentioned / implied by relationships to primary or secondary characters.",
-                        "label": "Importance",
-                    	"order": 1,
-                    	"fieldset": "relevance",
-                        "inputName": "importance",
-                        "type": "select",
-                        "options": [
-                        	'Primary',
-                        	'Secondary',
-                        	'Tertiary'
-                        ]
+                    "skills" : {
+                        "options" : "",
+                        "association" : "",
+                        "order" : "10",
+                        "inputName" : "skills",
+                        "label" : "Skills",
+                        "fieldset" : "about",
+                        "type" : "textarea"
                     },
-	            }
+                    "interests" : {
+                        "options" : "",
+                        "association" : "",
+                        "order" : "11",
+                        "inputName" : "interests",
+                        "label" : "Interests",
+                        "fieldset" : "about",
+                        "type" : "textarea"
+                    },
+                    "family" : {
+                        "options" : "",
+                        "association" : "characters",
+                        "optionType" : "associated",
+                        "order" : "12",
+                        "inputName" : "family",
+                        "label" : "Family",
+                        "fieldset" : "associates",
+                        "type" : "checkbox"
+                    },
+                    "friends" : {
+                        "options" : "",
+                        "association" : "characters",
+                        "optionType" : "associated",
+                        "order" : "13",
+                        "inputName" : "friends",
+                        "label" : "Friends",
+                        "fieldset" : "associates",
+                        "type" : "checkbox"
+                    },
+                    "importance" : {
+                        "options" : [
+                            "Primary",
+                            "Secondary",
+                            "Tertiary"
+                        ],
+                        "association" : "",
+                        "optionType" : "custom",
+                        "order" : "14",
+                        "inputName" : "importance",
+                        "label" : "Importance",
+                        "fieldset" : "relevance",
+                        "type" : "select"
+                    }
+                }
 	        },
 	        {
 	            "name": "Locations",
@@ -371,109 +421,136 @@
 	            "associateCharactersAndLocations": false,
                 "modifiedComponentName": "locations",
 	            "componentIndex": 2,
-	            "fieldsets": {
-	            	"locationInfo": {
-	            		"name": "locationInfo",
-	            		"title": "Location Details",
-	            		"order": 1
-	            	},
-	            	"buildingInfo": {
-	            		"name": "buildingInfo",
-	            		"title": "Building Details",
-	            		"order": 2
-	            	},
-	            	"notes": {
-	            		"name": "notes",
-	            		"title": "Notes",
-	            		"order": 3
-	            	},
-	            },
-	            "fields": {
-	            	"locationName": {
-                        "label": "Name",
-                    	"order": 1,
-                    	"fieldset": "locationInfo",
-                        "inputName": "location-name",
-                        "type": "text"
+	            "fieldsets" : {
+                    "location-details" : {
+                        "order" : 1,
+                        "name" : "location-details",
+                        "title" : "Location Details"
                     },
-                    "country": {
-                        "label": "Country",
-                    	"order": 2,
-                    	"fieldset": "locationInfo",
-                        "inputName": "country",
-                        "type": "text"
+                    "building-details" : {
+                        "order" : 2,
+                        "name" : "building-details",
+                        "title" : "Building Details"
                     },
-                    "co-ords": {
-                        "label": "Co-ordinates",
-                    	"order": 3,
-                    	"fieldset": "locationInfo",
-                        "inputName": "co-ords",
-                        "type": "text"
+                    "notes" : {
+                        "order" : 3,
+                        "name" : "notes",
+                        "title" : "Notes"
+                    }
+                },
+                "fields" : {
+                    "name" : {
+                        "options" : "",
+                        "association" : "",
+                        "order" : "1",
+                        "inputName" : "name",
+                        "label" : "Name",
+                        "fieldset" : "location-details",
+                        "type" : "text"
                     },
-                    "buildingName": {
-                        "label": "Building Name",
-                    	"order": 1,
-                    	"fieldset": "buildingInfo",
-                        "inputName": "building-name",
-                        "type": "text"
+                    "country" : {
+                        "options" : "",
+                        "association" : "",
+                        "order" : "2",
+                        "inputName" : "country",
+                        "label" : "Country",
+                        "fieldset" : "location-details",
+                        "type" : "text"
                     },
-                    "address": {
-                        "label": "Address",
-                    	"order": 2,
-                    	"fieldset": "buildingInfo",
-                        "inputName": "address",
-                        "type": "textarea"
+                    "co-ordinates" : {
+                        "options" : "",
+                        "association" : "",
+                        "order" : "3",
+                        "inputName" : "co-ordinates",
+                        "label" : "Co-ordinates",
+                        "fieldset" : "location-details",
+                        "type" : "text"
                     },
-                    "purpose": {
-                        "label": "Purpose",
-                    	"order": 3,
-                    	"fieldset": "buildingInfo",
-                        "inputName": "purpose",
-                        "type": "select",
-                        "options": [
-                        	'Multi-purpose',
-                        	'Residential',
-                        	'Business',
-                        	'Social'
-                        ]
+                    "building-name" : {
+                        "options" : "",
+                        "association" : "",
+                        "order" : "4",
+                        "inputName" : "building-name",
+                        "label" : "Building Name",
+                        "fieldset" : "building-details",
+                        "type" : "text"
                     },
-                    "size": {
-                        "label": "Size",
-                    	"order": 4,
-                    	"fieldset": "buildingInfo",
-                        "inputName": "size",
-                        "type": "text"
+                    "address" : {
+                        "options" : "",
+                        "association" : "",
+                        "order" : "5",
+                        "inputName" : "address",
+                        "label" : "Address",
+                        "fieldset" : "building-details",
+                        "type" : "textarea"
                     },
-                    "floors": {
-                        "label": "Floors",
-                    	"order": 5,
-                    	"fieldset": "buildingInfo",
-                        "inputName": "floors",
-                        "type": "number"
+                    "purpose" : {
+                        "options" : [
+                            "Multi-purpose",
+                            "Residential",
+                            "Business",
+                            "Social"
+                        ],
+                        "association" : "",
+                        "optionType" : "custom",
+                        "order" : "6",
+                        "inputName" : "purpose",
+                        "label" : "Purpose",
+                        "fieldset" : "building-details",
+                        "type" : "select"
                     },
-                    "occupants": {
-                        "label": "Occupants",
-                    	"order": 6,
-                    	"fieldset": "buildingInfo",
-                        "inputName": "occupants",
-                        "type": "text"
+                    "size" : {
+                        "options" : "",
+                        "association" : "",
+                        "order" : "7",
+                        "inputName" : "size",
+                        "label" : "Size",
+                        "fieldset" : "building-details",
+                        "type" : "text"
                     },
-                    "utilities": {
-                        "label": "Utilities",
-                    	"order": 7,
-                    	"fieldset": "buildingInfo",
-                        "inputName": "utilities",
-                        "type": "hidden",
-                        "pickerType": "checkbox"
+                    "floors" : {
+                        "options" : "",
+                        "association" : "",
+                        "order" : "8",
+                        "inputName" : "floors",
+                        "label" : "Floors",
+                        "fieldset" : "building-details",
+                        "type" : "number"
                     },
-                    "notes": {
-                        "label": "Notes",
-                    	"order": 1,
-                    	"fieldset": "notes",
-                        "inputName": "notes",
-                        "type": "textarea"
+                    "occupants" : {
+                        "options" : "",
+                        "association" : "",
+                        "order" : "9",
+                        "inputName" : "occupants",
+                        "label" : "Occupants",
+                        "fieldset" : "building-details",
+                        "type" : "number"
                     },
-               }
+                    "utilities" : {
+                        "options" : [
+                            "Gas",
+                            "Electricity",
+                            "Water",
+                            "Sewage"
+                        ],
+                        "association" : "",
+                        "optionType" : "custom",
+                        "order" : "10",
+                        "inputName" : "utilities",
+                        "label" : "Utilities",
+                        "fieldset" : "building-details",
+                        "type" : "checkbox"
+                    },
+                    "notes" : {
+                        "options" : "",
+                        "association" : "",
+                        "order" : "11",
+                        "inputName" : "notes",
+                        "label" : "Notes",
+                        "fieldset" : "notes",
+                        "type" : "textarea"
+                    }
+                }
 	        }
 		];
 

@@ -403,15 +403,24 @@ app.get('/addField', function(req, res) {
 
 		// set the field order to be at the end by default based on the number of existing fields
 		if (fieldsObj) {
-			fieldDetails.order = Object.keys(fieldsObj).length + 1;
+			fieldDetails.order = Object.keys(fieldsObj).length + 1 + '';
 		} else {
 			fieldsObj = {};
-			fieldDetails.order = 1;
+			fieldDetails.order = '1';
 		}
 
 		// if options, separate by comma and remove all spaces
-		fieldDetails.options = fieldDetails.options.replace(/ /g, '');
-		fieldDetails.options = fieldDetails.options.split(',');
+		if (fieldDetails.options !== '') {
+			if (fieldDetails.optionType === 'custom') {
+				fieldDetails.options = fieldDetails.options.replace(/ /g, '');
+				fieldDetails.options = fieldDetails.options.split(',');
+			} else {
+				fieldDetails.options = [];
+				for (component in story.components) {
+					fieldDetails.options.push(component.name);
+				}
+			}
+		}
 
 		// remove details that we don't want saved
 		fieldDetails['inputName'] = fieldDetails.modifiedFieldName;

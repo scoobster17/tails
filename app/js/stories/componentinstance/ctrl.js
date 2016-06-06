@@ -65,14 +65,6 @@
 				$window.location.href = '#/stories/' + $scope.story.modifiedName + '/' + $scope.component.modifiedComponentName;
 			}
 
-			/*
-			$scope.pickerOptions.utilities = [
-            	{name: 'gas'},
-            	{name: 'electricity'},
-            	{name: 'water'}
-            ];
-            */
-
             // set picker options based on the components available in the story
             for (var i in $scope.story.components) {
             	var component = $scope.story.components[i];
@@ -82,15 +74,19 @@
             // check for fields on the page that are associated to other components
             for (var j in $scope.component.fields) {
             	var field = $scope.component.fields[j];
-            	if (field.association) {
+            	if (field.association !== '') {
 
             		// if there are options to associate with, assign picker options for directive
-            		if (field.association in $scope.pickerOptions) {
+            		if ($scope.pickerOptions[field.association]) {
             			$scope.pickerOptions[field.inputName] = $scope.pickerOptions[field.association];
+            		}
 
-            		// else create options
-            		} else {
-            			console.log("options don't exist!");
+            	} else if (field.options.length && field.type == 'checkbox' || field.type == 'radio') {
+            		$scope.pickerOptions[field.inputName] = [];
+            		for (var choice in field.options) {
+            			$scope.pickerOptions[field.inputName].push({
+            				name: field.options[choice]
+            			});
             		}
             	}
             }
