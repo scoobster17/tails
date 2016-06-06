@@ -61,6 +61,12 @@
 			});
 			return filtered;
 		}
-	});
+	})
+
+	.filter('prepareForUrl', ['$rootScope', function($rootScope) {
+		return function(str) {
+			return $rootScope.prepareForUrl(str);
+		};
+	}]);
 
 })();

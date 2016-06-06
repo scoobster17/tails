@@ -170,7 +170,8 @@
                         "fieldset": "time and place",
                         "inputName": "location",
                         "type": "hidden",
-                        "pickerType": "radio"
+                        "pickerType": "radio",
+                        "association": "locations"
                     },
                     "importance": {
                     	"label": "Importance",
@@ -211,7 +212,8 @@
 			            "fieldset": "characters",
 			            "inputName": "characters",
 			            "type": "hidden",
-			            "pickerType": "checkbox"
+			            "pickerType": "checkbox",
+                        "association": "characters"
 			        }
                 }
 	        },
@@ -336,7 +338,8 @@
                     	"fieldset": "associates",
                         "inputName": "family",
                         "type": "hidden",
-                        "pickerType": "checkbox"
+                        "pickerType": "checkbox",
+                        "association": "characters"
                     },
                     "friends": {
                         "label": "Friends",
@@ -344,7 +347,8 @@
                     	"fieldset": "associates",
                         "inputName": "friends",
                         "type": "hidden",
-                        "pickerType": "checkbox"
+                        "pickerType": "checkbox",
+                        "association": "characters"
                     },
                     "importance": {
                     	"info": "Primary characters are main characters; they are crucial to the story. Secondary characters are characters that feature in the story, but are not necessarily crucial to the events. Tertiary characters may not even feature in the story, but may be mentioned / implied by relationships to primary or secondary characters.",

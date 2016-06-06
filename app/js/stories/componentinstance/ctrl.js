@@ -65,30 +65,35 @@
 				$window.location.href = '#/stories/' + $scope.story.modifiedName + '/' + $scope.component.modifiedComponentName;
 			}
 
-			// set locations data to a scope variable
-			$scope.pickerOptions.location = $scope.story.components.filter(function(instance) {
-				return instance.modifiedComponentName === 'locations';
-			});
-			$scope.pickerOptions.location = $scope.pickerOptions.location[0].list;
-
-			// set characters data to a scope variable
-			$scope.pickerOptions.characters = $scope.story.components.filter(function(instance) {
-				return instance.modifiedComponentName === 'characters';
-			});
-			$scope.pickerOptions.characters = $scope.pickerOptions.characters[0].list;
-			$scope.pickerOptions.family = $scope.pickerOptions.characters;
-			$scope.pickerOptions.friends = $scope.pickerOptions.characters;
-
+			/*
 			$scope.pickerOptions.utilities = [
             	{name: 'gas'},
             	{name: 'electricity'},
             	{name: 'water'}
             ];
+            */
 
-            // loop through all data for the instance and apply to pickerOptions
-            /*for (var i; i<) {
-            	//
-            }*/
+            // set picker options based on the components available in the story
+            for (var i in $scope.story.components) {
+            	var component = $scope.story.components[i];
+            	$scope.pickerOptions[component.modifiedComponentName] = component.list;
+            }
+
+            // check for fields on the page that are associated to other components
+            for (var j in $scope.component.fields) {
+            	var field = $scope.component.fields[j];
+            	if (field.association) {
+
+            		// if there are options to associate with, assign picker options for directive
+            		if (field.association in $scope.pickerOptions) {
+            			$scope.pickerOptions[field.inputName] = $scope.pickerOptions[field.association];
+
+            		// else create options
+            		} else {
+            			console.log("options don't exist!");
+            		}
+            	}
+            }
 
 		});
 

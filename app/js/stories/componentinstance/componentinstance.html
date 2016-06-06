@@ -46,6 +46,7 @@
 				<select
 					ng-if="field.type === 'select'"
 					class="form-control"
+					name="field.inputName"
 					id="{{ field.inputName }}"
 					ng-disabled="!editMode"
 					ng-model="editedInstanceDetails[field.inputName]"
@@ -53,7 +54,7 @@
 					<option value="-1">
 						Please select
 					</option>
-					<option ng-repeat="option in field.options" value="{{ option | lowercase }}">
+					<option ng-repeat="option in field.options" value="{{ option | prepareForUrl }}">
 						{{ option }}
 					</option>
 				</select>
